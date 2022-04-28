@@ -1,5 +1,7 @@
 package implementation;
 
+import java.util.ArrayList;
+
 /*
 * Class: SceneRoom
 * Description:
@@ -22,7 +24,27 @@ public class SceneRoom extends Room
 	* Description:
 	*   Calls the parent constructor and initializes various fields. Also increments numScene.
 	*/
-	public SceneRoom(int maxShots,)
+	public SceneRoom(int maxShots)
+	{
+		// TODO
+	}
+	
+	public Role[] getRoles()
+	{
+		// TODO
+	}
+	
+	public void setRoles(Role[] r)
+	{
+		// TODO
+	}
+	
+	public SceneCard getScene()
+	{
+		// TODO
+	}
+	
+	public void setScene(SceneCard s)
 	{
 		// TODO
 	}

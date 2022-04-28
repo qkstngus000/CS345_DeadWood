@@ -23,12 +23,13 @@ group=group-0</panel_attributes><additional_attributes></additional_attributes><
 --
 + static SceneLeft: int
 + static NumScene: int
-- shot: int
+- maxShots: int
 - curShot: int
-- roomRole: Role[num Roles in Room]
-- actorInfo: Player[num players in active role]
+- roomRole: ArrayList&lt;Role&gt;
+- actorInfo: ArrayList&lt;Player&gt;
 - scene: SceneCard
 --
++ SceneRoom(maxShots)
 - roleManager(Player p): bool
 + updateShot(): void
 + closeRoom(): Void
