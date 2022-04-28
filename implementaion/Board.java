@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 /*
 * Class: Board
-* Description: This class will be created upon game initialization by the DeadWood class, and has two main responsibilities.
-*   1. Build the rooms and scene card deck by parsing the two XML documents, and connect the rooms by initializing adjRooms[] for each of them.
-*   2. Distribute new scene cards to scene rooms when requested.
+* Description:
+*   This class will be created upon game initialization by the DeadWood class, and has two main responsibilities.
+*     1. Build the rooms and scene card deck by parsing the two XML documents, and connect the rooms by initializing adjRooms[] for each of them.
+*     2. Distribute new scene cards to scene rooms when requested.
 */
 public class Board {
-    int numRoom;				//number of rooms for this board
-	ArrayList<SceneCard> deck;	//List containing the 'deck' of SceneCards
-	Room[] rooms;				//Array holding all rooms associated with the board. Should be length [numRoom]
+    private int numRoom;				// number of rooms for this board
+	private ArrayList<SceneCard> deck;	// List containing the 'deck' of SceneCards
+	private Room[] rooms;				// Array holding all rooms associated with the board. Should be length [numRoom]
 	
 	/*
 	* Constructor
@@ -23,9 +24,9 @@ public class Board {
 	*   Initializes the board as well as running XMLParseBoard() and XMLParseCard() to create the deck and the room list.
 	*   Then, connects rooms to each other by setting adjRooms[] for each of them
 	*/
-	public static Board(int numRoom, String boardData, String cardData)
+	public Board(int numRoom, String boardData, String cardData)
 	{
-		//TODO
+		// TODO
 	}
 	
 	/*
@@ -37,7 +38,7 @@ public class Board {
 	*/
 	public void XMLParseBoard(String boardData)
 	{
-		//TODO
+		// TODO
 	}
 	
 	/*
@@ -49,7 +50,7 @@ public class Board {
 	*/
 	public void XMLParseCard(String cardData)
 	{
-		//TODO
+		// TODO
 	}
 	
 	/*
@@ -60,7 +61,7 @@ public class Board {
 	*/
 	public void reset()
 	{
-		//TODO
+		// TODO
 	}
 	
 	/*
@@ -72,6 +73,6 @@ public class Board {
 	*/
 	public void distributeCard(SceneRoom r)
 	{
-		//TODO
+		// TODO
 	}
 }
