@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg47689"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="Class Diagram.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview47691"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:object-paths="true"
+     inkscape:zoom="0.94867184"
+     inkscape:cx="383.69432"
+     inkscape:cy="330.98906"
+     inkscape:window-width="1920"
+     inkscape:window-height="992"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g177471"
+     inkscape:object-nodes="true" />
+  <defs
+     id="defs47686">
+    <rect
+       x="494.17699"
+       y="44.7219"
+       width="204.23001"
+       height="121.49448"
+       id="rect222388" />
+    <rect
+       x="514.30185"
+       y="60.374565"
+       width="193.7949"
+       height="112.55011"
+       id="rect217564" />
+    <marker
+       style="overflow:visible"
+       id="EmptyTriangleOutL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(-6,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path177786" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="EmptyTriangleOutM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(-4.5,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path177789" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DiamondMstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DiamondMstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(6.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         id="path177717" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker177972"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyDiamondMstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(6.5,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         id="path177970" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="EmptyDiamondMstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyDiamondMstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(6.5,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         id="path177744" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:5.64444px;line-height:1.25;font-family:Cambria;-inkscape-font-specification:'Cambria Italic';stroke-width:0.264583"
+       x="46.306553"
+       y="61.628487"
+       id="text62056"><tspan
+         sodipodi:role="line"
+         id="tspan62054"
+         style="stroke-width:0.264583"
+         x="46.306553"
+         y="61.628487" /></text>
+    <g
+       id="g177372"
+       transform="translate(-10.213766,6.6639348)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         id="rect47794"
+         width="65.671318"
+         height="45.878719"
+         x="45.555782"
+         y="50.880482" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="46.44323"
+         y="54.312199"
+         id="text50229"><tspan
+           sodipodi:role="line"
+           id="tspan50227"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="54.312199">Game</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 45.555776,55.281588 H 111.2271"
+         id="path52978" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="46.44323"
+         y="59.255241"
+         id="text62770"><tspan
+           sodipodi:role="line"
+           id="tspan62768"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="59.255241">-Player[] players</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="63.664967"
+           id="tspan68448">-Board board</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="68.074692"
+           id="tspan68450">-int playerCount</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="72.484413"
+           id="tspan69270">-int days</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="76.894142"
+           id="tspan74759">-int scenesLeft</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 45.555776,77.994662 H 111.2271"
+         id="path70878" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="46.44323"
+         y="81.9683"
+         id="text70888"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="81.9683"
+           id="tspan70886">+Game():</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="86.378021"
+           id="tspan71299">+gameLoop(): void</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="90.78775"
+           id="tspan83257">-startGame(int playerCount): void</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="95.197472"
+           id="tspan83259">-advanceDay(): void</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="46.44323"
+           y="99.607201"
+           id="tspan71301" /></text>
+    </g>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.400001;stroke-linecap:round;stroke-linejoin:round"
+       id="rect92667"
+       width="48.658497"
+       height="33.320068"
+       x="122.39545"
+       y="77.636894" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+       x="123.28289"
+       y="81.068611"
+       id="text92671"><tspan
+         sodipodi:role="line"
+         id="tspan92669"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="81.068611">Board</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+       d="m 122.39544,82.038045 h 48.65851"
+       id="path92673" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+       x="123.28289"
+       y="86.01165"
+       id="text92685"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="86.01165"
+         id="tspan92683">-int[] arrangement</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="90.421371"
+         id="tspan95953">-List&lt;Scene&gt; deck</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="94.8311"
+         id="tspan95957">-Room[] rooms</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+       d="m 122.39544,96.284415 h 48.65851"
+       id="path92687" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+       x="123.28289"
+       y="100.25817"
+       id="text92699"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="100.25817"
+         id="tspan97578">+Board(bool shuffle):</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="104.66789"
+         id="tspan100012">+getStartingRoom(): Room</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="109.07762"
+         id="tspan200514">-shuffleDeck(): void</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="123.28289"
+         y="113.48734"
+         id="tspan92697" /></text>
+    <g
+       id="g177395"
+       transform="translate(-88.3054,7.5006308)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         id="rect108086"
+         width="54.654819"
+         height="68.330063"
+         x="103.7641"
+         y="109.08879" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="104.65155"
+         y="112.52051"
+         id="text108090"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="112.52051"
+           id="tspan108842">Player</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="m 103.76411,113.48993 h 54.65481"
+         id="path108092" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="104.65155"
+         y="117.46355"
+         id="text108100"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="117.46355"
+           id="tspan108098">-String name</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="121.87327"
+           id="tspan114294">-Room room</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="126.283"
+           id="tspan114308">-Role role</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="130.69272"
+           id="tspan114296">-int rank</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="135.10245"
+           id="tspan114298">-int wallet</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="139.51218"
+           id="tspan114300">-int credits</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="143.92189"
+           id="tspan114304">-int chips</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="m 103.76411,145.72796 h 54.65481"
+         id="path108102" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="104.65155"
+         y="149.7018"
+         id="text108110"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="149.7018"
+           id="tspan118574">+Player(String name,</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="154.11153"
+           id="tspan122040">        Room startingRoom):</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="158.52124"
+           id="tspan123890">+playerTurn(): void</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="162.93097"
+           id="tspan123892">+calculateScore(): int</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="167.3407"
+           id="tspan123894">+takeRole(Role r): bool</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="171.75043"
+           id="tspan123896">+act(): bool</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="104.65155"
+           y="176.16014"
+           id="tspan123898">+rehearse(): bool</tspan></text>
+    </g>
+    <g
+       id="g177423"
+       transform="translate(119.19523,-21.818771)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         id="rect126916"
+         width="48.658497"
+         height="24.12462"
+         x="19.097448"
+         y="146.13048" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="19.984896"
+         y="149.56219"
+         id="text126920"><tspan
+           sodipodi:role="line"
+           id="tspan126918"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="149.56219">Room</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 19.097441,150.53162 H 67.755945"
+         id="path126922" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="19.984896"
+         y="154.50523"
+         id="text126930"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="154.50523"
+           id="tspan126928">-String name</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="158.91496"
+           id="tspan132190">-Room[] connectingRooms</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 19.097441,160.54463 H 67.755945"
+         id="path126932" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="19.984896"
+         y="164.51849"
+         id="text126940"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="164.51849"
+           id="tspan126938">+Room(String name):</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="168.92822"
+           id="tspan137628">+action(Player p): bool</tspan></text>
+    </g>
+    <g
+       id="g177491"
+       transform="translate(58.395316,-44.80757)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.400001;stroke-linecap:round;stroke-linejoin:round"
+         id="rect138412"
+         width="48.658497"
+         height="55.082375"
+         x="19.097448"
+         y="177.88051" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="19.984896"
+         y="181.31223"
+         id="text138416"><tspan
+           sodipodi:role="line"
+           id="tspan138414"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="181.31223">SetRoom</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 19.097441,182.28164 H 67.755945"
+         id="path138418" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="19.984896"
+         y="186.25526"
+         id="text138424"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="186.25526"
+           id="tspan138420">-Scene scene</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="190.66499"
+           id="tspan138422">-List&lt;Scene&gt; deck</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="195.07471"
+           id="tspan143552">-Role[] offCardRoles</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="199.48444"
+           id="tspan142794">-int shots</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="203.89417"
+           id="tspan142798">-int maxShots</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 19.097441,205.52381 H 67.755945"
+         id="path138426" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="19.984896"
+         y="209.49774"
+         id="text138432"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="209.49774"
+           id="tspan138430">+Room(String name,</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="213.90747"
+           id="tspan149850">      int shots,</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="218.31718"
+           id="tspan149852">      List&lt;Scene&gt; deck):</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="222.72691"
+           id="tspan150668">+action(Player p): bool</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="227.13664"
+           id="tspan150670">+newScene(): void</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="19.984896"
+           y="231.54637"
+           id="tspan150672">+finishScene(): void</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+       x="81.080292"
+       y="196.83861"
+       id="text151050"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="81.080292"
+         y="196.83861"
+         id="tspan151048" /></text>
+    <g
+       id="g177432"
+       transform="translate(53.096237,-5.8865053)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         id="rect151038"
+         width="48.658497"
+         height="12.968673"
+         x="82.597443"
+         y="188.46385" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="83.484894"
+         y="191.89557"
+         id="text151042"><tspan
+           sodipodi:role="line"
+           id="tspan151040"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="191.89557">TrailerRoom</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 82.597445,192.86498 H 131.25596"
+         id="path151044" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 82.597445,195.99881 H 131.25596"
+         id="path151052" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="83.484894"
+         y="199.97272"
+         id="text151058"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="199.97272"
+           id="tspan151056">+action(Player p): bool</tspan></text>
+    </g>
+    <g
+       id="g177441"
+       transform="translate(5.0769705,-29.24805)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         id="rect158596"
+         width="48.658497"
+         height="12.968673"
+         x="140.80577"
+         y="188.46385" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="141.69322"
+         y="191.89557"
+         id="text158600"><tspan
+           sodipodi:role="line"
+           id="tspan158598"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="191.89557">CastingRoom</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="m 140.8058,192.86498 h 48.65853"
+         id="path158602" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="m 140.8058,195.99881 h 48.65853"
+         id="path158604" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="141.69322"
+         y="199.97272"
+         id="text158608"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="199.97272"
+           id="tspan158606">+action(Player p): bool</tspan></text>
+    </g>
+    <g
+       id="g177471"
+       transform="translate(-42.287116,11.684111)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         id="rect160868"
+         width="48.658497"
+         height="32.943062"
+         x="82.597443"
+         y="214.92223" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="83.484894"
+         y="218.35393"
+         id="text160872"><tspan
+           sodipodi:role="line"
+           id="tspan160870"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="218.35393">Role</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 82.597445,219.32333 H 131.25596"
+         id="path160874" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="83.484894"
+         y="223.29697"
+         id="text160880"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="223.29697"
+           id="tspan160876">-String name</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="227.7067"
+           id="tspan160878">-Player player</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="232.11641"
+           id="tspan164110">-int rank</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="236.52614"
+           id="tspan164112">-SetRoom room</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="M 82.597445,237.803 H 131.25596"
+         id="path160882" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="83.484894"
+         y="241.77693"
+         id="text160888"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="241.77693"
+           id="tspan160886">+Role(String name,</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="83.484894"
+           y="246.18666"
+           id="tspan167038">      int rank):</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-size:7.05556px;line-height:1.25;font-family:Cambria;-inkscape-font-specification:'Cambria Italic';stroke-width:0.264583"
+         x="65.79248"
+         y="18.869602"
+         id="text272114"><tspan
+           sodipodi:role="line"
+           id="tspan272112"
+           style="font-size:7.05556px;stroke-width:0.264583"
+           x="65.79248"
+           y="18.869602">Deadwood - Class Diagram</tspan><tspan
+           sodipodi:role="line"
+           style="font-size:4.23333px;stroke-width:0.264583"
+           x="65.79248"
+           y="27.689053"
+           id="tspan272116">Sage Cook - CSCI345 Spring 2022</tspan></text>
+    </g>
+    <g
+       id="g177456"
+       transform="translate(-19.138524,12.520807)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         id="rect167560"
+         width="48.658497"
+         height="33.640305"
+         x="140.80577"
+         y="214.92221" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="141.69322"
+         y="218.35393"
+         id="text167564"><tspan
+           sodipodi:role="line"
+           id="tspan167562"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="218.35393">Scene</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="m 140.8058,219.32333 h 48.65853"
+         id="path167566" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="141.69322"
+         y="223.29697"
+         id="text167576"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="223.29697"
+           id="tspan167568">-String name</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="227.7067"
+           id="tspan167574">-Role[] roles</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="232.11641"
+           id="tspan172923">-int budget</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+         d="m 140.8058,234.09884 h 48.65853"
+         id="path167578" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+         x="141.69322"
+         y="238.07274"
+         id="text167584"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="238.07274"
+           id="tspan167580">+Scene(String name,</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="242.48247"
+           id="tspan167582">       Role[] roles,</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.264583"
+           x="141.69322"
+           y="246.89218"
+           id="tspan176375">       int budget):</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+       d="m 41.103591,184.9195 18.407314,41.68685"
+       id="path177526" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+       d="M 90.74756,188.15532 74.571435,226.60635"
+       id="path177528" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;marker-start:url(#marker177972)"
+       d="m 113.89615,188.15532 23.42749,39.28771"
+       id="path177530" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+       d="m 121.66725,240.10215 -32.698429,2.78899"
+       id="path177532" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#EmptyTriangleOutL)"
+       d="m 138.29268,135.51514 -12.14142,6.55412"
+       id="path177534" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#EmptyTriangleOutL)"
+       d="m 164.93461,148.43634 -0.2789,10.77947"
+       id="path177536" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#EmptyTriangleOutL)"
+       d="m 141.78602,148.43634 -1.67339,34.14102"
+       id="path177538" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round"
+       d="m 70.113518,125.09696 68.179162,1.7749"
+       id="path177540" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;marker-start:url(#marker177972)"
+       d="M 55.181054,103.42314 32.896192,116.58943"
+       id="path177542" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;marker-start:url(#marker177972)"
+       d="m 101.01333,89.79615 21.38212,5.324699"
+       id="path177544" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:round;marker-start:url(#marker177972);paint-order:stroke fill markers"
+       d="m 136.43205,110.95698 25.24303,13.35474"
+       id="path178037"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="25.993805"
+       y="115.03918"
+       id="text180864"><tspan
+         sodipodi:role="line"
+         id="tspan180862"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="25.993805"
+         y="115.03918">2-8</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="118.68304"
+       y="99.459488"
+       id="text183016"><tspan
+         sodipodi:role="line"
+         id="tspan183014"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="118.68304"
+         y="99.459488">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="161.03854"
+       y="123.24709"
+       id="text180864-7"><tspan
+         sodipodi:role="line"
+         id="tspan180862-8"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="161.03854"
+         y="123.24709">12</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="133.17909"
+       y="125.022"
+       id="text180864-5"><tspan
+         sodipodi:role="line"
+         id="tspan180862-85"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="133.17909"
+         y="125.022">1</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       d="m 136.72787,125.24487 1.56481,1.62699 -1.71272,1.52839"
+       id="path189423" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="53.711205"
+       y="225.70532"
+       id="text180864-0"><tspan
+         sodipodi:role="line"
+         id="tspan180862-5"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="53.711205"
+         y="225.70532">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="37.93232"
+       y="189.72975"
+       id="text180864-4"><tspan
+         sodipodi:role="line"
+         id="tspan180862-1"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="37.93232"
+         y="189.72975">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="67.495583"
+       y="225.28934"
+       id="text180864-3"><tspan
+         sodipodi:role="line"
+         id="tspan180862-53"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="67.495583"
+         y="225.28934">2-4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="89.389122"
+       y="241.18655"
+       id="text180864-1"><tspan
+         sodipodi:role="line"
+         id="tspan180862-0"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="89.389122"
+         y="241.18655">1-3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="116.86064"
+       y="238.95537"
+       id="text180864-59"><tspan
+         sodipodi:role="line"
+         id="tspan180862-3"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="116.86064"
+         y="238.95537">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="138.297"
+       y="226.58163"
+       id="text180864-59-1"><tspan
+         sodipodi:role="line"
+         id="tspan180862-3-3"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="138.297"
+         y="226.58163">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+       x="84.870567"
+       y="192.57384"
+       id="text200188"><tspan
+         sodipodi:role="line"
+         id="tspan200186"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Italic';stroke-width:0.264583"
+         x="84.870567"
+         y="192.57384">1</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-2.4046026,0)"
+       id="text217562"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;white-space:pre;shape-inside:url(#rect217564)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,3.9061544,22.349934)"
+       id="text222386"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.25;font-family:Cambria;-inkscape-font-specification:Cambria;white-space:pre;shape-inside:url(#rect222388)"><tspan
+         x="494.17773"
+         y="55.556641"
+         id="tspan278630"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278628">action() is defined abstractly, to be </tspan></tspan><tspan
+         x="494.17773"
+         y="70.581573"
+         id="tspan278634"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278632">implemented in child classes. It will be </tspan></tspan><tspan
+         x="494.17773"
+         y="85.606506"
+         id="tspan278638"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278636">called by a player object during its </tspan></tspan><tspan
+         x="494.17773"
+         y="100.63144"
+         id="tspan278642"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278640">turn if the user inputs that they'd like </tspan></tspan><tspan
+         x="494.17773"
+         y="115.65637"
+         id="tspan278646"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278644">to take an action in the room they are </tspan></tspan><tspan
+         x="494.17773"
+         y="130.6813"
+         id="tspan278650"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278648">currently in. This could vary from </tspan></tspan><tspan
+         x="494.17773"
+         y="145.70624"
+         id="tspan278654"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278652">taking a role on a set to upgrading </tspan></tspan><tspan
+         x="494.17773"
+         y="160.73117"
+         id="tspan278658"><tspan
+           style="font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan278656">their rank at the casting office.</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       d="M 134.65715,66.722443 H 188.4958"
+       id="path242620" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       d="M 180.60735,66.722443 V 124.31172"
+       id="path242622" />
+  </g>
+</svg>
