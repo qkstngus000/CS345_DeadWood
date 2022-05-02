@@ -6,7 +6,7 @@ package implementation;
 *   This abstract class acts as a parent to SceneRoom, CastingOffice, and Trailer, which are all rooms on the board.
 *   It will be used to refer to the rooms in the board class, and holds the common functionality between all types of rooms.
 */
-public abstract class Room
+public class Room
 {
 	/*
 	* adjRoom: holds references to the rooms connected to this one in the four cardinal directions.
@@ -47,5 +47,5 @@ public abstract class Room
 	*   this room during their turn, and will determine what happens from there on. It returns a bool to communicate to the player whether
 	*   an action was actually completed.
 	*/
-	public abstract bool action(Player p);
+	public bool action(Player p);
 }

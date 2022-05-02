@@ -30,30 +30,6 @@ public class Board {
 	}
 	
 	/*
-	* Function: XMLParseBoard
-	* Parameter:
-	*   String boardData: filename of file to parse
-	* Description:
-	*   Parses an XML file containing data for the rooms and creates the 'rooms' field accordingly.
-	*/
-	public void XMLParseBoard(String boardData)
-	{
-		// TODO
-	}
-	
-	/*
-	* Function: XMLParseCard
-	* Parameter:
-	*   String cardData: filename of file to parse
-	* Description:
-	*   Parses an XML file containing data for the scene cards and creates the 'deck' field accordingly.
-	*/
-	public void XMLParseCard(String cardData)
-	{
-		// TODO
-	}
-	
-	/*
 	* Function: reset
 	* Description:
 	*   calls distributeCard() on every SceneRoom in the board to repopulate the board with scenes.
