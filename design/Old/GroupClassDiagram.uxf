@@ -1,0 +1,115 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>585</y><w>189</w><h>72</h></coordinates><panel_attributes>Dice
+--
+
+--
+rollDice(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>603</x><y>621</y><w>189</w><h>90</h></coordinates><panel_attributes>Casting Office
+--
+- castingInfo: int[5][2]
+--
+- upgradeManager(Player): bool
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>828</x><y>621</y><w>189</w><h>90</h></coordinates><panel_attributes>Trailer
+--
+
+--
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>711</x><y>387</y><w>189</w><h>117</h></coordinates><panel_attributes>/Room/
+--
+- adjRoom: Room[4]
++ Direction: enum
+- numActors: int
+--
++ Room()
+/+ Abstract Action(Player): bool/
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>297</x><y>486</y><w>243</w><h>189</h></coordinates><panel_attributes>SceneRoom
+--
++ static SceneLeft: int
++ static NumScene: int
+- maxShots: int
+- curShot: int
+- roomRole: ArrayList&lt;Role&gt;
+- actorInfo: ArrayList&lt;Player&gt;
+- scene: SceneCard
+--
++ SceneRoom(maxShots)
+- roleManager(Player p): bool
++ updateShot(): void
++ closeRoom(): Void
++ firstVisit(): void
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>18</x><y>225</y><w>189</w><h>243</h></coordinates><panel_attributes>Player
+--
+- name: String
+- room: Room
+- rank: int
+- dollar: int
+- credit: int
+- token: int
+- role: Role
+--
++ Player(name, Trailer)
++ playerTurn(): void
++ calcScore(): int
++ takeRole(Role): bool
++ act(Dice): void
++ rehearse(): bool
++ removeRole(): void
++ move(): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>801</x><y>495</y><w>27</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=group-0</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>693</x><y>549</y><w>252</w><h>90</h></coordinates><panel_attributes>
+group=group-0</panel_attributes><additional_attributes>10;80;10;20;260;20;260;80</additional_attributes></element><element><id>Relation</id><coordinates><x>531</x><y>549</y><w>189</w><h>36</h></coordinates><panel_attributes>
+group=group-0</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>27</x><y>720</y><w>189</w><h>171</h></coordinates><panel_attributes>SceneCard
+--
++ name: String
++ roles: int[]
+- description: String
++ flip: bool
+- cardUsed: bool
+- budget
+
+--
+SceneCard()
+cardUsed(): bool </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>315</x><y>747</y><w>189</w><h>108</h></coordinates><panel_attributes>Role
+--
+- roleName: String
+- rank: int
+- main: bool
++ roleDeprived: bool
+--
++ Role(roleName, rank, main)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>702</x><y>153</y><w>189</w><h>135</h></coordinates><panel_attributes>Board
+--
+- numRoom: int
+- Deck: ArrayList&lt;SceneCard&gt;
+- rooms: Rooms[numRooms]
+--
++ Board(boardData, cardData)
+- XMLParseBoard(boardData):void
+- XMLParseCard(cardData): void
++ reset(): void
+- distributeCard(SceneRoom r): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>405</x><y>0</y><w>189</w><h>189</h></coordinates><panel_attributes>DeadWood
+--
+- day: int
+- numPlayer: int
+- curPlayer: Player
+- listPlayer: Player[numPlayer]
+- board: Board
+--
+DeadWood()
+startEnvp(): void
+trackDate(): void
+announceWinner(): void
+nextTurnPlayer(): void
+gameLoop(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>585</x><y>45</y><w>243</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1= 1
+m2= 1
+</panel_attributes><additional_attributes>10;20;240;20;240;120</additional_attributes></element><element><id>Relation</id><coordinates><x>99</x><y>90</y><w>324</w><h>153</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2...8
+</panel_attributes><additional_attributes>340;20;10;20;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>783</x><y>279</y><w>36</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=12
+</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>81</x><y>459</y><w>36</w><h>144</h></coordinates><panel_attributes>m1=1
+m2=1</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>603</y><w>135</w><h>36</h></coordinates><panel_attributes>m1=1
+m2=1</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>396</x><y>666</y><w>45</w><h>99</h></coordinates><panel_attributes>m1=1
+m2=3...7</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>792</y><w>126</w><h>36</h></coordinates><panel_attributes>m1=1
+m2=1...3</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>666</y><w>108</w><h>72</h></coordinates><panel_attributes>m1=1
+m2=1</panel_attributes><additional_attributes>10;60;10;10;100;10</additional_attributes></element><element><id>Relation</id><coordinates><x>198</x><y>360</y><w>243</w><h>144</h></coordinates><panel_attributes>m1=0...8
+m2=1</panel_attributes><additional_attributes>10;10;240;10;240;140</additional_attributes></element></diagram>
