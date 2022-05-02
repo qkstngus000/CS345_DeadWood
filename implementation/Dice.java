@@ -1,5 +1,4 @@
 package implementation;
-import java.util.*;
 
 /*
 * class: Dice
@@ -9,11 +8,11 @@ import java.util.*;
 public class Dice {
 
     /*
-    *
-    * Constructor
-    *  Description:
-    *       Simple constructor that stores random number from 1 ~ 6 for each time this class is called. 
-    */
+     * Constructor
+     * Description:
+     * Simple constructor that stores random number from 1 ~ 6 for each time this
+     * class is called.
+     */
     public Dice() {
         /// TO DO
     }
