@@ -47,6 +47,7 @@ public class XMLParser {
 
 		Document doc = null;
 		Room[] parsedRoom = new Room[12];
+		int[][] upgradeInfo = new int[2][5];
 		try{
 			doc = getDocFromFile(boardPath);
 			Element root = doc.getDocumentElement();
@@ -65,11 +66,16 @@ public class XMLParser {
 				int shots = ((Element) ((Element) room).getElementsByTagName("takes").item(0)).getElementsByTagName("take").getLength();
 				System.out.println("shots: " + shots);
 				Room curRoom = new SceneRoom(roomName, shots);
-				
-
+				parsedRoom[i] = curRoom;
 			}
 
+			//For index, get upgrade info and store int in upgrade
+			
+			// Put office and trailer into room 11 & 12th index
+			Room castingOffice = new CastingOffice("Office", /*Something */ );
+
 			// Loop one more time to set neighbors
+
 		}
 		catch (Exception e) {
 			System.out.println("Error = " + e);
