@@ -8,7 +8,7 @@ package implementation;
 */
 public class Room
 {
-	Room[] neighbors; // neighbors: holds references to the rooms that are reachable from this room in one move.
+	private Room[] neighbors; // neighbors: holds references to the rooms that are reachable from this room in one move.
 	/* public enum Direction
 	{
 		NORTH,
@@ -17,8 +17,8 @@ public class Room
 		WEST
 	} */
 	
-	int numActors;	// number of actors currently in the room
-	String name;
+	private int numActors;	// number of actors currently in the room
+	private String name;
 	
 	/*
 	* Constructor

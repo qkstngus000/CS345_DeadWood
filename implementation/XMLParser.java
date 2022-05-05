@@ -62,8 +62,14 @@ public class XMLParser {
 				Node room = sceneRoom.item(i);
 				String roomName = room.getAttributes().getNamedItem("name").getNodeValue();
 				System.out.println("name of room: " + roomName);
-				Room curRoom = new Room(roomName);
+				int shots = ((Element) ((Element) room).getElementsByTagName("takes").item(0)).getElementsByTagName("take").getLength();
+				System.out.println("shots: " + shots);
+				Room curRoom = new SceneRoom(roomName, shots);
+				
+
 			}
+
+			// Loop one more time to set neighbors
 		}
 		catch (Exception e) {
 			System.out.println("Error = " + e);
