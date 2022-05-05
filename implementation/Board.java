@@ -11,7 +11,6 @@ import java.util.Random;
 *     2. Distribute new scene cards to scene rooms when requested.
 */
 public class Board {
-    private int numRoom;					// number of rooms for this board
 	private ArrayList<SceneCard> deck;		// List containing the 'deck' of SceneCards
 	private ArrayList<SceneCard> discard;	// List containing the SceneCards which are already used
 	private Room[] rooms;					// Array holding all rooms associated with the board. Should be length [numRoom]
@@ -27,8 +26,6 @@ public class Board {
 	*/
 	public Board(int numRoom)
 	{
-		this.numRoom = numRoom;
-		rooms = new Room[numRoom];
 		rooms = XMLParser.XMLParseBoard();
 		deck = XMLParser.XMLParseCard();
 		discard = new ArrayList<SceneCard>();

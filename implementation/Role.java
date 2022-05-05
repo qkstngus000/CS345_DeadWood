@@ -23,6 +23,9 @@ public class Role {
      * Initialize the role objects that contains informations of each role.
      */
     public Role(String roleName, int rank, boolean main) {
-        // TO DO
+        this.roleName = roleName;
+		this.rank = rank;
+		this.mainRole = main;
+		roleDeprived = false;
     }
 }
