@@ -29,16 +29,6 @@ public class DeadWood {
     }
 
     /*
-     * main function
-     * Description:
-     * Ask for how many users are there to play game
-     * Also loop the function for each day
-     */
-    public static void main(String[] args) {
-        // TO DO
-    }
-
-    /*
      * Function: setEnv()
      * Parameter:
      * None
@@ -86,5 +76,14 @@ public class DeadWood {
         // TO DO
     }
 
+        /*
+     * main function
+     * Description:
+     * Ask for how many users are there to play game
+     * Also loop the function for each day
+     */
+    public static void main(String[] args) {
+        // TO DO
+    }
     
 }
