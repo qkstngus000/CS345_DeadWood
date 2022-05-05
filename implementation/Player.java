@@ -27,7 +27,7 @@ public class Player {
      * Initialize the player object to be created which would hold player
      * info, and update the player info as games progress.
      */
-    public Player(String name, Trailer startRoom) {
+    public Player(String name, Room startRoom) {
         // TO DO
     }
 

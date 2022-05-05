@@ -1,5 +1,7 @@
 package implementation;
 
+import java.util.Random;
+
 /*
 * Class: DeadWood
 * Description: 
@@ -13,6 +15,7 @@ public class DeadWood {
     private Player[] listPlayer; // List of players to keep track of turn
     private Board board;
     private Player curPlayer; // Current players' turn
+    private Random dice; // Dice Roll
 
     /*
      * Constructor: DeadWood
@@ -82,4 +85,6 @@ public class DeadWood {
     public void nextTurnPlayer() {
         // TO DO
     }
+
+    
 }
