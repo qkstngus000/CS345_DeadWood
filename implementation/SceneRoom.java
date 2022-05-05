@@ -24,29 +24,33 @@ public class SceneRoom extends Room
 	* Description:
 	*   Calls the parent constructor and initializes various fields. Also increments numScene.
 	*/
-	public SceneRoom(int maxShots)
+	public SceneRoom(String name, int maxShots)
 	{
-		// TODO
+		numScene++;
+		this.maxShots = maxShots;
+		curShot = 0;
+		actorInfo = new ArrayList<Player>();
+		super(name);
 	}
 	
 	public Role[] getRoles()
 	{
-		// TODO
+		return roomRoles;
 	}
 	
 	public void setRoles(Role[] r)
 	{
-		// TODO
+		roomRoles = r;
 	}
 	
 	public SceneCard getScene()
 	{
-		// TODO
+		return scene;
 	}
 	
 	public void setScene(SceneCard s)
 	{
-		// TODO
+		scene = s;
 	}
 	
 	/*
@@ -60,7 +64,7 @@ public class SceneRoom extends Room
 	*/
 	public bool action(Player p)
 	{
-		// TODO
+		return roleManager(p);
 	}
 	
 	/*
@@ -76,6 +80,7 @@ public class SceneRoom extends Room
 	private bool roleManager(Player p)
 	{
 		// TODO
+		return false;
 	}
 	
 	/*

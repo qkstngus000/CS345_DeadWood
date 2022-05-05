@@ -14,9 +14,10 @@ public class CastingOffice extends Room
 	* Description:
 	*   Calls the parent constructor as well as initializing castingInfo.
 	*/
-	public CastingOffice(castingInfo)
+	public CastingOffice(String name, int[][] castingInfo)
 	{
-		// TODO
+		this.castingInfo = castingInfo;
+		super(name);
 	}
 	
 	/*
@@ -30,7 +31,7 @@ public class CastingOffice extends Room
 	*/
 	public bool action(Player p)
 	{
-		// TODO
+		return upgradeManager(p);
 	}
 	
 	/*
@@ -47,5 +48,6 @@ public class CastingOffice extends Room
 	private bool upgradeManager(Player p)
 	{
 		// TODO
+		return false;
 	}
 }
