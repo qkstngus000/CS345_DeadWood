@@ -8,7 +8,7 @@ package implementation;
 */
 public class Room
 {
-	Room[] neighbors // neighbors: holds references to the rooms that are reachable from this room in one move.
+	Room[] neighbors; // neighbors: holds references to the rooms that are reachable from this room in one move.
 	/* public enum Direction
 	{
 		NORTH,
@@ -38,7 +38,7 @@ public class Room
 	
 	public void setNeighbors(Room[] neighbors)
 	{
-		this.neighbors = neigbhors;
+		this.neighbors = neighbors;
 	}
 	
 	/*
@@ -53,7 +53,7 @@ public class Room
 	*   an action was actually completed. Here it has a default implementation which will be used by the Trailer room and simply prints
 	*   that no action can be performed.
 	*/
-	public bool action(Player p)
+	public boolean action(Player p)
 	{
 		System.out.println("No action can be performed in this room.");
 		return false;

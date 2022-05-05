@@ -26,11 +26,12 @@ public class SceneRoom extends Room
 	*/
 	public SceneRoom(String name, int maxShots)
 	{
+		super(name);
 		numScene++;
 		this.maxShots = maxShots;
 		curShot = 0;
 		actorInfo = new ArrayList<Player>();
-		super(name);
+		
 	}
 	
 	public Role[] getRoles()
@@ -62,7 +63,7 @@ public class SceneRoom extends Room
 	* Description:
 	*   This just acts as a wrapper method for the private method, roleManager(), which actually handles players taking roles.
 	*/
-	public bool action(Player p)
+	public boolean action(Player p)
 	{
 		return roleManager(p);
 	}
@@ -77,7 +78,7 @@ public class SceneRoom extends Room
 	*   Handles what happens when a player tries to take a role in this room. Should take input from the player to decide
 	*   which role to take, call takeRole() on the player, and update the role's roleDeprived field to complete the interaction.
 	*/
-	private bool roleManager(Player p)
+	private boolean roleManager(Player p)
 	{
 		// TODO
 		return false;

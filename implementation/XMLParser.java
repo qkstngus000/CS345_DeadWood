@@ -62,7 +62,7 @@ public class XMLParser {
 				Node room = sceneRoom.item(i);
 				String roomName = room.getAttributes().getNamedItem("name").getNodeValue();
 				System.out.println("name of room: " + roomName);
-				Room curRoom = new Room();
+				Room curRoom = new Room(roomName);
 			}
 		}
 		catch (Exception e) {
@@ -81,7 +81,7 @@ public class XMLParser {
 	* Description:
 	*   Parses an XML file containing data for the scene cards and creates the 'deck' field accordingly.
 	*/
-	public static ArrayList<SceneCard> XMLParseCard(String cardData) {
+	public static ArrayList<SceneCard> XMLParseCard() {
 		// TODO
         ArrayList<SceneCard> card = new ArrayList<SceneCard>();
         return card;

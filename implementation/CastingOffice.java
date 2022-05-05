@@ -16,8 +16,9 @@ public class CastingOffice extends Room
 	*/
 	public CastingOffice(String name, int[][] castingInfo)
 	{
-		this.castingInfo = castingInfo;
 		super(name);
+		this.castingInfo = castingInfo;
+		
 	}
 	
 	/*
@@ -29,7 +30,7 @@ public class CastingOffice extends Room
 	* Description:
 	*   This just acts as a wrapper method for the private method, upgradeManager(), which actually handles players purchasing rank upgrades.
 	*/
-	public bool action(Player p)
+	public boolean action(Player p)
 	{
 		return upgradeManager(p);
 	}
@@ -45,7 +46,7 @@ public class CastingOffice extends Room
 	*   and what currency to use, and makes the purchase by setting the appropriate values in the player if the player
 	*   has enough resources to make the purchase, and if the player does not already possess an equal or higher rank.
 	*/
-	private bool upgradeManager(Player p)
+	private boolean upgradeManager(Player p)
 	{
 		// TODO
 		return false;

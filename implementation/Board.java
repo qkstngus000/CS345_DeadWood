@@ -25,12 +25,12 @@ public class Board {
 	* Description:
 	*   Initializes the board as well as running XMLParseBoard() and XMLParseCard() to create the deck and the room list.
 	*/
-	public Board(int numRoom, String boardData, String cardData)
+	public Board(int numRoom)
 	{
 		this.numRoom = numRoom;
 		rooms = new Room[numRoom];
-		rooms = XMLParser.XMLParseBoard(boardData);
-		deck = XMLParser.XMLParseCard(cardData);
+		rooms = XMLParser.XMLParseBoard();
+		deck = XMLParser.XMLParseCard();
 		discard = new ArrayList<SceneCard>();
 	}
 	
@@ -67,15 +67,15 @@ public class Board {
 	*   The SceneCard given to s is a shallow copy of the one in the discard pile so as to avoid making
 	*   permanent changes to the original.
 	*/
-	private bool distributeCard(SceneRoom s)
+	private boolean distributeCard(SceneRoom s)
 	{
-		if (deck.size <= 0)
+		if (deck.size() <= 0)
 		{
 			return false;
 		}
 		Random r = new Random();
-		SceneCard c = deck.remove(r.nextInt(deck.size));
-		s.scene = c.clone();
+		SceneCard c = deck.remove(r.nextInt(deck.size()));
+		s.setScene(c);
 		discard.add(c);
 		
 		return true;
