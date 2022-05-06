@@ -167,19 +167,19 @@ public class XMLParser {
 			parsedRoom[0].setNeighbors(trailerNeighborRoom);
 
 			// Loop one more time to set neighbors for scene rooms
-			System.out.println(sceneRoom.getLength());
+			// System.out.println(sceneRoom.getLength());	// Log
 			for (int i  = 0; i < sceneRoom.getLength(); i++) {
-				System.out.println("Printing information for room " + i);
+				// System.out.println("Printing information for room " + i);	// Log
 				Node room = sceneRoom.item(i);
 				String workingRoom = room.getAttributes().getNamedItem("name").getNodeValue();
 				int numNeighbors = ((Element) ((Element) room).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor").getLength();
-				System.out.println("Number of neighbors: " + numNeighbors);
+				// System.out.println("Number of neighbors: " + numNeighbors);	// Log
 				Room[] neighborRoom = new Room[numNeighbors];
 				NodeList neighborPath = ((Element) ((Element) room).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor");
 
-				System.out.println("\tCurrent Working Room: " + workingRoom);
+				// System.out.println("\tCurrent Working Room: " + workingRoom);	// Log
 				for (int j = 0; j < numNeighbors; j++) {
-					System.out.println("\t\tneighboringRoom: " + neighborPath.item(j).getAttributes().getNamedItem("name").getNodeValue());
+					// System.out.println("\t\tneighboringRoom: " + neighborPath.item(j).getAttributes().getNamedItem("name").getNodeValue());	// Log
 					String neigh = neighborPath.item(j).getAttributes().getNamedItem("name").getNodeValue();
 					for(Room r : parsedRoom) {
 						if (r.getName().equals(neigh)) {
@@ -188,7 +188,7 @@ public class XMLParser {
 					}
 				}
 				parsedRoom[i+2].setNeighbors(neighborRoom);
-				System.out.println("end of iteration " + i);
+				// System.out.println("end of iteration " + i);	// Log
 			}		
 
 		} catch (Exception e) {

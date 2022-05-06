@@ -174,9 +174,11 @@ public class DeadWood {
 			System.out.print("Please enter a valid number of players.\n\t");
 			usrEntry = feed.nextLine();
 		}
-		int pcount = Integer.parseInt(pcount);
+		int pcount = Integer.parseInt(usrEntry);
 		DeadWood game = new DeadWood(pcount);
 		game.gameLoop();
+
+		feed.close();
     }
     
 }
