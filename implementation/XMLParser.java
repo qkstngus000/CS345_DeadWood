@@ -42,6 +42,19 @@ public class XMLParser {
 	 * Description:
 	 * Parses an XML file containing data for the rooms and creates the 'rooms'
 	 * field accordingly.
+	 * Return: parsedRoom[12]: 
+	 * 		index 0 trailer
+	 * 		index 1 office
+	 * 		index 2 Train Station
+	 * 		index 3 Secret Hideout
+	 * 		index 4 Church
+	 * 		index 5 Hotel
+	 * 		index 6 Main Street
+	 * 		index 7 Jail
+	 * 		index 8 General Store
+	 * 		index 9 Ranch
+	 * 		index 10 Bank
+	 * 		index 11 Saloon
 	 */
 	public static Room[] XMLParseBoard() {
 
@@ -52,22 +65,23 @@ public class XMLParser {
 			doc = getDocFromFile(boardPath);
 			Element root = doc.getDocumentElement();
 			NodeList sceneRoom = root.getElementsByTagName("set");
-			NodeList office = root.getElementsByTagName("office");
-			NodeList trailer = root.getElementsByTagName("trailer");
+			Node office = root.getElementsByTagName("office").item(0);
+			Node trailer = root.getElementsByTagName("trailer").item(0);
+
 
 			// Read data from nodelist for scene
-			for (int i = 0; i < sceneRoom.getLength() - 2; i++) {
-				System.out.println("Printing information for room " + (i + 1));
+			for (int i = 0; i < sceneRoom.getLength(); i++) {
+				// System.out.println("Printing information for room " + (i + 1));	// Log to see the loop of each element
 
 				// Reads data from individual node
 				Node room = sceneRoom.item(i);
 				String roomName = room.getAttributes().getNamedItem("name").getNodeValue();
-				System.out.println("name of room: " + roomName);
+				// System.out.println("name of room: " + roomName);	// Log to see the name of room printout statement
 				int shots = ((Element) ((Element) room).getElementsByTagName("takes").item(0))
 						.getElementsByTagName("take").getLength();
-				System.out.println("shots: " + shots);
+				//System.out.println("shots: " + shots); 	// Log to see shot value
 				Room curRoom = new SceneRoom(roomName, shots);
-				parsedRoom[i] = curRoom;
+				parsedRoom[i+2] = curRoom;
 			}
 
 			// For index, get upgrade info and store int in upgrade
@@ -77,14 +91,14 @@ public class XMLParser {
 			for (int i = 0; i < upgradeSz; i++) {
 				Node info = upgrade.item(i);
 				// Parse level from upgrade tag in XML
-				System.out.println("Level: " + info.getAttributes().getNamedItem("level").getNodeValue());
+				//System.out.println("Level: " + info.getAttributes().getNamedItem("level").getNodeValue()); // Log to check the level of rank
 				int level = Integer.parseInt(info.getAttributes().getNamedItem("level").getNodeValue());
 
 				// Parse currency from upgrade tag in XML
 				String currency = info.getAttributes().getNamedItem("currency").getNodeValue();
 
 				// Parse amount of currency needed
-				int amt = Integer.parseInt(info.getAttributes().getNamedItem("level").getNodeValue());
+				int amt = Integer.parseInt(info.getAttributes().getNamedItem("amt").getNodeValue());
 
 				// Store values in info array
 				upgradeInfo[(i % 5)][0] = level;
@@ -96,17 +110,86 @@ public class XMLParser {
 				}
 			}
 
-			for (int i = 0; i < 5; i++) {
+			// Print statement to see if info is stored correctly
+			/*for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < 3; j++) {
 					System.out.print(upgradeInfo[i][j] + " ");
 				}
 				System.out.println();
+			}*/
+
+			// Put office and trailer into room 10 & 11th index
+			Room castingOffice = new CastingOffice("office", upgradeInfo);
+			parsedRoom[1] = castingOffice;
+
+			Room trailerRoom = new Room("trailer");
+			parsedRoom[0] = trailerRoom;
+
+
+			// Logs to check if name is correctly set for each obj.
+			/*int counter = 0;
+			for (Room i : parsedRoom) {
+				System.out.println( "index " + counter + " " + i.getName());
+				counter++;
+			}*/
+
+
+			// Since The parsing room operation is completed,
+			// Set neighbors for casting office
+			int numOfficeNeighbors = ((Element) ((Element) office).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor").getLength();
+			Room[] officeNeighborRoom = new Room[numOfficeNeighbors];
+			NodeList officeNeighborPath = ((Element) ((Element) office).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor");
+			for (int i = 0; i < numOfficeNeighbors; i++) {
+				// System.out.println("Printing neighbor of office: " + officeNeighborPath.item(i).getAttributes().getNamedItem("name").getNodeValue());	// Log 
+				String neigh = officeNeighborPath.item(i).getAttributes().getNamedItem("name").getNodeValue();
+				for(Room r : parsedRoom) {
+					if (r.getName().equals(neigh)) {
+						// System.out.println(r.getName());	// Log
+						officeNeighborRoom[i] = r;
+					}
+				}
 			}
+			parsedRoom[1].setNeighbors(officeNeighborRoom);
 
-			// Put office and trailer into room 11 & 12th index
-			// Room castingOffice = new CastingOffice("Office"/* , Something */ );
+			// Set neighbors for trailer
+			int numTrailerNeighbors = ((Element) ((Element) trailer).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor").getLength();
+			Room[] trailerNeighborRoom = new Room[numTrailerNeighbors];
+			NodeList trailerNeighborPath = ((Element) ((Element) trailer).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor");
+			for (int i = 0; i < numTrailerNeighbors; i++) {
+				// System.out.println("Printing neighbor of trailer: " + trailerNeighborPath.item(i).getAttributes().getNamedItem("name").getNodeValue());	// Log
+				String neigh = trailerNeighborPath.item(i).getAttributes().getNamedItem("name").getNodeValue();
+				for(Room r : parsedRoom) {
+					if (r.getName().equals(neigh)) {
+						trailerNeighborRoom[i] = r;
+					}
+				}
+			}
+			parsedRoom[0].setNeighbors(trailerNeighborRoom);
 
-			// Loop one more time to set neighbors
+			// Loop one more time to set neighbors for scene rooms
+			System.out.println(sceneRoom.getLength());
+			for (int i  = 0; i < sceneRoom.getLength(); i++) {
+				System.out.println("Printing information for room " + i);
+				Node room = sceneRoom.item(i);
+				String workingRoom = room.getAttributes().getNamedItem("name").getNodeValue();
+				int numNeighbors = ((Element) ((Element) room).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor").getLength();
+				System.out.println("Number of neighbors: " + numNeighbors);
+				Room[] neighborRoom = new Room[numNeighbors];
+				NodeList neighborPath = ((Element) ((Element) room).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor");
+
+				System.out.println("\tCurrent Working Room: " + workingRoom);
+				for (int j = 0; j < numNeighbors; j++) {
+					System.out.println("\t\tneighboringRoom: " + neighborPath.item(j).getAttributes().getNamedItem("name").getNodeValue());
+					String neigh = neighborPath.item(j).getAttributes().getNamedItem("name").getNodeValue();
+					for(Room r : parsedRoom) {
+						if (r.getName().equals(neigh)) {
+							neighborRoom[j] = r;
+						}
+					}
+				}
+				parsedRoom[i+2].setNeighbors(neighborRoom);
+				System.out.println("end of iteration " + i);
+			}		
 
 		} catch (Exception e) {
 			System.out.println("Error = " + e);
