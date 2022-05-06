@@ -11,9 +11,10 @@ import java.util.Random;
 *     2. Distribute new scene cards to scene rooms when requested.
 */
 public class Board {
+	private int scenesLeft;					// Number of rooms with currently active scenes
 	private ArrayList<SceneCard> deck;		// List containing the 'deck' of SceneCards
 	private ArrayList<SceneCard> discard;	// List containing the SceneCards which are already used
-	private Room[] rooms;					// Array holding all rooms associated with the board. Should be length [numRoom]
+	private Room[] rooms;					// Array holding all rooms associated with the board.
 	
 	/*
 	* Constructor
@@ -24,12 +25,29 @@ public class Board {
 	* Description:
 	*   Initializes the board as well as running XMLParseBoard() and XMLParseCard() to create the deck and the room list.
 	*/
-	public Board(int numRoom)
+	public Board()
 	{
 		rooms = XMLParser.XMLParseBoard();
 		deck = XMLParser.XMLParseCard();
 		discard = new ArrayList<SceneCard>();
 	}
+	
+	
+	public int getScenesLeft()
+	{
+		return scenesLeft;
+	}
+	
+	public void decrementScenesLeft()
+	{
+		scenesLeft--;
+	}
+	
+	public Room getStartingRoom()
+	{
+		return rooms[0];
+	}
+	
 	
 	/*
 	* Function: reset
@@ -48,7 +66,7 @@ public class Board {
 				if (!distributeCard((SceneRoom) rooms[i])) break;
 			}
 		}
-		SceneRoom.scenesLeft = i;
+		scenesLeft = i;
 	}
 	
 	/*

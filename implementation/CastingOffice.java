@@ -7,7 +7,13 @@ package implementation;
 */
 public class CastingOffice extends Room
 {
-	private final int[][] castingInfo;	// holds the prices in dollars and credits for each level of rank.
+	/*
+	* castingInfo: holds the prices in dollars and credits for each level of rank.
+	* castingInfo[0][]: rank
+	* castingInfo[1][]: dollars
+	* castingInfo[2][]: credits
+	*/
+	private final int[][] castingInfo;
 	
 	/*
 	* Constructor

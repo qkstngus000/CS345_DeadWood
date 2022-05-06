@@ -1,6 +1,7 @@
 package implementation;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /*
 * Class: DeadWood
@@ -11,21 +12,37 @@ import java.util.Random;
 */
 public class DeadWood {
     private int day; // Take cares of days that players play depending on their number
+	private int maxDay;
     private int numPlayer; // Input of number of players
-    private Player[] listPlayer; // List of players to keep track of turn
+    private Player[] players; // List of players to keep track of turn
     private Board board;
-    private Player curPlayer; // Current players' turn
-    private Random dice; // Dice Roll
+    private int curPlayer; // Index in players
+    public static Random dice; // Dice Roll
 
     /*
      * Constructor: DeadWood
      * Parameter:
-     * None
+     *   numPlayer: number of players
      * Description:
-     * Simple DeadWood constructor
+     *   Creates the board and player objects and initializes various values for this DeadWood game.
      */
-    public DeadWood() {
-        // TO DO
+    public DeadWood(int numPlayer) {
+		// initialize numPlayer
+        this.numPlayer = numPlayer;
+		// initialize days
+		day = 0;
+		maxDay = numPlayer < 4 ? 3 : 4;
+		// create board
+		board = new Board();
+		System.out.println("Board created!");
+		// initialize players
+		players = new Player[numPlayer];
+		for (int i = 0; i < numPlayer; i++)
+		{
+			players[i] = new Player("Player" + i);
+			if (numPlayer > 4) players[i].addCredits(2);
+			System.out.println("Player " + i + " initialized!");
+		}
     }
 
     /*
@@ -68,22 +85,98 @@ public class DeadWood {
      * Function: nextTurnPlayer
      * Parameter: None
      * Description:
-     * Keep track of next player with listPlayer.
-     * Either decrement or increment index of listPlayer to give
-     * each player a turn.
+     * Keep track of which player's turn it is and call playerTurn for that Player.
      */
     public void nextTurnPlayer() {
-        // TO DO
+        curPlayer = (curPlayer + 1) % numPlayer;
+		players[curPlayer].playerTurn();
     }
-
-        /*
+	
+	/*
+	* Function: rollDice
+	* Parameter:
+	*   Optional int count: number of dice to roll
+	* Returns:
+	*   sum of dice rolled
+	* Description: rolls 6-sided dice to generate random numbers and returns the result.
+	*/
+	public int rollDice()
+	{
+		return dice.nextInt(6);
+	}
+	
+	public int rollDice(int count)
+	{
+		int sum = 0;
+		while(count-- > 0)
+		{
+			sum += rollDice();
+		}
+		return sum;
+	}
+	
+	/*
+	* Function: gameLoop
+	* Parameter: none
+	* Description: called by the main method and performs the main sequence of events for the game,
+	* including setup, player turns, passing of days, and the game end.
+	*/
+	public void gameLoop()
+	{
+		
+		// Loop for daily events
+		while(day <= maxDay)
+		{
+			// reset board and move players to trailer room.
+			board.reset();
+			for(int i = 0; i < numPlayer; i++)
+			{
+				players[i].setRoom(board.getStartingRoom());
+				players[i].removeRole();
+			}
+			
+			// Loop for turns
+			while(board.getScenesLeft() > 0)
+			{
+				// do player turn
+				nextTurnPlayer();
+			}
+			
+		}
+		// Print scores and who won
+		// TODO
+	}
+	
+	public static boolean isInteger(String s)
+	{
+		try
+		{
+			Integer.parseInt(s);
+		} catch (Exception E)
+		{
+			return false;
+		}
+		return true;
+	}
+	
+    /*
      * main function
      * Description:
-     * Ask for how many users are there to play game
-     * Also loop the function for each day
+     * Ask for how many users are there to play game, then creates a new instance of DeadWood and runs the game.
      */
     public static void main(String[] args) {
-        // TO DO
+		Scanner feed = new Scanner(System.in);
+		dice = new Random();
+		System.out.print("Enter the number of players who would like to play:\n\t");
+		String usrEntry = feed.nextLine();
+		while (!isInteger(usrEntry))
+		{
+			System.out.print("Please enter a valid number of players.\n\t");
+			usrEntry = feed.nextLine();
+		}
+		int pcount = Integer.parseInt(pcount);
+		DeadWood game = new DeadWood(pcount);
+		game.gameLoop();
     }
     
 }

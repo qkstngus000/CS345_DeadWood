@@ -16,20 +16,32 @@ public class Player {
     private int credit; // Holds how many credit player has
     private int token; // Holds how many rehearse token player has
     private Role role; // Holds current role of player. If not, null
-    private int toalScore;
 
     /*
      * Constructor Player
      * Parameter:
      * String name: Player input of name on their character representation
-     * Trailer startRoom: Trailer room where players would start from
      * Description:
      * Initialize the player object to be created which would hold player
      * info, and update the player info as games progress.
      */
-    public Player(String name, Room startRoom) {
-        // TO DO
+    public Player(String name) {
+        this.name = name;
+		rank = 1;
+		dollar = 0;
+		credit = 0;
+		token = 0;
     }
+	
+	public void setRoom(Room r)
+	{
+		room = r;
+	}
+	
+	public void addCredits(int n)
+	{
+		credit += n;
+	}
 
     /*
      * Function: playerTurn
