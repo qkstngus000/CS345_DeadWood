@@ -133,6 +133,7 @@ public class XMLParser {
 				counter++;
 			}*/
 
+			
 
 			// Since The parsing room operation is completed,
 			// Set neighbors for casting office
@@ -171,7 +172,7 @@ public class XMLParser {
 			for (int i  = 0; i < sceneRoom.getLength(); i++) {
 				// System.out.println("Printing information for room " + i);	// Log
 				Node room = sceneRoom.item(i);
-				String workingRoom = room.getAttributes().getNamedItem("name").getNodeValue();
+				// String workingRoom = room.getAttributes().getNamedItem("name").getNodeValue();	// Log
 				int numNeighbors = ((Element) ((Element) room).getElementsByTagName("neighbors").item(0)).getElementsByTagName("neighbor").getLength();
 				// System.out.println("Number of neighbors: " + numNeighbors);	// Log
 				Room[] neighborRoom = new Room[numNeighbors];
@@ -210,6 +211,20 @@ public class XMLParser {
 	public static ArrayList<SceneCard> XMLParseCard() {
 		// TODO
 		ArrayList<SceneCard> card = new ArrayList<SceneCard>();
+		Document doc = null;
+		try{
+			doc = getDocFromFile(cardPath);
+			Element root = doc.getDocumentElement();
+			NodeList  = root.getElementsByTagName("set");			
+
+		} catch (Exception e) {
+			System.out.println("Error = " + e);
+		}
+
+
+
+
+
 		return card;
 	}
 
