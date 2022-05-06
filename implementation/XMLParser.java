@@ -8,7 +8,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-import java.io.File;
 
 /**
  * XMLParser
@@ -19,7 +18,7 @@ public class XMLParser {
 	// private static String cardPath = (new
 	// File("xml/card.xml")).getAbsolutePath();
 	private static String boardPath = "board.xml";
-	private static String cardPath = "card.xml";
+	private static String cardPath = "cards.xml";
 
 	public static Document getDocFromFile(String filename) throws ParserConfigurationException {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -210,12 +209,28 @@ public class XMLParser {
 	 */
 	public static ArrayList<SceneCard> XMLParseCard() {
 		// TODO
-		ArrayList<SceneCard> card = new ArrayList<SceneCard>();
+		ArrayList<SceneCard> parsedCard = new ArrayList<SceneCard>();
 		Document doc = null;
 		try{
 			doc = getDocFromFile(cardPath);
 			Element root = doc.getDocumentElement();
-			NodeList  = root.getElementsByTagName("set");			
+			NodeList cardList = root.getElementsByTagName("card");
+			int numCards = cardList.getLength();
+			for (int i = 0; i < numCards; i++) {
+				Node card = cardList.item(i); 
+				String cardName = card.getAttributes().getNamedItem("name").getNodeValue();
+				String img = card.getAttributes().getNamedItem("img").getNodeValue();
+				int budget = Integer.parseInt(card.getAttributes().getNamedItem("budget").getNodeValue());
+				int sceneNumbering = Integer.parseInt(((Element) card).getElementsByTagName("scene").item(0).getAttributes().getNamedItem("number").getNodeValue());
+
+				// System.out.println("Numbering: " + ((Element) card).getElementsByTagName("scene").item(0).getAttributes().getNamedItem("number").getNodeValue());	// Log
+				SceneCard s = new SceneCard(cardName, img, budget, sceneNumbering);
+				parsedCard.add(s);
+				
+
+			}
+			
+
 
 		} catch (Exception e) {
 			System.out.println("Error = " + e);
@@ -225,11 +240,11 @@ public class XMLParser {
 
 
 
-		return card;
+		return parsedCard;
 	}
 
 	public static void main(String[] args) {
-		XMLParseBoard();
+		XMLParseCard();
 
 	}
 }
