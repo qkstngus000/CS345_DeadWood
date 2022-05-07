@@ -14,7 +14,7 @@ public class SceneCard {
     public boolean flip; // Boolean storing whether there was visitor in the room. If not, faced down as
                          // false
     private int budget; // Store budget value for scene
-    private int numbering;  // Indicates card number
+    private int numbering; // Indicates card number
 
     /*
      * Constructor: SceneCard
@@ -27,8 +27,8 @@ public class SceneCard {
      */
     public SceneCard(String name, String img, int budget, int numbering) {
         this.name = name;
-		this.img = img;
-		this.budget = budget;
+        this.img = img;
+        this.budget = budget;
         this.numbering = numbering;
     }
 
@@ -50,8 +50,7 @@ public class SceneCard {
         return false;
     }
 
-    public void setRole(Role[] roles) {
-        // TO DO
-        this.roles = roles;
+    public void setRole(Role[] r) {
+        roles = r;
     }
 }

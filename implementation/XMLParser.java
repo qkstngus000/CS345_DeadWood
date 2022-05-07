@@ -248,13 +248,18 @@ public class XMLParser {
 				parsedCard.add(s);
 
 				// Add roles to the card
-				// Role[] cardRoles = new Role[]
+
 				System.out.println("Number of roles " + ((Element) card).getElementsByTagName("part").getLength());
 				int numRoles = ((Element) card).getElementsByTagName("part").getLength();
+				Role[] cardRoles = new Role[numRoles];
 				for (int j = 0; j < numRoles; j++) {
-					Node role = ((Element) card).getElementsByTagName("part").item(j);
+					Node role = ((Element) card).getElementsByTagName("part").item(j); // Get indiv role node
+
+					String name = role.getAttributes().getNamedItem("name").getNodeValue();
+					int level = Integer.parseInt(role.getAttributes().getNamedItem("level").getNodeValue());
+
 					System.out.println("\trole name: " + role.getAttributes().getNamedItem("name").getNodeValue());
-					System.out.println("\trole name: " + role.getAttributes().getNamedItem("level").getNodeValue());
+					System.out.println("\trole level: " + role.getAttributes().getNamedItem("level").getNodeValue());
 
 					Node coord = ((Element) role).getElementsByTagName("area").item(0);
 					int x_cord = Integer.parseInt(coord.getAttributes().getNamedItem("x").getNodeValue());
@@ -263,7 +268,11 @@ public class XMLParser {
 					int w = Integer.parseInt(coord.getAttributes().getNamedItem("w").getNodeValue());
 					System.out.printf("\tx_cord: %d, y_cord: %d, h: %d, w: %d\n", x_cord, y_cord, h, w);
 
+					Role r = new Role(name, level, true); // Every roles are main role, so initialize it to be true
+					cardRoles[j] = r;
 				}
+				// Add cardRoles into SceneRoom
+
 			}
 
 		} catch (Exception e) {
