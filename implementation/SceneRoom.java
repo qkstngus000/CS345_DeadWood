@@ -18,19 +18,21 @@ public class SceneRoom extends Room
 	private Role[] roomRoles;				// array of 'extra' roles which are attached to this room rather than the scene
 	private ArrayList<Player> actorInfo;	// array of players currently doing roles in this room
 	private SceneCard scene;				// the scene currently active in this room
+	private Take[] take;
 	
 	/*
 	* Constructor
 	* Description:
 	*   Calls the parent constructor and initializes various fields. Also increments numScene.
 	*/
-	public SceneRoom(String name, int maxShots)
+	public SceneRoom(String name, int maxShots, Take[] take)
 	{
 		super(name);
 		numScene++;
 		this.maxShots = maxShots;
 		curShot = 0;
 		actorInfo = new ArrayList<Player>();
+		this.take = take;
 		
 	}
 	

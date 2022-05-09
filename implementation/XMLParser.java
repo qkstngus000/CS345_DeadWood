@@ -69,18 +69,70 @@ public class XMLParser {
 
 			// Read data from nodelist for scene
 			for (int i = 0; i < sceneRoom.getLength(); i++) {
-				// System.out.println("Printing information for room " + (i + 1)); // Log to see
+				System.out.println("Printing information for room " + (i + 1)); // Log to see
 				// the loop of each element
 
 				// Reads data from individual node
 				Node room = sceneRoom.item(i);
 				String roomName = room.getAttributes().getNamedItem("name").getNodeValue();
-				// System.out.println("name of room: " + roomName); // Log to see the name of
+				System.out.println("name of room: " + roomName); // Log to see the name of
 				// room printout statement
-				int shots = ((Element) ((Element) room).getElementsByTagName("takes").item(0))
+				int numShots = ((Element) ((Element) room).getElementsByTagName("takes").item(0))
 						.getElementsByTagName("take").getLength();
-				// System.out.println("shots: " + shots); // Log to see shot value
-				Room curRoom = new SceneRoom(roomName, shots);
+				System.out.println("\tshots: " + numShots); // Log to see shot value
+
+				
+				Take[] takeList = new Take[numShots];	// Initialize Take array to store shot coordinates
+				
+				// Get coordinates for each shots
+				for (int j = 0; j < numShots; j++) {
+					Node take = ((Element) ((Element) room).getElementsByTagName("takes").item(0)).getElementsByTagName("take").item(j);
+					int number = Integer.parseInt(take.getAttributes().getNamedItem("number").getNodeValue());
+					System.out.println("\tnumber: " + number);
+
+					int x_cord = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("x").getNodeValue());
+					int y_cord = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("y").getNodeValue());
+					int w = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("w").getNodeValue());
+					int h = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("h").getNodeValue());
+					System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
+					ObjCoord takeCord = new ObjCoord(x_cord, y_cord, w, h);
+					takeList[j] = new Take(number, takeCord);
+				}
+				
+				// Get number of roles in the room
+				int numRoles = ((Element) ((Element) room).getElementsByTagName("parts").item(0)).getElementsByTagName("part").getLength();
+				System.out.println("numRoles: " + ((Element) ((Element) room).getElementsByTagName("parts").item(0)).getElementsByTagName("part").getLength());
+				Role[] roleList = new Role[numRoles];	// Initialize Role list array
+
+				// Get coordinates and informations for each role in the room
+				for (int j = 0; j < numRoles; j++) {
+					// Get role
+					Node role = ((Element) ((Element) room).getElementsByTagName("parts").item(0)).getElementsByTagName("part").item(j);
+					String roleName = role.getAttributes().getNamedItem("name").getNodeValue();
+					System.out.println("Role Name: " + roleName);
+
+					int rank = Integer.parseInt(role.getAttributes().getNamedItem("level").getNodeValue());
+					System.out.println("\tlevel: " + rank);
+					String line = ((Element) role).getElementsByTagName("line").item(0).getTextContent();
+					System.out.println("\tLine: " + line);
+					
+
+					// Get role coordinate
+					Node roleArea = ((Element) role).getElementsByTagName("area").item(0);
+					int x_cord = Integer.parseInt(roleArea.getAttributes().getNamedItem("x").getNodeValue());
+					int y_cord = Integer.parseInt(roleArea.getAttributes().getNamedItem("y").getNodeValue());
+					int w = Integer.parseInt(roleArea.getAttributes().getNamedItem("w").getNodeValue());
+					int h = Integer.parseInt(roleArea.getAttributes().getNamedItem("h").getNodeValue());
+					System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
+
+					ObjCoord coord = new ObjCoord(x_cord, y_cord, w, h);
+
+					roleList[j] = new Role(roleName, rank, line, false, coord);	// Store parsed role variable into roleList
+				}
+				
+
+				Room curRoom = new SceneRoom(roomName, numShots, takeList);
+				
 				parsedRoom[i + 2] = curRoom;
 			}
 
@@ -91,8 +143,7 @@ public class XMLParser {
 			for (int i = 0; i < upgradeSz; i++) {
 				Node info = upgrade.item(i);
 				// Parse level from upgrade tag in XML
-				// System.out.println("Level: " +
-				// info.getAttributes().getNamedItem("level").getNodeValue()); // Log to check
+				// System.out.println("Level: " + info.getAttributes().getNamedItem("level").getNodeValue()); // Log to check
 				// the level of rank
 				int level = Integer.parseInt(info.getAttributes().getNamedItem("level").getNodeValue());
 
@@ -213,7 +264,9 @@ public class XMLParser {
 		}
 
 		return parsedRoom;
-
+//hi sage
+// 	sincerely,
+//		matthew~
 	}
 
 	/*
