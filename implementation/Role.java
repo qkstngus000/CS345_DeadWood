@@ -8,9 +8,11 @@ package implementation;
  */
 public class Role {
     private String roleName; // Name of role
+    private String line;    // Role description
     private int rank; // the rank of role
     private boolean mainRole; // Type of role whether role is main or extra
     private boolean roleDeprived; // Track of role if role is already used or currently in use
+    private ObjCoord coord;
 
     /*
      * Constructor: Role
@@ -22,10 +24,11 @@ public class Role {
      * Description:
      * Initialize the role objects that contains informations of each role.
      */
-    public Role(String roleName, int rank, boolean main) {
+    public Role(String roleName, int rank, String line, boolean main, ObjCoord coord) {
         this.roleName = roleName;
 		this.rank = rank;
 		this.mainRole = main;
-		roleDeprived = false;
+		this.roleDeprived = false;
+        this.line = line;
     }
 }

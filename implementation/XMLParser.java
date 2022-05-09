@@ -244,7 +244,9 @@ public class XMLParser {
 
 				System.out.println("Numbering: " + ((Element) card).getElementsByTagName("scene").item(0)
 						.getAttributes().getNamedItem("number").getNodeValue()); // Log
-				SceneCard s = new SceneCard(cardName, img, budget, sceneNumbering);
+				System.out.println("SceneDescription: " + ((Element) card).getElementsByTagName("scene").item(0).getTextContent());
+				String sceneDesc = ((Element) card).getElementsByTagName("scene").item(0).getTextContent();
+				SceneCard s = new SceneCard(cardName, img, budget, sceneNumbering, sceneDesc);
 				parsedCard.add(s);
 
 				// Add roles to the card
@@ -268,11 +270,16 @@ public class XMLParser {
 					int w = Integer.parseInt(coord.getAttributes().getNamedItem("w").getNodeValue());
 					System.out.printf("\tx_cord: %d, y_cord: %d, h: %d, w: %d\n", x_cord, y_cord, h, w);
 
-					Role r = new Role(name, level, true); // Every roles are main role, so initialize it to be true
+					String line = ((Element) role).getElementsByTagName("line").item(0).getTextContent();
+					System.out.println("\tline: " + ((Element) role).getElementsByTagName("line").item(0).getTextContent());
+					
+					ObjCoord roleCoord = new ObjCoord(x_cord, y_cord, w, h);
+
+					Role r = new Role(name, level, line, true, roleCoord); // Every roles are main role, so initialize it to be true
 					cardRoles[j] = r;
 				}
 				// Add cardRoles into SceneRoom
-
+				parsedCard.get(i).setRole(cardRoles);
 			}
 
 		} catch (Exception e) {
@@ -283,7 +290,7 @@ public class XMLParser {
 	}
 
 	public static void main(String[] args) {
-		XMLParseCard();
+		XMLParseBoard();
 
 	}
 }

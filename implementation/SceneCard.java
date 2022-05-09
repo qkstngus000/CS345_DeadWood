@@ -9,12 +9,14 @@ package implementation;
  */
 public class SceneCard {
     public String name; // The name of the scene
+    private String sceneDes;    // The scene description
     private Role[] roles; // Roles that scenecard would have
     public String img; // The filename of the image for this card
     public boolean flip; // Boolean storing whether there was visitor in the room. If not, faced down as
                          // false
     private int budget; // Store budget value for scene
     private int numbering; // Indicates card number
+
 
     /*
      * Constructor: SceneCard
@@ -25,11 +27,12 @@ public class SceneCard {
      * Create objects with using information passed down from XML Card Parse
      * Store information given
      */
-    public SceneCard(String name, String img, int budget, int numbering) {
+    public SceneCard(String name, String img, int budget, int numbering, String sceneDes) {
         this.name = name;
         this.img = img;
         this.budget = budget;
         this.numbering = numbering;
+        this.sceneDes = sceneDes;
     }
 
     /*
@@ -51,6 +54,6 @@ public class SceneCard {
     }
 
     public void setRole(Role[] r) {
-        roles = r;
+        this.roles = r;
     }
 }
