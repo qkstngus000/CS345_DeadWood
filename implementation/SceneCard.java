@@ -56,4 +56,8 @@ public class SceneCard {
     public void setRole(Role[] r) {
         this.roles = r;
     }
+
+    public int getBudget() {
+        return this.budget;
+    }
 }

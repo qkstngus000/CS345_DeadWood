@@ -31,4 +31,21 @@ public class Role {
 		this.roleDeprived = false;
         this.line = line;
     }
+
+    /**
+     * getter Function getRank
+     * Parameter:
+     *      None
+     * return
+     *      rank
+     * Description:
+     *      Retrieve and provide the rank of the role to player for selecting their role
+     */
+    public int getRank() {
+        return this.rank;
+    }
+
+    public void updateRoleStatus(boolean deprieve) {
+        this.roleDeprived = deprieve;
+    }
 }

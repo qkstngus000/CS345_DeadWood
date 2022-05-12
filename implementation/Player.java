@@ -77,8 +77,8 @@ public class Player {
      * At the end of the game, this function will grab player's dollar,
      * credit, and rank to calculate the player score.
      */
-    public void calcScore() {
-        // TO DO
+    public int calcScore() {
+        return credit + dollar + (rank * 5);
     }
 
     /*
@@ -92,8 +92,15 @@ public class Player {
      * to player's current rank status.
      */
     public boolean takeRole(Role role) {
-        // TO DO
+        if (this.rank >= role.getRank()) {
+            System.out.println("Role successfully taken");
+            // Change role status
+            role.updateRoleStatus(true);
+            return true;
+        }
+        System.out.println("Role requires higher rank. Please try selecting roles that are less than or equal to your rank");
         return false;
+            
     }
 
     /*
@@ -105,7 +112,16 @@ public class Player {
      * to receive the rolled number and compare with budget.
      */
     public void act() {
-        // TO DO
+        int diceNum = DeadWood.rollDice();
+        if (room instanceof SceneRoom) {
+            SceneRoom playerRoom = ((SceneRoom) room);
+            if (diceNum >= playerRoom.getScene().getBudget()) {
+
+
+            }
+
+        }
+        
     }
 
     /*
@@ -154,5 +170,13 @@ public class Player {
     public boolean move() {
         // TO DO
         return false;
+    }
+    
+    public Role getRole() {
+        return this.role;
+    }
+
+    public int getRank() {
+        return this.rank;
     }
 }
