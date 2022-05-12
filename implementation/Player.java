@@ -1,5 +1,7 @@
 package implementation;
 
+import java.util.Scanner;
+
 /*
  * Class: Player
  *  Description
@@ -66,7 +68,29 @@ public class Player {
      * anything so they should be presented with the same options again.
      */
     public void playerTurn() {
-        // TO DO
+        // Check if the player has a role or not
+        if (role.equals(null)) {
+            Scanner feed = new Scanner(System.in);
+            boolean flag = false;
+            while (!flag) {
+                System.out.println("Please choose whether to move or take role\ntype 'm' for move, and 'r' for taking role");
+                String userInput = feed.nextLine();
+                if (userInput.toLowerCase().equals("m") || userInput.toLowerCase().equals("move")) {
+                    // If move return false, loop through player choice until player makes a valid move
+                    while (!move()) {
+                        System.out.println("This is not valid move. Please choose neighboring room to move");
+                    }
+                    System.out.println("Move process completed");
+                }
+                // else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role")) {
+                    // If takeRole func return false, loop thru player choice until player makes a valid choice
+                    // while(!((SceneRoom) room).action(Player)) {  // Currently, i am not sure on how to send oneself as parameter
+
+                    // }
+                // }
+            }
+
+        }
     }
 
     /*
@@ -116,13 +140,29 @@ public class Player {
         int diceNum = DeadWood.rollDice();
         if (room instanceof SceneRoom) {
             SceneRoom playerRoom = ((SceneRoom) room);
-            if (diceNum >= playerRoom.getScene().getBudget()) {
-
-
+            if (diceNum+token >= playerRoom.getScene().getBudget()) {
+                // If dice+token >= budget && main role
+                if(role.getMainRole() == true) {
+                    credit+=2;
+                    System.out.println("2 Credit added to main role player");
+                }
+                
+                // If dice+token >= budget && extra role
+                else {
+                    dollar++;
+                    credit++;
+                    System.out.println("1 dollar and 1 credit payment added to extra role");
+                }
+                ((SceneRoom) room).updateShot();
             }
 
+            // If player has extra role and failed to roll dice >= budget
+            else {
+                if (role.getMainRole() == false) {
+                    dollar++;
+                }
+            }
         }
-        
     }
 
     /*
@@ -139,10 +179,15 @@ public class Player {
      * to notify player it is wrong move.
      */
     public boolean rehearse() {
-        // TO DO
-        if (this.role != null) {
-
+        SceneRoom playerRoom = ((SceneRoom) room);
+        int budget = playerRoom.getScene().getBudget();
+        if ((role != null) && token < budget - 1) {
+            
+            this.token+=1;
+            System.out.printf("Token updated from %d to %d\n", token-1, token);
+            return true;
         }
+        System.out.println("Token could not be updated.");
         return false;
     }
 
@@ -156,7 +201,7 @@ public class Player {
      * Token gets updated to be 0 as well.
      */
     public void removeRole() {
-        // TO DO
+        this.role = null;
     }
 
     /*
@@ -172,7 +217,6 @@ public class Player {
      * Otherwise, return false.
      */
     public boolean move() {
-        // TO DO
         return false;
     }
     
