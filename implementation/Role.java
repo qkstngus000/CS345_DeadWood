@@ -11,7 +11,7 @@ public class Role {
     private String line;    // Role description
     private int rank; // the rank of role
     private boolean mainRole; // Type of role whether role is main or extra
-    private boolean roleDeprived; // Track of role if role is already used or currently in use
+    private boolean available; // Track of role if role is already used or currently in use
     private ObjCoord coord;
 
     /*
@@ -28,7 +28,7 @@ public class Role {
         this.roleName = roleName;
 		this.rank = rank;
 		this.mainRole = main;
-		this.roleDeprived = false;
+		this.available = true;
         this.line = line;
     }
 
@@ -45,7 +45,32 @@ public class Role {
         return this.rank;
     }
 
-    public void updateRoleStatus(boolean deprieve) {
-        this.roleDeprived = deprieve;
+    public void updateRoleStatus(boolean avail) {
+        this.available = avail;
+    }
+
+    public String getName()
+    {
+        return roleName;
+    }
+
+    public String getLine()
+    {
+        return line;
+    }
+
+    public boolean getMainRole()
+    {
+        return mainRole;
+    }
+
+    public boolean getAvailable()
+    {
+        return available;
+    }
+
+    public ObjCoord getCoord()
+    {
+        return coord;
     }
 }

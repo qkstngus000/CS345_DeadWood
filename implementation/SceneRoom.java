@@ -1,6 +1,7 @@
 package implementation;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
 * Class: SceneRoom
@@ -82,14 +83,57 @@ public class SceneRoom extends Room
 	*/
 	private boolean roleManager(Player p)
 	{
-		// TODO
-		return false;
+		Scanner feed = new Scanner(System.in);
+		//Print out role informaion
+		System.out.println("Available Roles:\n#|Available?|Min Rank|Name                |Description");
+		for(int i = 0; i < roomRoles.length; i++)
+		{
+			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i,roomRoles[i].getAvailable(),
+								roomRoles[i].getRank(),roomRoles[i].getName(),roomRoles[i].getLine());
+		}
+		//Repeat until user enters a valid entry
+		while(true)
+		{
+			System.out.println("Enter the # of the role you want, or 'q' to go back:");
+			String usrEntry = feed.nextLine();
+			if(usrEntry.trim().toLowerCase().equals("q"))
+			{
+				//User entered back command
+				feed.close();
+				return false;
+			}
+			if(DeadWood.isInteger(usrEntry.trim()))
+			{
+				//User entered an integer
+				int selection = Integer.parseInt(usrEntry.trim());
+				if(selection >= 0 && selection < roomRoles.length)
+				{
+					//User entered a valid role #
+					if(roomRoles[selection].getAvailable())
+					{
+						//Role is available
+						if(p.takeRole(roomRoles[selection]))
+						{
+							//Role was taken successfully
+							feed.close();
+							return true;
+						}
+						System.out.printf("You need at least rank %d for this role. Current rank: %d%n",roomRoles[selection].getRank(),p.getRank());
+						continue;
+					}
+					System.out.println("This role is currently unavailable.");
+					continue;
+				}
+			}
+			System.out.println("Invalid entry. Please try again.");
+		}
 	}
 	
 	/*
 	* Function: updateShot
 	* Description:
 	*   Increments curShot, and if curShot reaches maxShots, handles bonus payouts and calls closeRoom()
+	*   Check if there are main role or not
 	*/
 	public void updateShot()
 	{
