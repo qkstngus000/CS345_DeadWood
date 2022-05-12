@@ -94,8 +94,9 @@ public class Player {
     public boolean takeRole(Role role) {
         if (this.rank >= role.getRank()) {
             System.out.println("Role successfully taken");
+            this.role = role;
             // Change role status
-            role.updateRoleStatus(true);
+            role.updateRoleStatus(false);
             return true;
         }
         System.out.println("Role requires higher rank. Please try selecting roles that are less than or equal to your rank");
@@ -139,6 +140,9 @@ public class Player {
      */
     public boolean rehearse() {
         // TO DO
+        if (this.role != null) {
+
+        }
         return false;
     }
 

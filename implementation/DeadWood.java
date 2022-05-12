@@ -101,12 +101,12 @@ public class DeadWood {
 	*   sum of dice rolled
 	* Description: rolls 6-sided dice to generate random numbers and returns the result.
 	*/
-	public int rollDice()
+	public static int rollDice()
 	{
 		return dice.nextInt(6);
 	}
 	
-	public int rollDice(int count)
+	public static int rollDice(int count)
 	{
 		int sum = 0;
 		while(count-- > 0)

@@ -30,6 +30,7 @@ public class Role {
 		this.mainRole = main;
 		this.available = true;
         this.line = line;
+        this.coord = coord;
     }
 
     /**
