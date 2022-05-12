@@ -55,6 +55,15 @@ public class Player {
      * Description:
      * Interact with DeadWood manager and keep track of the turn
      * as there are going to be many Player objects.
+     * 
+     * Options:
+     *      If player currently has a role:
+     *          Act / Rehearse
+     *      else
+     *          Move / take room action
+     * 
+     * If action returns false, the player backed out without actually doing 
+     * anything so they should be presented with the same options again.
      */
     public void playerTurn() {
         // TO DO
@@ -90,13 +99,12 @@ public class Player {
     /*
      * Function: act
      * Parameter:
-     * Dice dice: dice object that player would role for act
-     * 
+     * none
      * Description:
      * If player wants to act on player's role, function calls the dice obejct
      * to receive the rolled number and compare with budget.
      */
-    public void act(Dice dice) {
+    public void act() {
         // TO DO
     }
 
