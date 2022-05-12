@@ -83,6 +83,12 @@ public class SceneRoom extends Room
 	*/
 	private boolean roleManager(Player p)
 	{
+		//If scene is finished, print a message and return
+		if(scene == null)
+		{
+			System.out.println("The scene in this room has finished. No action can be taken.");
+			return false;
+		}
 		Scanner feed = new Scanner(System.in);
 		//Print out role informaion
 		System.out.println("Available Roles:\n#|Available?|Min Rank|Name                |Description");
@@ -137,7 +143,11 @@ public class SceneRoom extends Room
 	*/
 	public void updateShot()
 	{
-		// TODO
+		if(++curShot == maxShots)
+		{
+			// TODO handle bonus payouts
+			closeRoom();
+		}
 	}
 	
 	/*
@@ -147,15 +157,20 @@ public class SceneRoom extends Room
 	*/
 	public void closeRoom()
 	{
-		// TODO
+		curShot = 0;
+		scene = null;
+		for(Player actor : actorInfo)
+		{
+			actor.removeRole();
+		}
 	}
 	
 	/*
-	* Function: firstVisit()
+	* Function: visit()
 	* Description:
 	*   Called whenever a Player enters the room. Reveals the scene card for this room if it is face-down.
 	*/
-	public void firstVisit()
+	public void visit()
 	{
 		if(!scene.getFlipped())
 		{
