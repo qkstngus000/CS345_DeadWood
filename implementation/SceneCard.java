@@ -12,7 +12,7 @@ public class SceneCard {
     private String sceneDes;    // The scene description
     private Role[] roles; // Roles that scenecard would have
     public String img; // The filename of the image for this card
-    public boolean flip; // Boolean storing whether there was visitor in the room. If not, faced down as
+    private boolean flip; // Boolean storing whether there was visitor in the room. If not, faced down as
                          // false
     private int budget; // Store budget value for scene
     private int numbering; // Indicates card number
@@ -33,6 +33,7 @@ public class SceneCard {
         this.budget = budget;
         this.numbering = numbering;
         this.sceneDes = sceneDes;
+        flip = false;
     }
 
     /*
@@ -59,5 +60,14 @@ public class SceneCard {
 
     public int getBudget() {
         return this.budget;
+    }
+
+    public void flipCard() {
+        flip = !flip;
+    }
+
+    public boolean getFlipped()
+    {
+        return flip;
     }
 }

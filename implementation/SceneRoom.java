@@ -157,6 +157,9 @@ public class SceneRoom extends Room
 	*/
 	public void firstVisit()
 	{
-		// TODO
+		if(!scene.getFlipped())
+		{
+			scene.flipCard();
+		}
 	}
 }
