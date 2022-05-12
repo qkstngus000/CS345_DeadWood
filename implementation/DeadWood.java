@@ -18,16 +18,28 @@ public class DeadWood {
     private Board board;
     private int curPlayer; // Index in players
     public static Random dice; // Dice Roll
+	public static DeadWood game = new DeadWood();
 
     /*
      * Constructor: DeadWood
      * Parameter:
      *   numPlayer: number of players
      * Description:
-     *   Creates the board and player objects and initializes various values for this DeadWood game.
+     *   Does nothing but initialize the game. Must be included to hide the constructor.
      */
-    public DeadWood(int numPlayer) {
-		// initialize numPlayer
+    private DeadWood() {
+    }
+
+    /*
+     * Function: setEnv()
+     * Parameter:
+	 * 		int numPlayer: number of players
+     * Description:
+     * 		Sets up the environment for the game by creating player objects and the board object
+	 * 		and initializing day values.
+     */
+    private void setEnv(int numPlayer) {
+        // initialize numPlayer
         this.numPlayer = numPlayer;
 		// initialize days
 		day = 0;
@@ -40,22 +52,11 @@ public class DeadWood {
 		for (int i = 0; i < numPlayer; i++)
 		{
 			players[i] = new Player("Player" + i);
-			if (numPlayer > 4) players[i].addCredits(2);
+			if (numPlayer == 5) players[i].addCredits(2);
+			else if (numPlayer == 6) players[i].addCredits(4);
+			else if (numPlayer > 6) players[i].setRank(2);
 			System.out.println("Player " + i + " initialized!");
 		}
-    }
-
-    /*
-     * Function: setEnv()
-     * Parameter:
-     * None
-     * Description:
-     * With number of players given, create player obejects with corresponding
-     * staring information.
-     * Set day according to number of players
-     */
-    public void setEnv() {
-        // TO DO
     }
 
     /*
@@ -175,7 +176,7 @@ public class DeadWood {
 			usrEntry = feed.nextLine();
 		}
 		int pcount = Integer.parseInt(usrEntry);
-		DeadWood game = new DeadWood(pcount);
+		game.setEnv(pcount);
 		game.gameLoop();
 
 		feed.close();

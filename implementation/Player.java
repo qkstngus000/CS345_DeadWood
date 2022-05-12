@@ -43,6 +43,11 @@ public class Player {
 		credit += n;
 	}
 
+    public void setRank(int rank)
+    {
+        this.rank = rank;
+    }
+
     /*
      * Function: playerTurn
      * Parameter:
