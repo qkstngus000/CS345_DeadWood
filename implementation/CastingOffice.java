@@ -1,5 +1,7 @@
 package implementation;
 
+import java.util.Scanner;
+
 /*
 * Class: CastingOffice
 * Description:
@@ -54,7 +56,93 @@ public class CastingOffice extends Room
 	*/
 	private boolean upgradeManager(Player p)
 	{
-		// TODO
-		return false;
+		Scanner feed = new Scanner(System.in);
+		
+		// Print welcome message
+		System.out.println("Welcome to the Casting Office!");
+		System.out.println("Here you can purchase a rank upgrade with either cash or credits.");
+
+		// Print shop info
+		System.out.println("Rank|Cost in dollars|Cost in credits");
+		System.out.println("----|---------------|---------------");
+
+		for(int i = 0; i < castingInfo[0].length; i++)
+		{
+			System.out.printf("%-4d|%-15d|%-15d",castingInfo[0][i],castingInfo[1][i],castingInfo[2][i]);
+		}
+
+		// Repeat until the user enters a valid input
+		while(true)
+		{
+			System.out.println("Enter the level of rank you'd like to buy, or 'q' to go back:");
+			String usrEntry = feed.nextLine();
+			if(usrEntry.trim().toLowerCase().equals("q"))
+			{
+				// User entered back command
+				feed.close();
+				return false;
+			}
+			if(DeadWood.isInteger(usrEntry.trim()))
+			{
+				// User entered an integer
+				int selection = Integer.parseInt(usrEntry.trim());
+
+				if(selection > 1 && selection <= castingInfo.length-1)
+				{
+					// User entered a valid rank
+					if(selection > p.getRank())
+					{
+						// User entered a purchaseable rank
+						if(purchaseRank(p,feed,selection))
+						{
+							feed.close();
+							return true;
+						}
+						continue;
+					}
+					System.out.println("You already have a rank of equal or higher level.");
+					continue;
+				}
+			}
+			System.out.println("Invalid entry. Please try again.");
+		}
+	}
+
+
+	private boolean purchaseRank(Player p, Scanner feed, int r)
+	{
+		
+		// Repeat until the user enters a valid input
+		while(true)
+		{
+			System.out.println("Enter 'm' to pay with money, 'c' to pay with credits, or 'q' to go back:");
+			String usrEntry = feed.nextLine();
+			if(usrEntry.trim().toLowerCase().equals("q"))
+			{
+				// User entered back command
+				return false;
+			}
+			if(usrEntry.trim().toLowerCase().equals("m"))
+			{
+				// User purchasing rank with money
+				if(p.subtractFunds(castingInfo[r-1][1]))
+				{
+					return true;
+				}
+				System.out.println("Insufficient funds.");
+				continue;
+			}
+			if(usrEntry.trim().toLowerCase().equals("c"))
+			{
+				// User purchasing rank with credits
+				if(p.subtractCredits(castingInfo[r-1][2]))
+				{
+					return true;
+				}
+				System.out.println("Insufficient funds.");
+				continue;
+			}
+			System.out.println("Invalid entry. Please try again.");
+		}
 	}
 }

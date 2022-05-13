@@ -162,13 +162,17 @@ public class SceneRoom extends Room
 	{
 		Role[] cardRoles = scene.getRoles();
 		System.out.printf("Scene: %s%nSynopsis: %s%nBudget: $%d million%n%n",scene.getName(),scene.getDesc(),scene.getBudget());
-		System.out.println("Main Roles:\n#|Available?|Min Rank|Name                |Description");
+		System.out.println("Main Roles:");
+		System.out.println("#|Available?|Min Rank|Name                |Description");
+		System.out.println("-|----------|--------|--------------------|-------------------");
 		for(int i = 0; i < cardRoles.length; i++)
 		{
 			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i,cardRoles[i].getAvailable(),
 								cardRoles[i].getRank(),cardRoles[i].getName(),cardRoles[i].getLine());
 		}
-		System.out.println("\nExtra Roles:\n#|Available?|Min Rank|Name                |Description");
+		System.out.println("\nExtra Roles:");
+		System.out.println("#|Available?|Min Rank|Name                |Description");
+		System.out.println("-|----------|--------|--------------------|-------------------");
 		for(int i = 0; i < roomRoles.length; i++)
 		{
 			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i+cardRoles.length,roomRoles[i].getAvailable(),
@@ -223,6 +227,7 @@ public class SceneRoom extends Room
 					j = (j+1) % mainActors.size();
 				}
 
+				// pay extras according to their role rank
 				for(Player actor : extras)
 				{
 					actor.addFunds(actor.getRole().getRank());
