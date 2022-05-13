@@ -82,12 +82,17 @@ public class Player {
                     }
                     System.out.println("Move process completed");
                 }
-                // else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role")) {
+                else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role")) {
                     // If takeRole func return false, loop thru player choice until player makes a valid choice
-                    // while(!((SceneRoom) room).action(Player)) {  // Currently, i am not sure on how to send oneself as parameter
-
-                    // }
-                // }
+                    while(!((SceneRoom) room).action(this)) {  
+                        System.out.println("The role selected is not possible. Please select another role");
+                    }
+                    if(role != null) {
+                        System.out.println("Role selection successful");
+                        flag = true;
+                    }                
+                    
+                }
             }
 
         }
