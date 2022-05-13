@@ -81,8 +81,14 @@ public class Player {
         Scanner feed = new Scanner(System.in);
         boolean flag = false;
 
+        if (room.getName().equals("trailer")) {
+            room.action(this);
+            while(!move()) {
+                System.out.println("That is not valid room option. Please try again.");
+            }
+        }
         // Check if the user is in Casting Office
-        if(room instanceof CastingOffice) {
+        else if(room instanceof CastingOffice) {
             System.out.println("Welcome to the casting Office.\nHere are some options for upgrading rank. Would you like to upgrade rank?");
             System.uot.println("If you want to upgrade rank, please type 'y', and if you do not wish to upgrade, please type 'n'");
             String userInput = feed.nextLine();    
@@ -133,23 +139,23 @@ public class Player {
 
                     // Check for user input
                     if(userInput.toLowerCase().equals("a") || userInput.toLowerCase().equals("act")) {
-                        
-
+                        act();                        
                         flag = true;
                     }
                     else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("rehearse")) {
-                        // TODO
-
-                        flag = true;
+                        if (!rehearse()) {
+                            System.out.println("You have reached to max token. You cannot rehearse anymore");
+                        }
+                        else {
+                            flag = true;
+                        }
                     }
                     else {
-                        Sysem.out.println("Invalid command");
+                        Sysem.out.println("Invalid command. Try again.");
                     }
                 }
-                
             }
         }
-        
     }
 
     /*
@@ -276,6 +282,20 @@ public class Player {
      * Otherwise, return false.
      */
     public boolean move() {
+        Scanner feed = new Scanner(System.in);
+        
+        // Show available rooms to move
+        System.out.println("Available Room option to move: ");
+        Room[] neighborRoom = room.getNeighbors();
+        for (int i = 0; i < neighborRoom.length(); i++) {
+            System.out.printf("\tOption %d: %s", i+1, neighborRoom[i].getName());
+        }
+        System.out.println("Please type room number to move");
+        int userInput = feed.nextInt();
+        if (userInput > 0 && userInput < neighborRoom.length()) {
+            room = neighborRoom[userInput-1];
+            return true;
+        } 
         return false;
     }
 
@@ -309,5 +329,7 @@ public class Player {
             return true;
         }
         return false;
+
+        
     }
 }

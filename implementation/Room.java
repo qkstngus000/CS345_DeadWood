@@ -41,6 +41,10 @@ public class Room
 		this.neighbors = neighbors;
 	}
 	
+	public Room[] getNeighbors() {
+		return neighbors;
+	}
+
 	/*
 	* Function: action
 	* Parameter:
