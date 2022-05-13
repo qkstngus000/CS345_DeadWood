@@ -69,6 +69,7 @@ public class Player {
      *          Act / Rehearse
      *      else
      *          Move / take room action
+     *      
      * 
      * If action returns false, the player backed out without actually doing 
      * anything so they should be presented with the same options again.
@@ -79,14 +80,79 @@ public class Player {
 
         System.out.printf("~~~~~ %s's turn! ~~~~~%n",name);
 
+        // If player is in trailer, do no action
         if (room.getName().equals("trailer")) {
             room.action(this);
             while(!move()) {
                 System.out.println("That is not valid room option to move. Please try again.");
             }
         }
+
+        if (role == null) {
+            boolean moved = false;
+            boolean upgradeAction = false;
+            while (!flag) {
+                System.out.println("Please choose whether to move or take role\ntype 'm' for move, and 'r' for taking role");
+                String userInput = feed.nextLine();
+                if (userInput.toLowerCase().equals("m") || userInput.toLowerCase().equals("move") || upgradeAction == true) {
+                    
+                    // If move return false, loop through player choice until player makes a valid move
+                    while (!move()) {
+                        System.out.println("That is not valid room option to move. Please try again.");
+                    }
+                    // moved = true;
+                    System.out.println("Move process completed");
+                }
+                if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role") || moved == true) {
+                    // If takeRole func return false, loop thru player choice until player makes a valid choice
+                    int curRank = this.rank;
+                    if(!room.action(this)) {  
+                        System.out.println("The role selected is not possible. Please select another role");
+                    }
+
+                    // If player chose not to take role, then loop over the while loop again
+                    if(role != null) {
+                        System.out.println("Role selection successful");
+                        flag = true;
+                    }                
+                    
+                    if (curRank != this.rank) {
+                        upgradeAction = true;
+                    }
+                }
+            }
+        }
+        else if (role != null) {
+            // Loop statement if user types wrong answer
+            while(!flag) {
+                System.out.println("Please choose whether to act or to rehearse.");
+                System.out.println("If you want to act, type 'a'. For rehearse, type 'r'.");
+                String userInput = feed.nextLine();
+
+                // Check for user input
+                if(userInput.toLowerCase().equals("a") || userInput.toLowerCase().equals("act")) {
+                    act();                        
+                    flag = true;
+                }
+                else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("rehearse")) {
+                    // Rehearse Action
+                    if (!rehearse()) {
+                        System.out.println("You have reached to max token. You cannot rehearse anymore");
+                    }
+                    else {
+                        flag = true;
+                    }
+                }
+                else {
+                    System.out.println("Invalid command. Try again.");
+                }
+            }
+        }
+
+
+
         // Check if the user is in Casting Office
-        else if(room instanceof CastingOffice) {
+        /*else if(room instanceof CastingOffice) {
             System.out.println("Welcome to the casting Office.\nHere are some options for upgrading rank. Would you like to upgrade rank?");
             System.out.println("If you want to upgrade rank, please type 'y', and if you do not wish to upgrade, please type 'n'");
             String userInput = feed.nextLine();    
@@ -153,7 +219,7 @@ public class Player {
                     }
                 }
             }
-        }
+        }*/
     }
 
     /*
