@@ -78,34 +78,78 @@ public class Player {
      * anything so they should be presented with the same options again.
      */
     public void playerTurn() {
-        // Check if the player has a role or not
-        if (role.equals(null)) {
-            Scanner feed = new Scanner(System.in);
-            boolean flag = false;
-            while (!flag) {
-                System.out.println("Please choose whether to move or take role\ntype 'm' for move, and 'r' for taking role");
-                String userInput = feed.nextLine();
-                if (userInput.toLowerCase().equals("m") || userInput.toLowerCase().equals("move")) {
-                    // If move return false, loop through player choice until player makes a valid move
-                    while (!move()) {
-                        System.out.println("This is not valid move. Please choose neighboring room to move");
-                    }
-                    System.out.println("Move process completed");
+        Scanner feed = new Scanner(System.in);
+        boolean flag = false;
+
+        // Check if the user is in Casting Office
+        if(room instanceof CastingOffice) {
+            System.out.println("Welcome to the casting Office.\nHere are some options for upgrading rank. Would you like to upgrade rank?");
+            System.uot.println("If you want to upgrade rank, please type 'y', and if you do not wish to upgrade, please type 'n'");
+            String userInput = feed.nextLine();    
+            if (userInput.toLowerCase().equals("y")) {
+                int prevrank = this.rank;
+                while(!((CastingOffice) room).action(this)) {
+                    System.out.println("You have insufficient dollar/credit for upgrade. Please select another option");
                 }
-                else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role")) {
-                    // If takeRole func return false, loop thru player choice until player makes a valid choice
-                    while(!((SceneRoom) room).action(this)) {  
-                        System.out.println("The role selected is not possible. Please select another role");
-                    }
-                    if(role != null) {
-                        System.out.println("Role selection successful");
-                        flag = true;
-                    }                
-                    
+                if (prevrank != this.rank) {
+                    System.out.println("Upgrading rank successful");
                 }
             }
-
         }
+
+        // Check if the user is in SceneRoom
+        else if(room instanceof SceneRoom) {
+            // Check if the player has a role or not
+            if (role.equals(null)) {
+                while (!flag) {
+                    System.out.println("Please choose whether to move or take role\ntype 'm' for move, and 'r' for taking role");
+                    String userInput = feed.nextLine();
+                    if (userInput.toLowerCase().equals("m") || userInput.toLowerCase().equals("move")) {
+                        // If move return false, loop through player choice until player makes a valid move
+                        while (!move()) {
+                            System.out.println("This is not valid move. Please choose neighboring room to move");
+                        }
+                        System.out.println("Move process completed");
+                    }
+                    else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role")) {
+                        // If takeRole func return false, loop thru player choice until player makes a valid choice
+                        while(!((SceneRoom) room).action(this)) {  
+                            System.out.println("The role selected is not possible. Please select another role");
+                        }
+                        if(role != null) {
+                            System.out.println("Role selection successful");
+                            flag = true;
+                        }                
+                        
+                    }
+                }
+            }
+            else if (!role.equals(null)) {
+                // Loop statement if user types wrong answer
+                while(!flag) {
+                    System.out.println("Please choose whether to act or to rehearse.")
+                    System.out.println("If you want to act, type 'a'. For rehearse, type 'r'.");
+                    String userInput = feed.nextLine();
+
+                    // Check for user input
+                    if(userInput.toLowerCase().equals("a") || userInput.toLowerCase().equals("act")) {
+                        
+
+                        flag = true;
+                    }
+                    else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("rehearse")) {
+                        // TODO
+
+                        flag = true;
+                    }
+                    else {
+                        Sysem.out.println("Invalid command");
+                    }
+                }
+                
+            }
+        }
+        
     }
 
     /*
@@ -234,12 +278,36 @@ public class Player {
     public boolean move() {
         return false;
     }
-    
+
+    /*
+     * Function: getter methods
+     * Parameter:
+     * None
+     * 
+     * Description:
+     * Allows other classes to access variables in this class
+     */
     public Role getRole() {
         return this.role;
     }
 
     public int getRank() {
         return this.rank;
+    }
+
+    public int subtractFunds(int dollar) {
+        if ((this.dollar - dollar) > 0) {
+            this.dollar -= dollar;
+            return true;
+        }
+        return false;
+    }
+
+    public int subtractCredit(int crdit) {
+        if ((this.credit - credit) > 0) {
+            this.credit -= credit;
+            return true;
+        }
+        return false;
     }
 }
