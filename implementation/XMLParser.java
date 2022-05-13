@@ -13,6 +13,9 @@ import org.w3c.dom.Element;
  * XMLParser
  */
 public class XMLParser {
+
+	private static final boolean debug = false; // Set to true to print lots of stuff
+
 	// private static String boardPath = (new
 	// File("xml/board.xml")).getAbsolutePath();
 	// private static String cardPath = (new
@@ -69,17 +72,17 @@ public class XMLParser {
 
 			// Read data from nodelist for scene
 			for (int i = 0; i < sceneRoom.getLength(); i++) {
-				System.out.println("Printing information for room " + (i + 1)); // Log to see
+				if(debug) System.out.println("Printing information for room " + (i + 1)); // Log to see
 				// the loop of each element
 
 				// Reads data from individual node
 				Node room = sceneRoom.item(i);
 				String roomName = room.getAttributes().getNamedItem("name").getNodeValue();
-				System.out.println("name of room: " + roomName); // Log to see the name of
+				if(debug) System.out.println("name of room: " + roomName); // Log to see the name of
 				// room printout statement
 				int numShots = ((Element) ((Element) room).getElementsByTagName("takes").item(0))
 						.getElementsByTagName("take").getLength();
-				System.out.println("\tshots: " + numShots); // Log to see shot value
+				if(debug) System.out.println("\tshots: " + numShots); // Log to see shot value
 
 				
 				Take[] takeList = new Take[numShots];	// Initialize Take array to store shot coordinates
@@ -88,20 +91,20 @@ public class XMLParser {
 				for (int j = 0; j < numShots; j++) {
 					Node take = ((Element) ((Element) room).getElementsByTagName("takes").item(0)).getElementsByTagName("take").item(j);
 					int number = Integer.parseInt(take.getAttributes().getNamedItem("number").getNodeValue());
-					System.out.println("\tnumber: " + number);
+					if(debug) System.out.println("\tnumber: " + number);
 
 					int x_cord = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("x").getNodeValue());
 					int y_cord = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("y").getNodeValue());
 					int w = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("w").getNodeValue());
 					int h = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("h").getNodeValue());
-					System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
+					if(debug) System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
 					ObjCoord takeCord = new ObjCoord(x_cord, y_cord, w, h);
 					takeList[j] = new Take(number, takeCord);
 				}
 				
 				// Get number of roles in the room
 				int numRoles = ((Element) ((Element) room).getElementsByTagName("parts").item(0)).getElementsByTagName("part").getLength();
-				System.out.println("numRoles: " + ((Element) ((Element) room).getElementsByTagName("parts").item(0)).getElementsByTagName("part").getLength());
+				if(debug) System.out.println("numRoles: " + ((Element) ((Element) room).getElementsByTagName("parts").item(0)).getElementsByTagName("part").getLength());
 				Role[] roleList = new Role[numRoles];	// Initialize Role list array
 
 				// Get coordinates and informations for each role in the room
@@ -109,12 +112,12 @@ public class XMLParser {
 					// Get role
 					Node role = ((Element) ((Element) room).getElementsByTagName("parts").item(0)).getElementsByTagName("part").item(j);
 					String roleName = role.getAttributes().getNamedItem("name").getNodeValue();
-					System.out.println("Role Name: " + roleName);
+					if(debug) System.out.println("Role Name: " + roleName);
 
 					int rank = Integer.parseInt(role.getAttributes().getNamedItem("level").getNodeValue());
-					System.out.println("\tlevel: " + rank);
+					if(debug) System.out.println("\tlevel: " + rank);
 					String line = ((Element) role).getElementsByTagName("line").item(0).getTextContent();
-					System.out.println("\tLine: " + line);
+					if(debug) System.out.println("\tLine: " + line);
 					
 
 					// Get role coordinate
@@ -123,7 +126,7 @@ public class XMLParser {
 					int y_cord = Integer.parseInt(roleArea.getAttributes().getNamedItem("y").getNodeValue());
 					int w = Integer.parseInt(roleArea.getAttributes().getNamedItem("w").getNodeValue());
 					int h = Integer.parseInt(roleArea.getAttributes().getNamedItem("h").getNodeValue());
-					System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
+					if(debug) System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
 
 					ObjCoord coord = new ObjCoord(x_cord, y_cord, w, h);
 
@@ -295,16 +298,16 @@ public class XMLParser {
 				int sceneNumbering = Integer.parseInt(((Element) card).getElementsByTagName("scene").item(0)
 						.getAttributes().getNamedItem("number").getNodeValue());
 
-				System.out.println("Numbering: " + ((Element) card).getElementsByTagName("scene").item(0)
+				if(debug) System.out.println("Numbering: " + ((Element) card).getElementsByTagName("scene").item(0)
 						.getAttributes().getNamedItem("number").getNodeValue()); // Log
-				System.out.println("SceneDescription: " + ((Element) card).getElementsByTagName("scene").item(0).getTextContent());
+				if(debug) System.out.println("SceneDescription: " + ((Element) card).getElementsByTagName("scene").item(0).getTextContent());
 				String sceneDesc = ((Element) card).getElementsByTagName("scene").item(0).getTextContent();
 				SceneCard s = new SceneCard(cardName, img, budget, sceneNumbering, sceneDesc);
 				parsedCard.add(s);
 
 				// Add roles to the card
 
-				System.out.println("Number of roles " + ((Element) card).getElementsByTagName("part").getLength());
+				if(debug) System.out.println("Number of roles " + ((Element) card).getElementsByTagName("part").getLength());
 				int numRoles = ((Element) card).getElementsByTagName("part").getLength();
 				Role[] cardRoles = new Role[numRoles];
 				for (int j = 0; j < numRoles; j++) {
@@ -313,18 +316,18 @@ public class XMLParser {
 					String name = role.getAttributes().getNamedItem("name").getNodeValue();
 					int level = Integer.parseInt(role.getAttributes().getNamedItem("level").getNodeValue());
 
-					System.out.println("\trole name: " + role.getAttributes().getNamedItem("name").getNodeValue());
-					System.out.println("\trole level: " + role.getAttributes().getNamedItem("level").getNodeValue());
+					if(debug) System.out.println("\trole name: " + role.getAttributes().getNamedItem("name").getNodeValue());
+					if(debug) System.out.println("\trole level: " + role.getAttributes().getNamedItem("level").getNodeValue());
 
 					Node coord = ((Element) role).getElementsByTagName("area").item(0);
 					int x_cord = Integer.parseInt(coord.getAttributes().getNamedItem("x").getNodeValue());
 					int y_cord = Integer.parseInt(coord.getAttributes().getNamedItem("y").getNodeValue());
 					int h = Integer.parseInt(coord.getAttributes().getNamedItem("h").getNodeValue());
 					int w = Integer.parseInt(coord.getAttributes().getNamedItem("w").getNodeValue());
-					System.out.printf("\tx_cord: %d, y_cord: %d, h: %d, w: %d\n", x_cord, y_cord, h, w);
+					if(debug) System.out.printf("\tx_cord: %d, y_cord: %d, h: %d, w: %d\n", x_cord, y_cord, h, w);
 
 					String line = ((Element) role).getElementsByTagName("line").item(0).getTextContent();
-					System.out.println("\tline: " + ((Element) role).getElementsByTagName("line").item(0).getTextContent());
+					if(debug) System.out.println("\tline: " + ((Element) role).getElementsByTagName("line").item(0).getTextContent());
 					
 					ObjCoord roleCoord = new ObjCoord(x_cord, y_cord, w, h);
 
