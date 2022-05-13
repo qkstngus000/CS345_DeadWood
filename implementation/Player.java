@@ -60,13 +60,9 @@ public class Player {
         this.rank = rank;
     }
 
-    /*
-     * Function: playerTurn
-     * Parameter:
-     * None
-     * Description:
+    /**
      * Interact with DeadWood manager and keep track of the turn
-     * as there are going to be many Player objects.
+     * as there are going to be many Player objects. <p>
      * 
      * Options:
      *      If player currently has a role:
@@ -80,6 +76,8 @@ public class Player {
     public void playerTurn() {
         Scanner feed = new Scanner(System.in);
         boolean flag = false;
+
+        System.out.printf("~~~~~ %s's turn! ~~~~~%n",name);
 
         if (room.getName().equals("trailer")) {
             room.action(this);
@@ -106,7 +104,7 @@ public class Player {
         // Check if the user is in SceneRoom
         else if(room instanceof SceneRoom) {
             // Check if the player has a role or not
-            if (role.equals(null)) {
+            if (role == null) {
                 while (!flag) {
                     System.out.println("Please choose whether to move or take role\ntype 'm' for move, and 'r' for taking role");
                     String userInput = feed.nextLine();
@@ -170,7 +168,7 @@ public class Player {
         return credit + dollar + (rank * 5);
     }
 
-    /*
+    /**
      * Function: takeRole
      * Parameter:
      * Role role: the role that player is wanting to take
