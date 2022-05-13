@@ -90,7 +90,7 @@ public class Player {
         // Check if the user is in Casting Office
         else if(room instanceof CastingOffice) {
             System.out.println("Welcome to the casting Office.\nHere are some options for upgrading rank. Would you like to upgrade rank?");
-            System.uot.println("If you want to upgrade rank, please type 'y', and if you do not wish to upgrade, please type 'n'");
+            System.out.println("If you want to upgrade rank, please type 'y', and if you do not wish to upgrade, please type 'n'");
             String userInput = feed.nextLine();    
             if (userInput.toLowerCase().equals("y")) {
                 int prevrank = this.rank;
@@ -133,7 +133,7 @@ public class Player {
             else if (!role.equals(null)) {
                 // Loop statement if user types wrong answer
                 while(!flag) {
-                    System.out.println("Please choose whether to act or to rehearse.")
+                    System.out.println("Please choose whether to act or to rehearse.");
                     System.out.println("If you want to act, type 'a'. For rehearse, type 'r'.");
                     String userInput = feed.nextLine();
 
@@ -151,7 +151,7 @@ public class Player {
                         }
                     }
                     else {
-                        Sysem.out.println("Invalid command. Try again.");
+                        System.out.println("Invalid command. Try again.");
                     }
                 }
             }
@@ -287,12 +287,12 @@ public class Player {
         // Show available rooms to move
         System.out.println("Available Room option to move: ");
         Room[] neighborRoom = room.getNeighbors();
-        for (int i = 0; i < neighborRoom.length(); i++) {
+        for (int i = 0; i < neighborRoom.length; i++) {
             System.out.printf("\tOption %d: %s", i+1, neighborRoom[i].getName());
         }
         System.out.println("Please type room number to move");
         int userInput = feed.nextInt();
-        if (userInput > 0 && userInput < neighborRoom.length()) {
+        if (userInput > 0 && userInput < neighborRoom.length) {
             room = neighborRoom[userInput-1];
             return true;
         } 
@@ -315,7 +315,7 @@ public class Player {
         return this.rank;
     }
 
-    public int subtractFunds(int dollar) {
+    public boolean subtractFunds(int dollar) {
         if ((this.dollar - dollar) > 0) {
             this.dollar -= dollar;
             return true;
@@ -323,7 +323,7 @@ public class Player {
         return false;
     }
 
-    public int subtractCredit(int crdit) {
+    public boolean subtractCredits(int credit) {
         if ((this.credit - credit) > 0) {
             this.credit -= credit;
             return true;
