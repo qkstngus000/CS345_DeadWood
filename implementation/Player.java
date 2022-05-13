@@ -35,6 +35,11 @@ public class Player {
 		token = 0;
     }
 	
+    public String getName()
+    {
+        return name;
+    }
+
 	public void setRoom(Room r)
 	{
 		room = r;
@@ -44,6 +49,11 @@ public class Player {
 	{
 		credit += n;
 	}
+
+    public void addFunds(int n)
+    {
+        dollar += n;
+    }
 
     public void setRank(int rank)
     {

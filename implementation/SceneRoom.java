@@ -1,6 +1,8 @@
 package implementation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /*
@@ -181,12 +183,61 @@ public class SceneRoom extends Room
 	*   Increments curShot, and if curShot reaches maxShots, handles bonus payouts and calls closeRoom()
 	*   Check if there are main role or not
 	*/
-	public void updateShot(Player p)
+	public void updateShot()
 	{
 		if(++curShot == maxShots)
 		{
-			// TODO handle bonus payouts
+			// Handle bonus payouts
+
+			// List main actors
+			ArrayList<Player> mainActors = new ArrayList<Player>();
+			ArrayList<Player> extras = new ArrayList<Player>();
+			for(Player actor : actorInfo)
+			{
+				if(actor.getRole().getMainRole())
+				{
+					mainActors.add(actor);
+				}
+				else
+				{
+					extras.add(actor);
+				}
+			}
+
+			// Only do bonus payouts if there are main actors
+			if(mainActors.size() != 0)
+			{
+				mainActors.sort(new SortByRoleSize());
+				int[] bonus = new int[scene.getBudget()];
+				for(int i = 0; i < bonus.length; i++)
+				{
+					bonus[i] = DeadWood.rollDice();
+					System.out.printf("Rolled: %d%n",bonus[i]);
+				}
+				Arrays.sort(bonus);
+				int j = 0;
+				for(int i = bonus.length - 1; i >=0; i--)
+				{
+					mainActors.get(j).addFunds(bonus[i]);
+					System.out.printf("%s gets $%d!",mainActors.get(j).getName(),bonus[i]);
+					j = (j+1) % mainActors.size();
+				}
+
+				for(Player actor : extras)
+				{
+					actor.addFunds(actor.getRole().getRank());
+				}
+			}
+
 			closeRoom();
+		}
+	}
+
+	private class SortByRoleSize implements Comparator<Player>
+	{
+		public int compare(Player p1, Player p2)
+		{
+			return p2.getRole().getRank() - p1.getRole().getRank();
 		}
 	}
 	
@@ -203,6 +254,7 @@ public class SceneRoom extends Room
 		{
 			actor.removeRole();
 		}
+		actorInfo.clear();
 	}
 	
 	/*
