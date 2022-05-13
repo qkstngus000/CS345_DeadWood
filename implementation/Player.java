@@ -84,7 +84,7 @@ public class Player {
         if (room.getName().equals("trailer")) {
             room.action(this);
             while(!move()) {
-                System.out.println("That is not valid room option. Please try again.");
+                System.out.println("That is not valid room option to move. Please try again.");
             }
         }
         // Check if the user is in Casting Office
@@ -113,7 +113,7 @@ public class Player {
                     if (userInput.toLowerCase().equals("m") || userInput.toLowerCase().equals("move")) {
                         // If move return false, loop through player choice until player makes a valid move
                         while (!move()) {
-                            System.out.println("This is not valid move. Please choose neighboring room to move");
+                            System.out.println("That is not valid room option to move. Please try again.");
                         }
                         System.out.println("Move process completed");
                     }
