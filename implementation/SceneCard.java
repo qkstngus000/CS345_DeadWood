@@ -54,8 +54,22 @@ public class SceneCard {
         return false;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getDesc()
+    {
+        return sceneDes;
+    }
+
     public void setRole(Role[] r) {
         this.roles = r;
+    }
+    
+    public Role[] getRoles() {
+        return roles;
     }
 
     public int getBudget() {

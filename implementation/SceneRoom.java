@@ -83,44 +83,55 @@ public class SceneRoom extends Room
 	*/
 	private boolean roleManager(Player p)
 	{
-		//If scene is finished, print a message and return
+		// If scene is finished, print a message and return
 		if(scene == null)
 		{
 			System.out.println("The scene in this room has finished. No action can be taken.");
 			return false;
 		}
 		Scanner feed = new Scanner(System.in);
-		//Print out role informaion
-		System.out.println("Available Roles:\n#|Available?|Min Rank|Name                |Description");
-		for(int i = 0; i < roomRoles.length; i++)
-		{
-			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i,roomRoles[i].getAvailable(),
-								roomRoles[i].getRank(),roomRoles[i].getName(),roomRoles[i].getLine());
-		}
-		//Repeat until user enters a valid entry
+		Role[] cardRoles = scene.getRoles();
+		// Print out role informaion
+		printSceneInfo();
+		// Repeat until user enters a valid entry
 		while(true)
 		{
 			System.out.println("Enter the # of the role you want, or 'q' to go back:");
 			String usrEntry = feed.nextLine();
 			if(usrEntry.trim().toLowerCase().equals("q"))
 			{
-				//User entered back command
+				// User entered back command
 				feed.close();
 				return false;
 			}
 			if(DeadWood.isInteger(usrEntry.trim()))
 			{
-				//User entered an integer
+				// User entered an integer
 				int selection = Integer.parseInt(usrEntry.trim());
-				if(selection >= 0 && selection < roomRoles.length)
+				// Find the Role object which corresponds to the user's entry, if it exists.
+				Role selectedRole = null;
+				if(selection >= 0)
 				{
-					//User entered a valid role #
+					if(selection < cardRoles.length)
+					{
+						selectedRole = cardRoles[selection];
+					}
+					else if(selection < cardRoles.length + roomRoles.length)
+					{
+						selectedRole = roomRoles[selection - cardRoles.length];
+					}
+				}
+				if(selectedRole != null)
+				{
+					// User entered a valid role #
 					if(roomRoles[selection].getAvailable())
 					{
-						//Role is available
+						// Role is available
 						if(p.takeRole(roomRoles[selection]))
 						{
-							//Role was taken successfully
+							// Role was taken successfully
+							// Add player to actorInfo
+							actorInfo.add(p);
 							feed.close();
 							return true;
 						}
@@ -134,14 +145,43 @@ public class SceneRoom extends Room
 			System.out.println("Invalid entry. Please try again.");
 		}
 	}
+
+	/*
+	* Function: printSceneInfo
+	* Parameter:
+	* 	none
+	* Description:
+	* 	Displays the name, description and budget of the scene, as well as the number, availability,
+	* 	difficulty, name, and description for all main and extra roles.
+	* 
+	* 	Used for debug purposes as well as when a player attempts to take a role.
+	*/
+	public void printSceneInfo()
+	{
+		Role[] cardRoles = scene.getRoles();
+		System.out.printf("Scene: %s%nSynopsis: %s%nBudget: $%d million%n%n",scene.getName(),scene.getDesc(),scene.getBudget());
+		System.out.println("Main Roles:\n#|Available?|Min Rank|Name                |Description");
+		for(int i = 0; i < cardRoles.length; i++)
+		{
+			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i,cardRoles[i].getAvailable(),
+								cardRoles[i].getRank(),cardRoles[i].getName(),cardRoles[i].getLine());
+		}
+		System.out.println("\nExtra Roles:\n#|Available?|Min Rank|Name                |Description");
+		for(int i = 0; i < roomRoles.length; i++)
+		{
+			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i+cardRoles.length,roomRoles[i].getAvailable(),
+								roomRoles[i].getRank(),roomRoles[i].getName(),roomRoles[i].getLine());
+		}
+	}
 	
 	/*
 	* Function: updateShot
 	* Description:
+	*	Called by a player 'p' after they finish acting in this room.
 	*   Increments curShot, and if curShot reaches maxShots, handles bonus payouts and calls closeRoom()
 	*   Check if there are main role or not
 	*/
-	public void updateShot()
+	public void updateShot(Player p)
 	{
 		if(++curShot == maxShots)
 		{
