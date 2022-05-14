@@ -1,5 +1,6 @@
 package implementation;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -117,6 +118,7 @@ public class DeadWood {
 		// Loop for daily events
 		while(day <= maxDay)
 		{
+			System.out.printf("~~~~~~ Day %d Start ~~~~~~%n",day);
 			// reset board and move players to trailer room.
 			board.reset();
 			for(int i = 0; i < numPlayer; i++)
@@ -132,8 +134,21 @@ public class DeadWood {
 				nextTurnPlayer();
 			}
 			
+			day++;
 		}
 		// Print scores and who won
+		System.out.println("~~~~~~ The last day has passed! ~~~~~~");
+
+		System.out.println("Player Scores:");
+		int winner = 0;
+		int[] scores = new int[numPlayer];
+		for(int i = 0; i < numPlayer; i++)
+		{
+			scores[i] = players[i].calcScore();
+			System.out.printf("\t%-20s: %d%%n",players[0].getName(),scores[0]);		
+		}
+		Arrays.sort(scores);
+		// TODO for()
 	}
 	
 	public static boolean isInteger(String s)
