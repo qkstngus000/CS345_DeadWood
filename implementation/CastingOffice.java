@@ -56,7 +56,6 @@ public class CastingOffice extends Room
 	*/
 	private boolean upgradeManager(Player p)
 	{
-		Scanner feed = new Scanner(System.in);
 		
 		// Print welcome message
 		System.out.println("Welcome to the Casting Office!");
@@ -75,11 +74,10 @@ public class CastingOffice extends Room
 		while(true)
 		{
 			System.out.println("Enter the level of rank you'd like to buy, or 'q' to go back:");
-			String usrEntry = feed.nextLine();
+			String usrEntry = DeadWood.feed.nextLine();
 			if(usrEntry.trim().toLowerCase().equals("q"))
 			{
 				// User entered back command
-				feed.close();
 				return false;
 			}
 			if(DeadWood.isInteger(usrEntry.trim()))
@@ -93,9 +91,8 @@ public class CastingOffice extends Room
 					if(selection > p.getRank())
 					{
 						// User entered a purchaseable rank
-						if(purchaseRank(p,feed,selection))
+						if(purchaseRank(p,selection))
 						{
-							feed.close();
 							return true;
 						}
 						continue;
@@ -109,14 +106,14 @@ public class CastingOffice extends Room
 	}
 
 
-	private boolean purchaseRank(Player p, Scanner feed, int r)
+	private boolean purchaseRank(Player p, int r)
 	{
 		
 		// Repeat until the user enters a valid input
 		while(true)
 		{
 			System.out.println("Enter 'm' to pay with money, 'c' to pay with credits, or 'q' to go back:");
-			String usrEntry = feed.nextLine();
+			String usrEntry = DeadWood.feed.nextLine();
 			if(usrEntry.trim().toLowerCase().equals("q"))
 			{
 				// User entered back command

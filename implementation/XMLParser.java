@@ -135,6 +135,7 @@ public class XMLParser {
 				
 
 				Room curRoom = new SceneRoom(roomName, numShots, takeList);
+				((SceneRoom) curRoom).setRoles(roleList);
 				
 				parsedRoom[i + 2] = curRoom;
 			}

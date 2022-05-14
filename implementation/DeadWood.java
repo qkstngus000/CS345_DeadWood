@@ -19,6 +19,7 @@ public class DeadWood {
     private int curPlayer; // Index in players
     public static Random dice; // Dice Roll
 	public static DeadWood game = new DeadWood();
+	public static final Scanner feed = new Scanner(System.in);
 
     /*
      * Constructor: DeadWood
@@ -89,8 +90,8 @@ public class DeadWood {
      * Keep track of which player's turn it is and call playerTurn for that Player.
      */
     public void nextTurnPlayer() {
-        curPlayer = (curPlayer + 1) % numPlayer;
 		players[curPlayer].playerTurn();
+        curPlayer = (curPlayer + 1) % numPlayer;
     }
 	
 	/*
@@ -166,7 +167,6 @@ public class DeadWood {
      * Ask for how many users are there to play game, then creates a new instance of DeadWood and runs the game.
      */
     public static void main(String[] args) {
-		Scanner feed = new Scanner(System.in);
 		dice = new Random();
 		System.out.print("Enter the number of players who would like to play:\n\t");
 		String usrEntry = feed.nextLine();

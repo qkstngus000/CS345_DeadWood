@@ -2,6 +2,8 @@ package implementation;
 
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner14;
+
 /*
  * Class: Player
  *  Description
@@ -75,13 +77,70 @@ public class Player {
      * anything so they should be presented with the same options again.
      */
     public void playerTurn() {
-        Scanner feed = new Scanner(System.in);
-        boolean flag = false;
 
-        System.out.printf("~~~~~ %s's turn! ~~~~~%n",name);
+        System.out.printf("\n~~~~~ %s's turn! ~~~~~%n",name);
+
+        if(role == null)
+        {
+            // Player has no role so they can move and/or take a room action
+            boolean moved = false;
+            boolean actionPerformed = false;
+            while(!moved||!actionPerformed)
+            {
+                // Print options
+                System.out.printf("~~~ You are in: %s%n",room.getName());
+                System.out.println("You may move once and/or take one action during your turn.\nEnter what you would like to do:");
+                if(!moved)
+                {
+                    System.out.println("\t'm': Move");
+                }
+                if(!actionPerformed)
+                {
+                    System.out.println("\t'a': Take Action");
+                }
+                System.out.println("\t'e': End Turn");
+                // Take input
+                String usrEntry = DeadWood.feed.nextLine();
+                if(!moved && usrEntry.trim().toLowerCase().equals("m"))
+                {
+                    // Player wants to move
+                    if(move())
+                    {
+                        moved = true;
+                    }
+                    continue;
+                }
+                if(!actionPerformed && usrEntry.trim().toLowerCase().equals("a"))
+                {
+                    // Player wants to take action
+                    if(room.action(this))
+                    {
+                        actionPerformed = true;
+
+                        // End turn if player took a role in a sceneroom
+                        if(role != null)
+                        {
+                            break;
+                        }
+                    }
+                    continue;
+                }
+                if(usrEntry.trim().toLowerCase().equals("e"))
+                {
+                    // Player ends their turn
+                    break;
+                }
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+        else
+        {
+            // TODO Player has a role so they can act or rehearse
+
+        }
 
         // If player is in trailer, do no action
-        if (room.getName().equals("trailer")) {
+        /*if (room.getName().equals("trailer")) {
             room.action(this);
             while(!move()) {
                 System.out.println("That is not valid room option to move. Please try again.");
@@ -147,7 +206,7 @@ public class Player {
                     System.out.println("Invalid command. Try again.");
                 }
             }
-        }
+        }*/
 
 
 
@@ -346,21 +405,35 @@ public class Player {
      * Otherwise, return false.
      */
     public boolean move() {
-        Scanner feed = new Scanner(System.in);
-        
         // Show available rooms to move
         System.out.println("Available Room option to move: ");
         Room[] neighborRoom = room.getNeighbors();
         for (int i = 0; i < neighborRoom.length; i++) {
             System.out.printf("\tOption %d: %s", i+1, neighborRoom[i].getName());
         }
-        System.out.println("Please type room number to move");
-        int userInput = feed.nextInt();
-        if (userInput > 0 && userInput < neighborRoom.length) {
-            room = neighborRoom[userInput-1];
-            return true;
-        } 
-        return false;
+        while(true)
+        {
+            // Loop until user enters valid input
+            System.out.println("Please enter the number of the room you'd like to move to or 'q' to go back:");
+            String usrEntry = DeadWood.feed.nextLine();
+            if(usrEntry.trim().toLowerCase().equals("q"))
+            {
+                // Player backed out
+                return false;
+            }
+            if(DeadWood.isInteger(usrEntry.trim()))
+            {
+                // Player entered an integer
+                int selection = Integer.parseInt(usrEntry.trim());
+                if (selection > 0 && selection <= neighborRoom.length) {
+                    // Player entered a valid room number
+                    room = neighborRoom[selection-1];
+                    if(room instanceof SceneRoom) ((SceneRoom) room).visit();
+                    return true;
+                }
+            }
+            System.out.println("Invalid input. Please try again.");
+        }
     }
 
     /*

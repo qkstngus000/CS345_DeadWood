@@ -91,7 +91,6 @@ public class SceneRoom extends Room
 			System.out.println("The scene in this room has finished. No action can be taken.");
 			return false;
 		}
-		Scanner feed = new Scanner(System.in);
 		Role[] cardRoles = scene.getRoles();
 		// Print out role informaion
 		printSceneInfo();
@@ -99,11 +98,10 @@ public class SceneRoom extends Room
 		while(true)
 		{
 			System.out.println("Enter the # of the role you want, or 'q' to go back:");
-			String usrEntry = feed.nextLine();
+			String usrEntry = DeadWood.feed.nextLine();
 			if(usrEntry.trim().toLowerCase().equals("q"))
 			{
 				// User entered back command
-				feed.close();
 				return false;
 			}
 			if(DeadWood.isInteger(usrEntry.trim()))
@@ -114,30 +112,35 @@ public class SceneRoom extends Room
 				Role selectedRole = null;
 				if(selection >= 0)
 				{
+					// System.out.println("selection >= 0");
 					if(selection < cardRoles.length)
 					{
+						// System.out.printf("selection <%d> is main role%n",selection);
 						selectedRole = cardRoles[selection];
 					}
 					else if(selection < cardRoles.length + roomRoles.length)
 					{
+						// System.out.printf("selection <%d> is extra role%n",selection);
+						// System.out.printf("role index: %d",selection - cardRoles.length);
 						selectedRole = roomRoles[selection - cardRoles.length];
 					}
 				}
 				if(selectedRole != null)
 				{
 					// User entered a valid role #
-					if(roomRoles[selection].getAvailable())
+					if(selectedRole.getAvailable())
 					{
 						// Role is available
-						if(p.takeRole(roomRoles[selection]))
+						if(p.takeRole(selectedRole))
 						{
 							// Role was taken successfully
+							// set role to unavailable
+							selectedRole.updateRoleStatus(false);
 							// Add player to actorInfo
 							actorInfo.add(p);
-							feed.close();
 							return true;
 						}
-						System.out.printf("You need at least rank %d for this role. Current rank: %d%n",roomRoles[selection].getRank(),p.getRank());
+						System.out.printf("You need at least rank %d for this role. Current rank: %d%n",selectedRole.getRank(),p.getRank());
 						continue;
 					}
 					System.out.println("This role is currently unavailable.");
