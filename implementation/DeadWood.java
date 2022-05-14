@@ -66,10 +66,10 @@ public class DeadWood {
      * None
      * Description:
      * When board reset, decrement day until it hit 0
-     */
+    
     public void trackDate() {
         // TO DO
-    }
+    } */
 
     /*
      * Function: winner
@@ -78,10 +78,10 @@ public class DeadWood {
      * Description:
      * Bring total Score from each player and compare the highest score
      * Call out the winner
-     */
+     
     public void winner() {
         // TO DO
-    }
+    }*/
 
     /*
      * Function: nextTurnPlayer
@@ -96,25 +96,13 @@ public class DeadWood {
 	
 	/*
 	* Function: rollDice
-	* Parameter:
-	*   Optional int count: number of dice to roll
 	* Returns:
-	*   sum of dice rolled
+	*   number of dice rolled
 	* Description: rolls 6-sided dice to generate random numbers and returns the result.
 	*/
 	public static int rollDice()
 	{
 		return dice.nextInt(6);
-	}
-	
-	public static int rollDice(int count)
-	{
-		int sum = 0;
-		while(count-- > 0)
-		{
-			sum += rollDice();
-		}
-		return sum;
 	}
 	
 	/*
@@ -146,7 +134,6 @@ public class DeadWood {
 			
 		}
 		// Print scores and who won
-		// TODO
 	}
 	
 	public static boolean isInteger(String s)
