@@ -451,9 +451,36 @@ public class Player {
                 int selection = Integer.parseInt(usrEntry.trim());
                 if (selection > 0 && selection <= neighborRoom.length) {
                     // Player entered a valid room number
-                    room = neighborRoom[selection-1];
-                    if(room instanceof SceneRoom) ((SceneRoom) room).visit();
-                    return true;
+                    Room selectedRoom = neighborRoom[selection-1];
+                    // Confirmation
+                    while(true)
+                    {
+                        System.out.printf("Are you sure you would like to move to room: %s?%n",selectedRoom.getName());
+                        System.out.println("\t'y': Yes\n\t'n': No");
+                        if(selectedRoom instanceof SceneRoom) System.out.println("\t'i': Room Info");
+                        usrEntry = DeadWood.feed.nextLine();
+                        if(usrEntry.trim().toLowerCase().equals("y"))
+                        {
+                            // Player wants to move
+                            room = selectedRoom;
+                            if(room instanceof SceneRoom) ((SceneRoom) room).visit();
+                            return true;
+                        }
+                        if(usrEntry.trim().toLowerCase().equals("n"))
+                        {
+                            // Player wants to go back
+                            break;
+                        }
+                        if(selectedRoom instanceof SceneRoom && usrEntry.trim().toLowerCase().equals("i"))
+                        {
+                            // Player wants to see room info
+                            ((SceneRoom) selectedRoom).printSceneInfo();
+                            ((SceneRoom) selectedRoom).printRoleInfo();
+                            continue;
+                        }
+                        System.out.println("Invalid entry. Please try again.");
+                    }
+                    continue;
                 }
             }
             System.out.println("Invalid input. Please try again.");
