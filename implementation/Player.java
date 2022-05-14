@@ -1,9 +1,5 @@
 package implementation;
 
-import java.util.Scanner;
-
-import javax.lang.model.util.ElementScanner14;
-
 /*
  * Class: Player
  *  Description
@@ -135,7 +131,7 @@ public class Player {
         }
         else
         {
-            // TODO Player has a role so they can act or rehearse
+            // Player has a role so they can act or rehearse
             while(true)
             {
                 // Loop until player enters valid input
