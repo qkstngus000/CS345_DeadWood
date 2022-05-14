@@ -246,9 +246,13 @@ public class SceneRoom extends Room
 				int j = 0;
 				for(int i = bonus.length - 1; i >=0; i--)
 				{
-					mainActors.get(j).addFunds(bonus[i]);
-					System.out.printf("%s gets $%d!",mainActors.get(j).getName(),bonus[i]);
-					j = (j+1) % mainActors.size();
+					// TODO Add funds to Player who is on the j'th roll if they exist
+					/*if()
+					{
+						mainActors.get(j).addFunds(bonus[i]);
+						System.out.printf("%s gets $%d!%n",mainActors.get(j).getName(),bonus[i]);
+					}*/
+					j = (j+1) % scene.getRoles().length;
 				}
 
 				// pay extras according to their role rank
