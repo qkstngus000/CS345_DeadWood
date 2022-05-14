@@ -334,7 +334,6 @@ public class Player {
             role.updateRoleStatus(false);
             return true;
         }
-        System.out.println("Role requires higher rank. Please try selecting roles that are less than or equal to your rank");
         return false;
             
     }
@@ -437,7 +436,7 @@ public class Player {
             // Show available rooms to move
             System.out.println("Nearby rooms: ");
             for (int i = 0; i < neighborRoom.length; i++) {
-                System.out.printf("\tOption %d: %s%n", i+1, neighborRoom[i].getName());
+                System.out.printf("\t%d: %s%n", i+1, neighborRoom[i].getName());
             }
             System.out.println("Please enter the number of the room you'd like to move to or 'q' to go back:");
             String usrEntry = DeadWood.feed.nextLine();
