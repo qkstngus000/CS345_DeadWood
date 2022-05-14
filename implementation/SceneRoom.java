@@ -198,6 +198,7 @@ public class SceneRoom extends Room
 		if(scene == null)
 		{
 			System.out.println("The scene in this room has finished.");
+			return;
 		}
 		System.out.printf("~~~ Scene: %s ~~~%nSynopsis: %s%nBudget: $%d million | ",scene.getName(),scene.getDesc(),scene.getBudget());
 		System.out.printf("Takes completed: %d | Total takes needed: %d%n%n",curShot,maxShots);
