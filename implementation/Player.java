@@ -429,15 +429,16 @@ public class Player {
      * Otherwise, return false.
      */
     public boolean move() {
-        // Show available rooms to move
-        System.out.println("Available Room option to move: ");
         Room[] neighborRoom = room.getNeighbors();
-        for (int i = 0; i < neighborRoom.length; i++) {
-            System.out.printf("\tOption %d: %s", i+1, neighborRoom[i].getName());
-        }
         while(true)
         {
             // Loop until user enters valid input
+            
+            // Show available rooms to move
+            System.out.println("Nearby rooms: ");
+            for (int i = 0; i < neighborRoom.length; i++) {
+                System.out.printf("\tOption %d: %s%n", i+1, neighborRoom[i].getName());
+            }
             System.out.println("Please enter the number of the room you'd like to move to or 'q' to go back:");
             String usrEntry = DeadWood.feed.nextLine();
             if(usrEntry.trim().toLowerCase().equals("q"))
