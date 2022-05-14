@@ -1,0 +1,148 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>810</x><y>684</y><w>189</w><h>90</h></coordinates><panel_attributes>Casting Office
+--
+- castingInfo: int[5][3]
+--
+- upgradeManager(Player): bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>441</y><w>216</w><h>126</h></coordinates><panel_attributes>Room
+--
+- neighbors: Room[]
+- name: String 
+--
++ Room(String name)
++ setNeighbors(Room[] neighbors): void
++ Action(Player): bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>396</x><y>477</y><w>279</w><h>252</h></coordinates><panel_attributes>SceneRoom
+--
++ static SceneLeft: int
++ static NumScene: int
+- name: String
+- maxShots: int
+- curShot: int
+- roomRole: Role[]
+- actorInfo: ArrayList&lt;Player&gt;
+- scene: SceneCard
+- take: Take[]
+--
++ SceneRoom(String name, int maxShots, Role[] roles)
+- roleManager(Player p): bool
++ updateShot(): void
++ closeRoom(): Void
++ visit(): void
++ action(): bool
++ printInfo(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>144</x><y>90</y><w>189</w><h>297</h></coordinates><panel_attributes>Player
+--
+- name: String
+- room: Room
+- rank: int
+- dollar: int
+- credit: int
+- token: int
+- role: Role
+--
++ Player(name)
++ playerTurn(): void
++ calcScore(): void
++ takeRole(Role): bool
++ act(): void
++ rehearse(): bool
++ removeRole(): void
++ move(): bool
++addFunds(int n): void
++addCredits(int n): void
++subtractFunds(int dollar): void
++subtractCredits(int credit): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>558</y><w>27</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>666</x><y>603</y><w>261</w><h>36</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;20;270;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>126</x><y>774</y><w>198</w><h>189</h></coordinates><panel_attributes>SceneCard
+--
++ name: String
+- sceneDes: String
+- roles: Role[]
++ flip: bool
+- cardUsed: bool
+- budget
+
+--
++SceneCard(String name, String img,
+int budget, Role[]  roles)
++cardUsed(): bool 
++flipCard(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>423</x><y>783</y><w>270</w><h>135</h></coordinates><panel_attributes>Role
+--
+- roleName: String
+- line: String
+- rank: int
+- mainRole: bool
+- available: bool
+- coord: ObjCoord
+--
++ Role(String roleName, itn rank, boolean main)
++ updateRoleStatus(bool avail): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>792</x><y>180</y><w>189</w><h>162</h></coordinates><panel_attributes>Board
+--
+- rooms: Rooms[numRoom]
+- Deck: ArrayList&lt;SceneCard&gt;
+- discard: ArrayList&lt;SceneCard&gt;
+- rooms: Rooms[numRooms]
+--
++ Board(boardData, cardData)
++ reset(): void
+- distributeCard(SceneRoom r): void
++ decrementScenesLeft(): void
++ newDeck(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>513</x><y>54</y><w>189</w><h>243</h></coordinates><panel_attributes>DeadWood
+--
+- day: int
+- maxDay: int
+- numPlayer: int
+- curPlayer: Player
+- players: Player[numPlayer]
+- board: Board
++ dice: Random
++ game: DeadWood
+
+--
++DeadWood()
++startEnv(): void
++nextTurnPlayer(): void
++ rollDice(): int
++ gameLoop(): void
++ main(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>693</x><y>99</y><w>225</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1= 1
+m2= 1
+</panel_attributes><additional_attributes>10;20;220;20;220;90</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>144</y><w>207</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2...8
+</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>873</x><y>333</y><w>36</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=12
+</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>504</x><y>720</y><w>45</w><h>81</h></coordinates><panel_attributes>m1=1
+m2=3...7</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>315</x><y>846</y><w>126</w><h>36</h></coordinates><panel_attributes>m1=1
+m2=1...3</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>684</y><w>207</w><h>108</h></coordinates><panel_attributes>m1=1
+m2=1</panel_attributes><additional_attributes>10;100;10;10;210;10</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>360</y><w>558</w><h>99</h></coordinates><panel_attributes>m1=0...8
+m2=1</panel_attributes><additional_attributes>10;10;590;10;590;90</additional_attributes></element><element><id>Relation</id><coordinates><x>315</x><y>288</y><w>828</w><h>675</h></coordinates><panel_attributes>m1=1...*
+m2= 1</panel_attributes><additional_attributes>10;720;900;720;900;10;740;10</additional_attributes></element><element><id>Relation</id><coordinates><x>684</x><y>225</y><w>432</w><h>666</h></coordinates><panel_attributes>lt=&lt;-
+m1=1...*</panel_attributes><additional_attributes>10;710;460;710;460;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1044</x><y>162</y><w>234</w><h>72</h></coordinates><panel_attributes>XMLParser
+--
+--
++ XMLParseBoard(String boardData): Room[]
++ XMLParseCard(String cardData):
+ArrayList&lt;SceneCard&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>612</y><w>27</w><h>90</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>225</y><w>72</w><h>297</h></coordinates><panel_attributes>lt=&lt;-
+m1=1...*
+</panel_attributes><additional_attributes>10;300;60;300;60;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1062</x><y>54</y><w>198</w><h>99</h></coordinates><panel_attributes>XMLParser is responsible for
+creating all rooms, scenes and
+roles in the game and returning
+them in data structures to the
+board class and Scene card class
+bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>315</x><y>225</y><w>954</w><h>765</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..*</panel_attributes><additional_attributes>10;820;1040;810;1030;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>252</x><y>477</y><w>144</w><h>117</h></coordinates><panel_attributes>Take is just an coord
+for shots in the board.
+We did not put into
+our class Diagram b/c
+We did not use it in
+making text_base game
+We will update it as we 
+add graphical component
+bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>972</x><y>198</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element></diagram>
