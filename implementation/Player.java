@@ -1,8 +1,5 @@
 package implementation;
 
-import java.util.Scanner;
-
-import javax.lang.model.util.ElementScanner14;
 
 /*
  * Class: Player
@@ -88,7 +85,7 @@ public class Player {
             while(!moved||!actionPerformed)
             {
                 // Print options
-                System.out.printf("~~~~ You are in: %s%n",room.getName());
+                System.out.printf("~~~ You are in: %s%n",room.getName());
                 System.out.println("You may move once and/or take one action during your turn.\nEnter what you would like to do:");
                 if(!moved)
                 {
@@ -135,35 +132,8 @@ public class Player {
         }
         else
         {
-            // TODO Player has a role so they can act or rehearse
-            while(true)
-            {
-                // Loop until player enters valid input
+            // Player has a role so they can act or rehearse
 
-                // Print options
-                System.out.printf("~~~~ You are in: %s%n",room.getName());
-                ((SceneRoom) room).printSceneInfo();
-                System.out.printf("~~ Your role is: %s (Rank: %d)%n",role.getName(),role.getRank());
-                System.out.printf("You have +%d to any acting roll from your rehearsal bonus.%n",token);
-                System.out.println("You may act or rehearse. Enter what you would like to do:");
-                System.out.println("\t'a': Act");
-                System.out.println("\t'r': Rehearse");
-                // Take input
-                String usrEntry = DeadWood.feed.nextLine();
-                if(usrEntry.trim().toLowerCase().equals("a"))
-                {
-                    // Player wants to act
-                    act();
-                    break;
-                }
-                if(usrEntry.trim().toLowerCase().equals("r"))
-                {
-                    // Player wants to rehearse
-                    rehearse();
-                    break;
-                }
-                System.out.println("Invalid input. Please try again.");
-            }
         }
 
         // If player is in trailer, do no action
@@ -353,7 +323,6 @@ public class Player {
      */
     public void act() {
         int diceNum = DeadWood.rollDice();
-        System.out.printf("%s is acting!%nRolled a %d + %d = %d%n",name,diceNum,token,diceNum+token);
         if (room instanceof SceneRoom) {
             SceneRoom playerRoom = ((SceneRoom) room);
             if (diceNum+token >= playerRoom.getScene().getBudget()) {
@@ -369,7 +338,7 @@ public class Player {
                     credit++;
                     System.out.println("1 dollar and 1 credit payment added to extra role");
                 }
-                playerRoom.updateShot();
+                ((SceneRoom) room).updateShot();
             }
 
             // If player has extra role and failed to roll dice >= budget
