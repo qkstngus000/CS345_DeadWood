@@ -94,6 +94,7 @@ public class SceneRoom extends Room
 		Role[] cardRoles = scene.getRoles();
 		// Print out role informaion
 		printSceneInfo();
+		printRoleInfo();
 		// Repeat until user enters a valid entry
 		while(true)
 		{
@@ -152,7 +153,7 @@ public class SceneRoom extends Room
 	}
 
 	/*
-	* Function: printSceneInfo
+	* Function: printRoleInfo
 	* Parameter:
 	* 	none
 	* Description:
@@ -161,16 +162,15 @@ public class SceneRoom extends Room
 	* 
 	* 	Used for debug purposes as well as when a player attempts to take a role.
 	*/
-	public void printSceneInfo()
+	public void printRoleInfo()
 	{
 		Role[] cardRoles = scene.getRoles();
-		System.out.printf("Scene: %s%nSynopsis: %s%nBudget: $%d million%n%n",scene.getName(),scene.getDesc(),scene.getBudget());
 		System.out.println("Main Roles:");
 		System.out.println("#|Available?|Min Rank|Name                |Description");
 		System.out.println("-|----------|--------|--------------------|-------------------");
 		for(int i = 0; i < cardRoles.length; i++)
 		{
-			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i,cardRoles[i].getAvailable(),
+			System.out.printf(	"%1d|%-10b|%8d|%-20s|%s%n",i,cardRoles[i].getAvailable(),
 								cardRoles[i].getRank(),cardRoles[i].getName(),cardRoles[i].getLine());
 		}
 		System.out.println("\nExtra Roles:");
@@ -178,9 +178,21 @@ public class SceneRoom extends Room
 		System.out.println("-|----------|--------|--------------------|-------------------");
 		for(int i = 0; i < roomRoles.length; i++)
 		{
-			System.out.printf(	"%1d|%10b|%-8d|%20s|%s%n",i+cardRoles.length,roomRoles[i].getAvailable(),
+			System.out.printf(	"%1d|%-10b|%8d|%-20s|%s%n",i+cardRoles.length,roomRoles[i].getAvailable(),
 								roomRoles[i].getRank(),roomRoles[i].getName(),roomRoles[i].getLine());
 		}
+	}
+
+	/*
+	* Function: printSceneInfo
+	* Description:
+	* 	Prints info about the current scene name, budget, and take progress.
+	* 	Called by a player during their turn if they currently hold a role in this room.
+	*/
+	public void printSceneInfo()
+	{
+		System.out.printf("~~~ Scene: %s ~~~%nSynopsis: %s%nBudget: $%d million | ",scene.getName(),scene.getDesc(),scene.getBudget());
+		System.out.printf("Takes completed: %d | Total takes needed: %d%n%n",curShot,maxShots);
 	}
 	
 	/*
