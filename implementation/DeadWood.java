@@ -17,8 +17,8 @@ public class DeadWood {
     private Player[] players; // List of players to keep track of turn
     private Board board;
     private int curPlayer; // Index in players
-    public static Random dice; // Dice Roll
-	public static DeadWood game = new DeadWood();
+    private static Random dice; // Dice Roll
+	private static DeadWood game = new DeadWood();
 	public static final Scanner feed = new Scanner(System.in);
 
     /*

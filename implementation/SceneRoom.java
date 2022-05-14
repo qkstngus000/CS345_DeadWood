@@ -14,8 +14,6 @@ import java.util.Scanner;
 */
 public class SceneRoom extends Room
 {
-	public static int scenesLeft;			// the number of active scenes still on the board
-	public static int numScene;				// the total number of scene rooms
 	private int maxShots;					// the total shots needed to complete a scene in this room
 	private int curShot;					// the current shot number this room is on. Starts at 1 and counts up to maxShots
 	private Role[] roomRoles;				// array of 'extra' roles which are attached to this room rather than the scene
@@ -31,7 +29,6 @@ public class SceneRoom extends Room
 	public SceneRoom(String name, int maxShots, Take[] take)
 	{
 		super(name);
-		numScene++;
 		this.maxShots = maxShots;
 		curShot = 0;
 		actorInfo = new ArrayList<Player>();
