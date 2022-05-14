@@ -236,16 +236,23 @@ public class SceneRoom extends Room
 			if(mainActors.size() != 0)
 			{
 				mainActors.sort(new SortByRoleSize());
-				int[] bonus = new int[scene.getBudget()];
-				for(int i = 0; i < bonus.length; i++)
+				int[] bonusRoll = new int[scene.getBudget()];
+				int numRoles = scene.getRoles().length;
+				int[] bonus = new int[numRoles];
+				for(int i = 0; i < bonusRoll.length; i++)
 				{
-					bonus[i] = DeadWood.rollDice();
-					System.out.printf("Rolled: %d%n",bonus[i]);
+					bonusRoll[i] = DeadWood.rollDice();
+					System.out.printf("Rolled: %d%n", bonusRoll[i]);
 				}
-				Arrays.sort(bonus);
+				Arrays.sort(bonusRoll);
 				int j = 0;
-				for(int i = bonus.length - 1; i >=0; i--)
+				
+
+				for(int i = bonusRoll.length - 1; i >=0; i--)
 				{
+					bonus[i%numRoles] += bonusRoll[i];
+					System.out.printf("\tbonus[%d]: %d\n", i%numRoles, bonus[i%numRoles]);
+
 					// TODO Add funds to Player who is on the j'th roll if they exist
 					/*if()
 					{
