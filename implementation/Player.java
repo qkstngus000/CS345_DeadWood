@@ -155,153 +155,15 @@ public class Player {
                 if(usrEntry.trim().toLowerCase().equals("r"))
                 {
                     // Player wants to rehearse
-                    rehearse();
-                    break;
+                    if(rehearse())
+                    {
+                        break;
+                    }
+                    continue;
                 }
                 System.out.println("Invalid input. Please try again.");
             }
         }
-
-        // If player is in trailer, do no action
-        /*if (room.getName().equals("trailer")) {
-            room.action(this);
-            while(!move()) {
-                System.out.println("That is not valid room option to move. Please try again.");
-            }
-        }
-
-        if (role == null) {
-            boolean moved = false;
-            boolean upgradeAction = false;
-            while (!flag) {
-                System.out.println("Please choose whether to move or take role\ntype 'm' for move, and 'r' for taking role");
-                String userInput = feed.nextLine();
-                if (userInput.toLowerCase().equals("m") || userInput.toLowerCase().equals("move") || upgradeAction == true) {
-                    
-                    // If move return false, loop through player choice until player makes a valid move
-                    while (!move()) {
-                        System.out.println("That is not valid room option to move. Please try again.");
-                    }
-                    // moved = true;
-                    System.out.println("Move process completed");
-                }
-                if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role") || moved == true) {
-                    // If takeRole func return false, loop thru player choice until player makes a valid choice
-                    int curRank = this.rank;
-                    if(!room.action(this)) {  
-                        System.out.println("The role selected is not possible. Please select another role");
-                    }
-
-                    // If player chose not to take role, then loop over the while loop again
-                    if(role != null) {
-                        System.out.println("Role selection successful");
-                        flag = true;
-                    }                
-                    
-                    if (curRank != this.rank) {
-                        upgradeAction = true;
-                    }
-                }
-            }
-        }
-        else if (role != null) {
-            // Loop statement if user types wrong answer
-            while(!flag) {
-                System.out.println("Please choose whether to act or to rehearse.");
-                System.out.println("If you want to act, type 'a'. For rehearse, type 'r'.");
-                String userInput = feed.nextLine();
-
-                // Check for user input
-                if(userInput.toLowerCase().equals("a") || userInput.toLowerCase().equals("act")) {
-                    act();                        
-                    flag = true;
-                }
-                else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("rehearse")) {
-                    // Rehearse Action
-                    if (!rehearse()) {
-                        System.out.println("You have reached to max token. You cannot rehearse anymore");
-                    }
-                    else {
-                        flag = true;
-                    }
-                }
-                else {
-                    System.out.println("Invalid command. Try again.");
-                }
-            }
-        }*/
-
-
-
-        // Check if the user is in Casting Office
-        /*else if(room instanceof CastingOffice) {
-            System.out.println("Welcome to the casting Office.\nHere are some options for upgrading rank. Would you like to upgrade rank?");
-            System.out.println("If you want to upgrade rank, please type 'y', and if you do not wish to upgrade, please type 'n'");
-            String userInput = feed.nextLine();    
-            if (userInput.toLowerCase().equals("y")) {
-                int prevrank = this.rank;
-                while(!((CastingOffice) room).action(this)) {
-                    System.out.println("You have insufficient dollar/credit for upgrade. Please select another option");
-                }
-                if (prevrank != this.rank) {
-                    System.out.println("Upgrading rank successful");
-                }
-            }
-        }
-
-        // Check if the user is in SceneRoom
-        else if(room instanceof SceneRoom) {
-            // Check if the player has a role or not
-            if (role == null) {
-                while (!flag) {
-                    System.out.println("Please choose whether to move or take role\ntype 'm' for move, and 'r' for taking role");
-                    String userInput = feed.nextLine();
-                    if (userInput.toLowerCase().equals("m") || userInput.toLowerCase().equals("move")) {
-                        // If move return false, loop through player choice until player makes a valid move
-                        while (!move()) {
-                            System.out.println("That is not valid room option to move. Please try again.");
-                        }
-                        System.out.println("Move process completed");
-                    }
-                    else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("role")) {
-                        // If takeRole func return false, loop thru player choice until player makes a valid choice
-                        while(!((SceneRoom) room).action(this)) {  
-                            System.out.println("The role selected is not possible. Please select another role");
-                        }
-                        if(role != null) {
-                            System.out.println("Role selection successful");
-                            flag = true;
-                        }                
-                        
-                    }
-                }
-            }
-            else if (!role.equals(null)) {
-                // Loop statement if user types wrong answer
-                while(!flag) {
-                    System.out.println("Please choose whether to act or to rehearse.");
-                    System.out.println("If you want to act, type 'a'. For rehearse, type 'r'.");
-                    String userInput = feed.nextLine();
-
-                    // Check for user input
-                    if(userInput.toLowerCase().equals("a") || userInput.toLowerCase().equals("act")) {
-                        act();                        
-                        flag = true;
-                    }
-                    else if(userInput.toLowerCase().equals("r") || userInput.toLowerCase().equals("rehearse")) {
-                        if (!rehearse()) {
-                            System.out.println("You have reached to max token. You cannot rehearse anymore");
-                        }
-                        else {
-                            flag = true;
-                        }
-                    }
-                    else {
-                        System.out.println("Invalid command. Try again.");
-                    }
-                }
-            }
-        }*/
     }
 
     /*
@@ -396,10 +258,10 @@ public class Player {
         if ((role != null) && token < budget - 1) {
             
             this.token+=1;
-            System.out.printf("Token updated from %d to %d\n", token-1, token);
+            System.out.printf("Rehearse bonus increased by +1! (current bonus: +%d)%n", token);
             return true;
         }
-        System.out.println("Token could not be updated.");
+        System.out.println("Rehearsing any more will have no benefit. (current bonus: 6)");
         return false;
     }
 
@@ -433,7 +295,7 @@ public class Player {
         while(true)
         {
             // Loop until user enters valid input
-            
+
             // Show available rooms to move
             System.out.println("Nearby rooms: ");
             for (int i = 0; i < neighborRoom.length; i++) {
