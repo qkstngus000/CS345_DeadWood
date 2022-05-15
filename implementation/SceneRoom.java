@@ -18,7 +18,7 @@ public class SceneRoom extends Room
 	private Role[] roomRoles;				// array of 'extra' roles which are attached to this room rather than the scene
 	private ArrayList<Player> actorInfo;	// array of players currently doing roles in this room
 	private SceneCard scene;				// the scene currently active in this room
-	private Take[] take;
+	private Take[] take;					// Coordinate for shot
 	
 	/*
 	* Constructor

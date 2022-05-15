@@ -213,6 +213,9 @@ public class Player {
      * to receive the rolled number and compare with budget.
      */
     public void act() {
+        System.out.printf("dollar: %d%tcredit: %d", dollar, credit);
+        int prevDollar = this.dollar;
+        int prevCredit = this.credit;
         int diceNum = DeadWood.rollDice();
         System.out.printf("%s is acting!%nRolled a %d + %d = %d%n",name,diceNum,token,diceNum+token);
         if (room instanceof SceneRoom) {
@@ -228,7 +231,7 @@ public class Player {
                 else {
                     dollar++;
                     credit++;
-                    System.out.println("1 dollar and 1 credit payment added to extra role");
+                    System.out.println("1 dollar and 1 credit added to extra role player");
                 }
                 playerRoom.updateShot();
             }
@@ -237,9 +240,11 @@ public class Player {
             else {
                 if (role.getMainRole() == false) {
                     dollar++;
+                    System.out.println("1 dollar added to extra role player");
                 }
             }
         }
+        System.out.printf("dollar: %d --> %d%tcredit: %d --> %d", prevDollar, dollar, prevCredit, credit);
     }
 
     /*
