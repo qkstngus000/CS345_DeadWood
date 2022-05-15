@@ -43,6 +43,33 @@ public class CastingOffice extends Room
 		return upgradeManager(p);
 	}
 	
+	/**
+	 * Function: printCastingInfo
+	 * Parameter:
+	 *   None
+	 * Returns:
+	 *   None
+	 * Description:
+	 *    Function prints out rank upgrade information to user if user wants to do some action in casting office.
+	 */
+	private void printCastingInfo() {
+		// Print welcome message
+		System.out.println("Welcome to the Casting Office!");
+		System.out.println("Here you can purchase a rank upgrade with either cash or credits.");
+
+		// Print shop info
+		System.out.println("\nRank|Cost in dollars|Cost in credits");
+		System.out.println("----|---------------|---------------");
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (j == 0) System.out.printf("%-4d", castingInfo[i][j]);
+				else System.out.printf("|%-15d", castingInfo[i][j]);
+			}
+			System.out.println("\n");
+		}
+	}
+
 	/*
 	* Function: upgradeManager
 	* Parameter:
@@ -56,20 +83,7 @@ public class CastingOffice extends Room
 	*/
 	private boolean upgradeManager(Player p)
 	{
-		
-		// Print welcome message
-		System.out.println("Welcome to the Casting Office!");
-		System.out.println("Here you can purchase a rank upgrade with either cash or credits.");
-
-		// Print shop info
-		System.out.println("Rank|Cost in dollars|Cost in credits");
-		System.out.println("----|---------------|---------------");
-
-		for(int i = 0; i < castingInfo[0].length; i++)
-		{
-			System.out.printf("%-4d|%-15d|%-15d",castingInfo[0][i],castingInfo[1][i],castingInfo[2][i]);
-		}
-
+		printCastingInfo();
 		// Repeat until the user enters a valid input
 		while(true)
 		{
@@ -109,6 +123,7 @@ public class CastingOffice extends Room
 	private boolean purchaseRank(Player p, int r)
 	{
 		
+
 		// Repeat until the user enters a valid input
 		while(true)
 		{
@@ -122,7 +137,7 @@ public class CastingOffice extends Room
 			if(usrEntry.trim().toLowerCase().equals("m"))
 			{
 				// User purchasing rank with money
-				if(p.subtractFunds(castingInfo[r-1][1]))
+				if(p.subtractFunds(castingInfo[r-2][1]))
 				{
 					return true;
 				}
@@ -132,7 +147,7 @@ public class CastingOffice extends Room
 			if(usrEntry.trim().toLowerCase().equals("c"))
 			{
 				// User purchasing rank with credits
-				if(p.subtractCredits(castingInfo[r-1][2]))
+				if(p.subtractCredits(castingInfo[r-2][2]))
 				{
 					return true;
 				}

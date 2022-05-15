@@ -53,7 +53,7 @@ public class DeadWood {
 		players = new Player[numPlayer];
 		for (int i = 0; i < numPlayer; i++)
 		{
-			players[i] = new Player("Player" + i);
+			players[i] = new Player("Player" + (i+1));
 			if (numPlayer == 5) players[i].addCredits(2);
 			else if (numPlayer == 6) players[i].addCredits(4);
 			else if (numPlayer > 6) players[i].setRank(2);

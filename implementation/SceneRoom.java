@@ -234,6 +234,7 @@ public class SceneRoom extends Room
 				mainActors.sort(new SortByRoleSize());
 				int[] bonusRoll = new int[scene.getBudget()];
 				int numRoles = scene.getRoles().length;
+				Role[] mainRoles = scene.getRoles();
 				int[] bonus = new int[numRoles];
 				for(int i = 0; i < bonusRoll.length; i++)
 				{
@@ -260,8 +261,16 @@ public class SceneRoom extends Room
 
 				int distOrder = 0;
 				// Distribute bonus to main actors in room
-				for (int r = roomRoles.length - 1; r >= 0; r--) {
-					if (roomRoles[r].getAvailable() == false) {
+				for (int r = 0; r < mainRoles.length; r++) {
+					for (int j = 0; j < mainActors.size(); j++) {
+						if (mainRoles[r].equals(mainActors.get(j).getRole())) {
+							System.out.printf("%s in rank main role rank %d received %d dollars\n", mainActors.get(j).getName(), mainRoles[r].getRank(), bonus[distOrder]);
+							mainActors.get(j).addFunds(bonus[distOrder]);
+						}
+					}
+					distOrder++;
+				}
+					/*if (roomRoles[r].getAvailable() == false) {
 						for (int j = 0; j < mainActors.size(); j++) {
 							if (roomRoles[r].getName().equals(mainActors.get(j).getRole().getName())) {
 								mainActors.get(j).addFunds(bonus[distOrder]);
@@ -270,7 +279,7 @@ public class SceneRoom extends Room
 						}
 					} 
 					distOrder++;
-				}
+				}*/
 
 				// pay extras according to their role rank
 				for(Player actor : extras)
@@ -313,10 +322,8 @@ public class SceneRoom extends Room
 	* Description:
 	*   Called whenever a Player enters the room. Reveals the scene card for this room if it is face-down.
 	*/
-	public void visit()
-	{
-		if(!scene.getFlipped())
-		{
+	public void visit() {
+		if((scene != null) && (!scene.getFlipped())) {
 			scene.flipCard();
 		}
 	}

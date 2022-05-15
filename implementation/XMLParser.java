@@ -168,14 +168,15 @@ public class XMLParser {
 			}
 
 			// Print statement to see if info is stored correctly
-			/*
-			 * for (int i = 0; i < 5; i++) {
-			 * for (int j = 0; j < 3; j++) {
-			 * System.out.print(upgradeInfo[i][j] + " ");
-			 * }
-			 * System.out.println();
-			 * }
-			 */
+			if (debug) {
+				for (int i = 0; i < 5; i++) {
+					for (int j = 0; j < 3; j++) {
+						System.out.print(upgradeInfo[i][j] + " ");
+					}
+					System.out.println();
+				}
+			}
+			
 
 			// Put office and trailer into room 10 & 11th index
 			Room castingOffice = new CastingOffice("office", upgradeInfo);

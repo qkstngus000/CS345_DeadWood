@@ -79,7 +79,7 @@ public class Player {
     public void playerTurn() {
 
         System.out.printf("\n~~~~~ %s's turn! ~~~~~%n",name);
-
+        System.out.printf("rank: %d, dollar: %d\tcredit: %d\n", rank, dollar, credit);
         if(role == null)
         {
             // Player has no role so they can move and/or take a room action
@@ -213,7 +213,6 @@ public class Player {
      * to receive the rolled number and compare with budget.
      */
     public void act() {
-        System.out.printf("dollar: %d%tcredit: %d", dollar, credit);
         int prevDollar = this.dollar;
         int prevCredit = this.credit;
         int diceNum = DeadWood.rollDice();
@@ -244,7 +243,7 @@ public class Player {
                 }
             }
         }
-        System.out.printf("dollar: %d --> %d%tcredit: %d --> %d", prevDollar, dollar, prevCredit, credit);
+        System.out.printf("dollar: %d --> %d\tcredit: %d --> %d\n\n\n", prevDollar, dollar, prevCredit, credit);
     }
 
     /*
