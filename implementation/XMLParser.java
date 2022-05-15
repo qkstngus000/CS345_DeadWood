@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
  */
 public class XMLParser {
 
-	private static final boolean debug = false; // Set to true to print lots of stuff
+	private static final boolean debug = true; // Set to true to print lots of stuff
 
 	// private static String boardPath = (new
 	// File("xml/board.xml")).getAbsolutePath();

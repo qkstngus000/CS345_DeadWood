@@ -3,7 +3,6 @@ package implementation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Scanner;
 
 /*
 * Class: SceneRoom
@@ -241,22 +240,27 @@ public class SceneRoom extends Room
 					bonusRoll[i] = DeadWood.rollDice();
 					System.out.printf("Rolled: %d%n", bonusRoll[i]);
 				}
-				Arrays.sort(bonusRoll);
-				int j = 0;
-				
 
-				for(int i = bonusRoll.length - 1; i >=0; i--)
-				{
+				// Sort dice number from lowest value to largest
+				Arrays.sort(bonusRoll);
+				// TODO this is now lowest to largest. Implement so that bonus adds up from the largest to lowest.
+				// Store lump sum bonus amount for distribution
+				for(int i = 0; i < bonusRoll.length; i++) {
 					bonus[i%numRoles] += bonusRoll[i];
 					System.out.printf("\tbonus[%d]: %d\n", i%numRoles, bonus[i%numRoles]);
+				}
 
-					// TODO Add funds to Player who is on the j'th roll if they exist
-					/*if()
-					{
-						mainActors.get(j).addFunds(bonus[i]);
-						System.out.printf("%s gets $%d!%n",mainActors.get(j).getName(),bonus[i]);
-					}*/
-					j = (j+1) % scene.getRoles().length;
+				int distOrder = 0;
+				// Distribute bonus to main actors in room
+				for (int r = roomRoles.length - 1; r >= 0; r--) {
+					if (roomRoles[r].getAvailable() == false) {
+						for (int j = 0; j < mainActors.size(); j++) {
+							if (roomRoles[r].getName().equals(mainActors.get(j).getRole().getName())) {
+								mainActors.get(j).addFunds(bonus[distOrder]);
+							}
+						}
+					} 
+					distOrder++;
 				}
 
 				// pay extras according to their role rank
