@@ -283,7 +283,6 @@ public class XMLParser {
 	 * field accordingly.
 	 */
 	public static ArrayList<SceneCard> XMLParseCard() {
-		// TODO
 		ArrayList<SceneCard> parsedCard = new ArrayList<SceneCard>();
 
 		Document doc = null;

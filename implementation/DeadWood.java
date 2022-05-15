@@ -196,8 +196,7 @@ public class DeadWood {
 		dice = new Random();
 		System.out.print("Enter the number of players who would like to play:\n\t");
 		String usrEntry = feed.nextLine();
-		while (!isInteger(usrEntry))
-		{
+		while (!isInteger(usrEntry)) {
 			System.out.print("Please enter a valid number of players.\n\t");
 			usrEntry = feed.nextLine();
 		}
@@ -207,5 +206,4 @@ public class DeadWood {
 
 		feed.close();
     }
-    
 }

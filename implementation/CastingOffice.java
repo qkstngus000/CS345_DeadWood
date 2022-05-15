@@ -1,8 +1,5 @@
 package implementation;
-
-import java.util.Scanner;
-
-/*
+/**
 * Class: CastingOffice
 * Description:
 *   Represents the Casting Office where players can purchase rank upgrades.
