@@ -1,5 +1,6 @@
 package implementation;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -136,19 +137,42 @@ public class DeadWood {
 			
 			day++;
 		}
-		// Print scores and who won
+		// Print scores and find who won
 		System.out.println("~~~~~~ The last day has passed! ~~~~~~");
 
 		System.out.println("Player Scores:");
-		int winner = 0;
-		int[] scores = new int[numPlayer];
+		ArrayList<Integer> winners = new ArrayList<Integer>();
+		int hiscore = 0;
 		for(int i = 0; i < numPlayer; i++)
 		{
-			scores[i] = players[i].calcScore();
-			System.out.printf("\t%-20s: %d%%n",players[0].getName(),scores[0]);		
+			int newscore = players[i].calcScore();
+			System.out.printf("\t%-20s: %d%%n",players[0].getName(),newscore);
+			// track highest scores
+			if(newscore >= hiscore)
+			{
+				// if there is a new high score, clear winner list
+				if(newscore > hiscore)
+				{
+					winners.clear();
+				}
+				// add to winner list and update high score
+				winners.add(i);
+				hiscore = newscore;
+			}
 		}
-		Arrays.sort(scores);
-		// TODO for()
+		// Print out winners
+		if(winners.size() == 1)
+		{
+			System.out.printf("%s wins with a score of %d!%n",players[winners.get(0)].getName(),hiscore);
+		}
+		else
+		{
+			System.out.printf("There was a %d-way tie! The winners, each with a score of %d, are:%n",winners.size(),hiscore);
+			for(Integer n : winners)
+			{
+				System.out.printf("\t%s%n",players[n].getName());
+			}
+		}
 	}
 	
 	public static boolean isInteger(String s)
