@@ -58,6 +58,10 @@ public class Player {
         this.rank = rank;
     }
 
+    public void resetRehearse() {
+        this.token = 0;
+    }
+
     /**
      * Interact with DeadWood manager and keep track of the turn
      * as there are going to be many Player objects. <p>

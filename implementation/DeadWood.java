@@ -103,7 +103,7 @@ public class DeadWood {
 	*/
 	public static int rollDice()
 	{
-		return dice.nextInt(6);
+		return (dice.nextInt(6) + 1);
 	}
 	
 	/*

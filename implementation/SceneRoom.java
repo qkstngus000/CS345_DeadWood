@@ -243,11 +243,19 @@ public class SceneRoom extends Room
 
 				// Sort dice number from lowest value to largest
 				Arrays.sort(bonusRoll);
-				// TODO this is now lowest to largest. Implement so that bonus adds up from the largest to lowest.
+				
 				// Store lump sum bonus amount for distribution
-				for(int i = 0; i < bonusRoll.length; i++) {
-					bonus[i%numRoles] += bonusRoll[i];
-					System.out.printf("\tbonus[%d]: %d\n", i%numRoles, bonus[i%numRoles]);
+				int c = numRoles;	// Keep track of bonus arrays
+				for(int i = bonusRoll.length - 1; i >= 0; i--) {
+					c--;
+					bonus[c] += bonusRoll[i];
+					if (c == 0) {
+						c = numRoles;
+					}
+				}
+				System.out.println("Bonus for main actor from lowest rank to highest rank is: ");
+				for (int i = 0; i < bonus.length; i++) {
+					System.out.printf("\trank %d: %d\n", scene.getRoles()[i].getRank(), bonus[i]);
 				}
 
 				int distOrder = 0;
@@ -257,6 +265,7 @@ public class SceneRoom extends Room
 						for (int j = 0; j < mainActors.size(); j++) {
 							if (roomRoles[r].getName().equals(mainActors.get(j).getRole().getName())) {
 								mainActors.get(j).addFunds(bonus[distOrder]);
+								System.out.printf("%s in rank main role rank %d received %d", mainActors.get(j).getName(), roomRoles[r].getRank(), bonus[distOrder]);
 							}
 						}
 					} 
@@ -294,6 +303,7 @@ public class SceneRoom extends Room
 		for(Player actor : actorInfo)
 		{
 			actor.removeRole();
+			actor.resetRehearse();
 		}
 		actorInfo.clear();
 	}
