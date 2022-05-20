@@ -18,14 +18,14 @@ public class SceneRoom extends Room
 	private Role[] roomRoles;				// array of 'extra' roles which are attached to this room rather than the scene
 	private ArrayList<Player> actorInfo;	// array of players currently doing roles in this room
 	private SceneCard scene;				// the scene currently active in this room
-	private Take[] take;					// Coordinate for shot
+	private ObjCoord[] take;					// Coordinate for shot
 	
 	/*
 	* Constructor
 	* Description:
 	*   Calls the parent constructor and initializes various fields. Also increments numScene.
 	*/
-	public SceneRoom(String name, int maxShots, Take[] take)
+	public SceneRoom(String name, int maxShots, ObjCoord[] take)
 	{
 		super(name);
 		this.maxShots = maxShots;
@@ -64,6 +64,7 @@ public class SceneRoom extends Room
 	* Description:
 	*   This just acts as a wrapper method for the private method, roleManager(), which actually handles players taking roles.
 	*/
+ @Override
 	public boolean action(Player p)
 	{
 		return roleManager(p);
@@ -294,6 +295,7 @@ public class SceneRoom extends Room
 
 	private class SortByRoleSize implements Comparator<Player>
 	{
+  @Override
 		public int compare(Player p1, Player p2)
 		{
 			return p2.getRole().getRank() - p1.getRole().getRank();

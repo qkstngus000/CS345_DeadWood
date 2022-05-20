@@ -1,20 +1,20 @@
 package implementation;
 
 import java.util.ArrayList;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * XMLParser
  */
 public class XMLParser {
 
-	private static final boolean debug = true; // Set to true to print lots of stuff
+	private static final boolean debug = false; // Set to true to print lots of stuff
 
 	// private static String boardPath = (new
 	// File("xml/board.xml")).getAbsolutePath();
@@ -85,7 +85,7 @@ public class XMLParser {
 				if(debug) System.out.println("\tshots: " + numShots); // Log to see shot value
 
 				
-				Take[] takeList = new Take[numShots];	// Initialize Take array to store shot coordinates
+				ObjCoord[] coordList = new ObjCoord[numShots];	// Initialize objCoord array to store shot coordinates
 				
 				// Get coordinates for each shots
 				for (int j = 0; j < numShots; j++) {
@@ -98,8 +98,8 @@ public class XMLParser {
 					int w = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("w").getNodeValue());
 					int h = Integer.parseInt(((Element) take).getElementsByTagName("area").item(0).getAttributes().getNamedItem("h").getNodeValue());
 					if(debug) System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
-					ObjCoord takeCord = new ObjCoord(x_cord, y_cord, w, h);
-					takeList[j] = new Take(number, takeCord);
+					// ObjCoord takeCord = new ObjCoord(x_cord, y_cord, w, h);
+					coordList[j] = new ObjCoord(x_cord, y_cord, w, h);
 				}
 				
 				// Get number of roles in the room
@@ -134,7 +134,7 @@ public class XMLParser {
 				}
 				
 
-				Room curRoom = new SceneRoom(roomName, numShots, takeList);
+				Room curRoom = new SceneRoom(roomName, numShots, coordList);
 				((SceneRoom) curRoom).setRoles(roleList);
 				
 				parsedRoom[i + 2] = curRoom;
