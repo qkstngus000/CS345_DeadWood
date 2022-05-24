@@ -20,19 +20,23 @@ public class XMLParser {
 	// File("xml/board.xml")).getAbsolutePath();
 	// private static String cardPath = (new
 	// File("xml/card.xml")).getAbsolutePath();
-	private static String boardPath = "board.xml";
-	private static String cardPath = "cards.xml";
+	private static String boardPath = "/xmldata/board.xml";
+	private static String cardPath = "/xmldata/cards.xml";
 
 	public static Document getDocFromFile(String filename) throws ParserConfigurationException {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document doc = null;
+                
+                String resource = DeadWood.class.getResource(filename).getPath();
+                // System.out.println(resource);
 
 		try {
-			doc = db.parse(filename);
+			doc = db.parse(resource);
 		} catch (Exception ex) {
 			System.out.println("XML parse failure");
 			ex.printStackTrace();
+                        System.exit(1);
 		}
 		return doc;
 	}

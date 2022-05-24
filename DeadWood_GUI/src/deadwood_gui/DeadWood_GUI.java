@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  * @author bans
  */
 public class DeadWood_GUI extends javax.swing.JFrame {
+    private static DeadWood_GUI gui;
 
     /**
      * Creates new form GUI
@@ -114,9 +115,10 @@ public class DeadWood_GUI extends javax.swing.JFrame {
     }
     
     /**
-     * @param args the command line arguments
+     * @return a newly created GUI object
      */
-    public static void main(String args[]) {
+    public static DeadWood_GUI get() {
+        if(gui != null) return gui;
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -142,11 +144,13 @@ public class DeadWood_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        DeadWood_GUI gui = new DeadWood_GUI();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeadWood_GUI().setVisible(true);
+                gui.setVisible(true);
             }
         });
+        return gui;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
