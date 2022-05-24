@@ -207,7 +207,9 @@ public class DeadWood {
 		game.setEnv(pcount);
                 
                 // Test drawing to board
-                DeadWood_GUI.get().addBoardElement("/images/CardBack-small.jpg", 32, 96);
+                DeadWood_GUI gui = DeadWood_GUI.get();
+                int element = gui.addBoardElement("/images/CardBack-small.jpg", 32, 96);
+                gui.moveBoardElement(element, 128, 32);
                 
 		game.gameLoop();
 

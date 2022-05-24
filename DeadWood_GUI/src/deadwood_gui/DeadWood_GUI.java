@@ -4,7 +4,7 @@
  */
 package deadwood_gui;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
  */
 public class DeadWood_GUI extends javax.swing.JFrame {
     private static DeadWood_GUI gui;
-    private ArrayList<javax.swing.JLabel> boardElements;
+    private HashMap<Integer,javax.swing.JLabel> boardElements;
 
     /**
      * Creates new form GUI
      */
     public DeadWood_GUI() {
         initComponents();
-        boardElements = new ArrayList<javax.swing.JLabel>();
+        boardElements = new HashMap<Integer,javax.swing.JLabel>();
     }
 
     /**
@@ -132,10 +132,13 @@ public class DeadWood_GUI extends javax.swing.JFrame {
         javax.swing.JLabel element = new javax.swing.JLabel();
         element.setIcon(new javax.swing.ImageIcon(DeadWood.class.getResource(imgPath)));
         
-        // Add element to the boardPane and to boardElements
+        // Add element to the boardPane
         boardPane.setLayer(element, javax.swing.JLayeredPane.PALETTE_LAYER);
         boardPane.add(element, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, -1, -1));
-        boardElements.add(element);
+        
+        // Add element to boardElements
+        int i = 0;
+        while(boardElements.putIfAbsent(i, element)==null) i++;
         
         // Magic incantation to refresh screen
         invalidate();
@@ -143,7 +146,7 @@ public class DeadWood_GUI extends javax.swing.JFrame {
         repaint();
         
         // Return the index of element
-        return boardElements.size()-1;
+        return i;
     }
     
     /**
@@ -155,7 +158,24 @@ public class DeadWood_GUI extends javax.swing.JFrame {
      */
     public void moveBoardElement(int identifier, int newx, int newy)
     {
-        // TODO
+        // Get element from identifier
+        javax.swing.JLabel element = boardElements.get(identifier);
+        if(element == null)
+        {
+            System.err.println("Error: invalid board element id");
+            return;
+        }
+        
+        // Update location
+        // element.setBounds(newx, newy, -1, -1);
+        boardPane.remove(element);
+        boardPane.add(element, new org.netbeans.lib.awtextra.AbsoluteConstraints(newx, newy, -1, -1));
+        //element.setLocation(newx, newy);
+        
+        // Magic incantation to refresh screen
+        invalidate();
+        validate();
+        repaint();
     }
     
     /**
