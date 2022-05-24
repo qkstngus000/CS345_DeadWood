@@ -205,6 +205,10 @@ public class DeadWood {
 		}
 		int pcount = Integer.parseInt(usrEntry);*/
 		game.setEnv(pcount);
+                
+                // Test drawing to board
+                DeadWood_GUI.get().addBoardElement("/images/CardBack-small.jpg", 32, 96);
+                
 		game.gameLoop();
 
 		feed.close();

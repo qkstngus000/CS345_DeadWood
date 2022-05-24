@@ -4,6 +4,7 @@
  */
 package deadwood_gui;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,12 +13,14 @@ import javax.swing.JOptionPane;
  */
 public class DeadWood_GUI extends javax.swing.JFrame {
     private static DeadWood_GUI gui;
+    private ArrayList<javax.swing.JLabel> boardElements;
 
     /**
      * Creates new form GUI
      */
     public DeadWood_GUI() {
         initComponents();
+        boardElements = new ArrayList<javax.swing.JLabel>();
     }
 
     /**
@@ -125,8 +128,22 @@ public class DeadWood_GUI extends javax.swing.JFrame {
      */
     public int addBoardElement(String imgPath, int x, int y)
     {
-        // TODO
-        return 0;
+        // Create new JLabel
+        javax.swing.JLabel element = new javax.swing.JLabel();
+        element.setIcon(new javax.swing.ImageIcon(DeadWood.class.getResource(imgPath)));
+        
+        // Add element to the boardPane and to boardElements
+        boardPane.setLayer(element, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardPane.add(element, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, -1, -1));
+        boardElements.add(element);
+        
+        // Magic incantation to refresh screen
+        invalidate();
+        validate();
+        repaint();
+        
+        // Return the index of element
+        return boardElements.size()-1;
     }
     
     /**
@@ -181,7 +198,7 @@ public class DeadWood_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        DeadWood_GUI gui = new DeadWood_GUI();
+        gui = new DeadWood_GUI();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 gui.setVisible(true);
