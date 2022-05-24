@@ -4,6 +4,8 @@
  */
 package deadwood_gui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bans
@@ -26,46 +28,91 @@ public class DeadWood_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel1 = new javax.swing.JLabel();
+        controllerPanel = new javax.swing.JPanel();
+        playerLabel = new javax.swing.JLabel();
+        moveButton = new javax.swing.JButton();
+        actionButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        boardPane = new javax.swing.JLayeredPane();
+        boardLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/board.jpg"))); // NOI18N
+        playerLabel.setText("It is player ____'s turn:");
 
-        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        moveButton.setText("Move");
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+        actionButton.setText("Action");
+
+        javax.swing.GroupLayout controllerPanelLayout = new javax.swing.GroupLayout(controllerPanel);
+        controllerPanel.setLayout(controllerPanelLayout);
+        controllerPanelLayout.setHorizontalGroup(
+            controllerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controllerPanelLayout.createSequentialGroup()
+                .addComponent(playerLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(controllerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addComponent(moveButton)
+                .addGap(274, 274, 274)
+                .addComponent(actionButton)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        controllerPanelLayout.setVerticalGroup(
+            controllerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controllerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(playerLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(controllerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moveButton)
+                    .addComponent(actionButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        boardPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/board.jpg"))); // NOI18N
+        boardPane.add(boardLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jScrollPane1.setViewportView(boardPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(controllerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(controllerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Shows a dialog which prompts the user for an integer. Will keep showing the dialog until a valid integer is entered.
+     * @param prompt the message to show to the user
+     * @param suggested the initial value in the input box
+     * @return the integer entered by the user
+     */
+    public int getInteger(String prompt,int suggested)
+    {
+        String s;
+        do
+        {
+            s = JOptionPane.showInputDialog(this, prompt, suggested + "");
+        } while (!DeadWood.isInteger(s));
+        return Integer.parseInt(s);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -103,7 +150,12 @@ public class DeadWood_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JButton actionButton;
+    private javax.swing.JLabel boardLabel;
+    private javax.swing.JLayeredPane boardPane;
+    private javax.swing.JPanel controllerPanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton moveButton;
+    private javax.swing.JLabel playerLabel;
     // End of variables declaration//GEN-END:variables
 }
