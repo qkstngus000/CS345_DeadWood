@@ -194,13 +194,16 @@ public class DeadWood {
      */
     public static void main(String[] args) {
 		dice = new Random();
-		System.out.print("Enter the number of players who would like to play:\n\t");
+                
+                int pcount = DeadWood_GUI.get().getInteger("How many players would you like?",3);
+                // Old text-based prompt for player count
+		/*System.out.print("Enter the number of players who would like to play:\n\t");
 		String usrEntry = feed.nextLine();
 		while (!isInteger(usrEntry)) {
 			System.out.print("Please enter a valid number of players.\n\t");
 			usrEntry = feed.nextLine();
 		}
-		int pcount = Integer.parseInt(usrEntry);
+		int pcount = Integer.parseInt(usrEntry);*/
 		game.setEnv(pcount);
 		game.gameLoop();
 

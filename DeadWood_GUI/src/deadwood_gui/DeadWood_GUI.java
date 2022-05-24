@@ -115,6 +115,43 @@ public class DeadWood_GUI extends javax.swing.JFrame {
     }
     
     /**
+     * Adds a new visual element to the board by creating a new JLabel in the board pane and setting its position.
+     * Must be called whenever a new element is first drawn to the board. Afterward, use {@link #moveBoardElement}
+     * to update its position or {@link destroyBoardElement} to remove an element.
+     * @param imgPath the file path of the image to use for this element
+     * @param x starting x coordinate
+     * @param y starting y coordinate
+     * @return a unique integer identifier for this element - used to reference this element in subsequent method calls
+     */
+    public int addBoardElement(String imgPath, int x, int y)
+    {
+        // TODO
+        return 0;
+    }
+    
+    /**
+     * Updates the position of the board element referred to by {@code identifier}.
+     * Board elements must first be created by calling {@link addBoardElement}.
+     * @param identifier id of element to move
+     * @param newx new x coordinate
+     * @param newy new y coordinate
+     */
+    public void moveBoardElement(int identifier, int newx, int newy)
+    {
+        // TODO
+    }
+    
+    /**
+     * Removes the board element referred to by {@code identifier} from the board pane.
+     * Used when a previously created board element should no longer be drawn.
+     * @param identifier id of element to destroy
+     */
+    public void destroyBoardElement(int identifier)
+    {
+        // TODO
+    }
+    
+    /**
      * @return a newly created GUI object
      */
     public static DeadWood_GUI get() {
