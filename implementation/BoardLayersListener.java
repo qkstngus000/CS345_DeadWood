@@ -44,7 +44,7 @@ public class BoardLayersListener extends JFrame {
     
        // Create the deadwood board
        boardlabel = new JLabel();
-       ImageIcon icon =  new ImageIcon("board.jpg");
+       ImageIcon icon =  new ImageIcon("../images/board.jpg");
        boardlabel.setIcon(icon); 
        boardlabel.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
       
@@ -56,7 +56,7 @@ public class BoardLayersListener extends JFrame {
        
        // Add a scene card to this room
        cardlabel = new JLabel();
-       ImageIcon cIcon =  new ImageIcon("01.png");
+       ImageIcon cIcon =  new ImageIcon("../images/card_front.png");
        cardlabel.setIcon(cIcon); 
        cardlabel.setBounds(20,65,cIcon.getIconWidth()+2,cIcon.getIconHeight());
        cardlabel.setOpaque(true);
@@ -114,6 +114,8 @@ public class BoardLayersListener extends JFrame {
          if (e.getSource()== bAct){
             playerlabel.setVisible(true);
             System.out.println("Acting is Selected\n");
+
+            // Call game functions in this mouse click to update info
          }
          else if (e.getSource()== bRehearse){
             System.out.println("Rehearse is Selected\n");
