@@ -1,6 +1,7 @@
-package deadwood_gui;
+package implementation_gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -193,23 +194,14 @@ public class DeadWood {
      */
     public static void main(String[] args) {
 		dice = new Random();
-                
-                int pcount = DeadWood_GUI.get().getInteger("How many players would you like?",3);
-                // Old text-based prompt for player count
-		/*System.out.print("Enter the number of players who would like to play:\n\t");
+		System.out.print("Enter the number of players who would like to play:\n\t");
 		String usrEntry = feed.nextLine();
 		while (!isInteger(usrEntry)) {
 			System.out.print("Please enter a valid number of players.\n\t");
 			usrEntry = feed.nextLine();
 		}
-		int pcount = Integer.parseInt(usrEntry);*/
+		int pcount = Integer.parseInt(usrEntry);
 		game.setEnv(pcount);
-                
-                // Test drawing to board
-                DeadWood_GUI gui = DeadWood_GUI.get();
-                int element = gui.addBoardElement("/images/CardBack-small.jpg", 32, 96);
-                gui.moveBoardElement(element, 128, 32);
-                
 		game.gameLoop();
 
 		feed.close();
