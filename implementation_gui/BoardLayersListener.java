@@ -109,7 +109,7 @@ public class BoardLayersListener extends JFrame {
          ImageIcon pIcon = new ImageIcon(String.format("%s%s%d.png", path, players[i].getName(), players[i].getRank()));
          playerlabel.setIcon(pIcon);
          Room curRoom = players[i].getRoom();
-         curRoom.get
+         // curRoom.get
          int x_adj = i * pIcon.getIconWidth();
          playerlabel.setBounds(114 + x_adj,227,pIcon.getIconWidth(),pIcon.getIconHeight());  
          //  playerlabel.setBounds(114,227,46,46);
