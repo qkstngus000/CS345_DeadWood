@@ -1,4 +1,3 @@
-package implementation_gui;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -72,7 +71,7 @@ public class Board {
 	/*
 	* Function: distributeCard
 	* Parameter:
-	*   SceneRoom r: the room to recieve a new SceneCard
+	*   SceneRoom s: the room to recieve a new SceneCard
 	* Returns:
 	*   bool: whether or not the operation was performed successfully. Will only fail if no cards
 	*   are left in the deck.

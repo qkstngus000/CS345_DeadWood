@@ -6,7 +6,7 @@
    Classes Used: JFrame, JLabel, JButton, JLayeredPane
 
 */
-package implementation_gui;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.ImageIcon;
@@ -16,23 +16,23 @@ import javax.swing.JOptionPane;
 
 public class BoardLayersListener extends JFrame {
 
-  // JLabels
-  JLabel boardlabel;
-  JLabel cardlabel;
-  JLabel playerlabel;
-  JLabel mLabel;
-  
-  //JButtons
-  JButton bAct;
-  JButton bRehearse;
-  JButton bMove;
-  
-  // JLayered Pane
-  JLayeredPane bPane;
-  
-  // Constructor
-  
-  public BoardLayersListener() {
+   // JLabels
+   JLabel boardlabel;
+   JLabel cardlabel;
+   JLabel playerlabel;
+   JLabel mLabel;
+   
+   //JButtons
+   JButton bAct;
+   JButton bRehearse;
+   JButton bMove;
+   
+   // JLayered Pane
+   JLayeredPane bPane;
+   
+
+   // Constructor
+   public BoardLayersListener() {
       
        // Set the title of the JFrame
        super("Deadwood");
@@ -53,60 +53,118 @@ public class BoardLayersListener extends JFrame {
       
        // Set the size of the GUI
        setSize(icon.getIconWidth()+200,icon.getIconHeight());
-       
-       // Add a scene card to this room
-       cardlabel = new JLabel();
-       ImageIcon cIcon =  new ImageIcon("../images/card_front.png");
-       cardlabel.setIcon(cIcon); 
-       cardlabel.setBounds(20,65,cIcon.getIconWidth()+2,cIcon.getIconHeight());
-       cardlabel.setOpaque(true);
-      
-       // Add the card to the lower layer
-       bPane.add(cardlabel, new Integer(1));
-       
-      
 
-    
-       // Add a dice to represent a player. 
-       // Role for Crusty the prospector. The x and y co-ordiantes are taken from Board.xml file
-       playerlabel = new JLabel();
-       ImageIcon pIcon = new ImageIcon("r2.png");
-       playerlabel.setIcon(pIcon);
-       //playerlabel.setBounds(114,227,pIcon.getIconWidth(),pIcon.getIconHeight());  
-       playerlabel.setBounds(114,227,46,46);
-       playerlabel.setVisible(false);
-       bPane.add(playerlabel,new Integer(3));
+             // Create the Menu for action buttons
+      mLabel = new JLabel("MENU");
+      mLabel.setBounds(icon.getIconWidth()+40,0,100,20);
+      bPane.add(mLabel,new Integer(2));
+
+      // Create Action buttons
+      bAct = new JButton("ACT");
+      bAct.setBackground(Color.white);
+      bAct.setBounds(icon.getIconWidth()+10, 30,100, 20);
+      bAct.addMouseListener(new boardMouseListener());
       
-       // Create the Menu for action buttons
-       mLabel = new JLabel("MENU");
-       mLabel.setBounds(icon.getIconWidth()+40,0,100,20);
-       bPane.add(mLabel,new Integer(2));
+      bRehearse = new JButton("REHEARSE");
+      bRehearse.setBackground(Color.white);
+      bRehearse.setBounds(icon.getIconWidth()+10,60,100, 20);
+      bRehearse.addMouseListener(new boardMouseListener());
+      
+      bMove = new JButton("MOVE");
+      bMove.setBackground(Color.white);
+      bMove.setBounds(icon.getIconWidth()+10,90,100, 20);
+      bMove.addMouseListener(new boardMouseListener());
 
-       // Create Action buttons
-       bAct = new JButton("ACT");
-       bAct.setBackground(Color.white);
-       bAct.setBounds(icon.getIconWidth()+10, 30,100, 20);
-       bAct.addMouseListener(new boardMouseListener());
-       
-       bRehearse = new JButton("REHEARSE");
-       bRehearse.setBackground(Color.white);
-       bRehearse.setBounds(icon.getIconWidth()+10,60,100, 20);
-       bRehearse.addMouseListener(new boardMouseListener());
-       
-       bMove = new JButton("MOVE");
-       bMove.setBackground(Color.white);
-       bMove.setBounds(icon.getIconWidth()+10,90,100, 20);
-       bMove.addMouseListener(new boardMouseListener());
+      // Place the action buttons in the top layer
+      bPane.add(bAct, new Integer(2));
+      bPane.add(bRehearse, new Integer(2));
+      bPane.add(bMove, new Integer(2));
 
-       // Place the action buttons in the top layer
-       bPane.add(bAct, new Integer(2));
-       bPane.add(bRehearse, new Integer(2));
-       bPane.add(bMove, new Integer(2));
-  }
+      this.setVisible(true);
+   }
+
+   public void drawScene() {
+      // Add a scene card to this room
+      cardlabel = new JLabel();
+      ImageIcon cIcon =  new ImageIcon("../images/card_back.png");
+      cardlabel.setIcon(cIcon); 
+      cardlabel.setBounds(20,65,cIcon.getIconWidth()+2,cIcon.getIconHeight());
+      cardlabel.setOpaque(true);
+   
+      // Add the card to the lower layer
+      bPane.add(cardlabel, new Integer(1));
+   }
+       
+       
+   public void drawPlayer() {
+      // Add a dice to represent a player. 
+      // Role for Crusty the prospector. The x and y co-ordiantes are taken from Board.xml file
+      playerlabel = new JLabel();
+      ImageIcon pIcon = new ImageIcon("../images/dice/r2.png");
+      playerlabel.setIcon(pIcon);
+      playerlabel.setBounds(114,227,pIcon.getIconWidth(),pIcon.getIconHeight());  
+      //  playerlabel.setBounds(114,227,46,46);
+      playerlabel.setVisible(true);
+      bPane.add(playerlabel,new Integer(3));
+   }
+       
+   /*public void drawMenu() {
+      // Create the Menu for action buttons
+      mLabel = new JLabel("MENU");
+      mLabel.setBounds(icon.getIconWidth()+40,0,100,20);
+      bPane.add(mLabel,new Integer(2));
+
+      // Create Action buttons
+      bAct = new JButton("ACT");
+      bAct.setBackground(Color.white);
+      bAct.setBounds(icon.getIconWidth()+10, 30,100, 20);
+      bAct.addMouseListener(new boardMouseListener());
+      
+      bRehearse = new JButton("REHEARSE");
+      bRehearse.setBackground(Color.white);
+      bRehearse.setBounds(icon.getIconWidth()+10,60,100, 20);
+      bRehearse.addMouseListener(new boardMouseListener());
+      
+      bMove = new JButton("MOVE");
+      bMove.setBackground(Color.white);
+      bMove.setBounds(icon.getIconWidth()+10,90,100, 20);
+      bMove.addMouseListener(new boardMouseListener());
+
+      // Place the action buttons in the top layer
+      bPane.add(bAct, new Integer(2));
+      bPane.add(bRehearse, new Integer(2));
+      bPane.add(bMove, new Integer(2));
+   }*/
+
+   public int askNumPlayer() {
+      JFrame errorFrame = new JFrame("Error");
+      errorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      // Take input from the user about number of players
+      int numPlayer = 0;
+      boolean flag = false;
+      while (!flag) {
+         try {
+            numPlayer = Integer.parseInt(JOptionPane.showInputDialog(this, "How many players?"));
+
+            if (numPlayer > 8 || numPlayer < 2) {
+               JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number of players!", "Number of Player Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+               flag = true;
+            }
+         }
+         catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(errorFrame, "Input given is not a number. Please enter a valid number of players!", "Input Type Error", JOptionPane.ERROR_MESSAGE);
+         }
+      }
+      return numPlayer;
+   }
+
+
   
   // This class implements Mouse Events
   
-  class boardMouseListener implements MouseListener{
+   class boardMouseListener implements MouseListener{
   
       // Code for the different button clicks
       public void mouseClicked(MouseEvent e) {
@@ -134,13 +192,34 @@ public class BoardLayersListener extends JFrame {
       }
    }
 
-
-  public static void main(String[] args) {
+   
+   /*public static void main(String[] args) {
   
-    BoardLayersListener board = new BoardLayersListener();
-    board.setVisible(true);
+      BoardLayersListener board = new BoardLayersListener();
+      board.setVisible(true);
+
+
+      JFrame errorFrame = new JFrame("Error");
+      errorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      // Take input from the user about number of players
+      int numPlayer = 0;
+      boolean flag = false;
+      while (!flag) {
+         try {
+            numPlayer = Integer.parseInt(JOptionPane.showInputDialog(board, "How many players?"));
+
+            if (numPlayer > 8 || numPlayer < 2) {
+               JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number of players!", "Number of Player Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+               flag = true;
+            }
+         }
+         catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(errorFrame, "Input given is not a number. Please enter a valid number of players!", "Input Type Error", JOptionPane.ERROR_MESSAGE);
+         }
+         
+      }
     
-    // Take input from the user about number of players
-    JOptionPane.showInputDialog(board, "How many players?"); 
-  }
+   }*/
 }

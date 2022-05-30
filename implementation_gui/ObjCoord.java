@@ -1,4 +1,3 @@
-package implementation_gui;
 
 /*
  * Class: ObjCoord
