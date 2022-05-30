@@ -32,6 +32,23 @@ public class Player {
 		token = 0;
     }
 	
+
+    /*
+     * Function: getter methods
+     * Parameter:
+     * None
+     * 
+     * Description:
+     * Allows other classes to access variables in this class
+     */
+    public Role getRole() {
+        return this.role;
+    }
+
+    public int getRank() {
+        return this.rank;
+    }
+
     public String getName()
     {
         return name;
@@ -59,6 +76,9 @@ public class Player {
 
     public void resetRehearse() {
         this.token = 0;
+    }
+    public Room getRoom() {
+        return this.room;
     }
 
     /**
@@ -356,21 +376,7 @@ public class Player {
         }
     }
 
-    /*
-     * Function: getter methods
-     * Parameter:
-     * None
-     * 
-     * Description:
-     * Allows other classes to access variables in this class
-     */
-    public Role getRole() {
-        return this.role;
-    }
 
-    public int getRank() {
-        return this.rank;
-    }
 
     public boolean subtractFunds(int dollar) {
         if ((this.dollar - dollar) > 0) {

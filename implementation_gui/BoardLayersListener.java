@@ -96,16 +96,35 @@ public class BoardLayersListener extends JFrame {
    }
        
        
-   public void drawPlayer() {
+   public void drawPlayers(Player[] players) {
+      String path = "../images/dice/";
+      // System.out.println("fullpath " + String.format("%s%s%d.png", path, players[i].getName(), players[i].getRank()));
       // Add a dice to represent a player. 
       // Role for Crusty the prospector. The x and y co-ordiantes are taken from Board.xml file
-      playerlabel = new JLabel();
-      ImageIcon pIcon = new ImageIcon("../images/dice/r2.png");
-      playerlabel.setIcon(pIcon);
-      playerlabel.setBounds(114,227,pIcon.getIconWidth(),pIcon.getIconHeight());  
-      //  playerlabel.setBounds(114,227,46,46);
-      playerlabel.setVisible(true);
-      bPane.add(playerlabel,new Integer(3));
+      // ImageIcon[] pIcon = new ImageIcon[players.length];
+      for (int i = 0; i < players.length; i++) {
+         System.out.println(i);
+         playerlabel = new JLabel();
+          
+         ImageIcon pIcon = new ImageIcon(String.format("%s%s%d.png", path, players[i].getName(), players[i].getRank()));
+         playerlabel.setIcon(pIcon);
+         Room curRoom = players[i].getRoom();
+         curRoom.get
+         int x_adj = i * pIcon.getIconWidth();
+         playerlabel.setBounds(114 + x_adj,227,pIcon.getIconWidth(),pIcon.getIconHeight());  
+         //  playerlabel.setBounds(114,227,46,46);
+
+
+         playerlabel.setVisible(true);
+         bPane.add(playerlabel,new Integer(3));
+      }
+      
+   }
+
+   //Draw and update the token 
+   public void drawShots() {
+
+
    }
        
    /*public void drawMenu() {

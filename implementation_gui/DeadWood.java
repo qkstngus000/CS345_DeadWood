@@ -39,9 +39,10 @@ public class DeadWood {
      * 		Sets up the environment for the game by creating player objects and the board object
 	 * 		and initializing day values.
      */
-    private void setEnv(int numPlayer) {
+    private void setEnv(int numPlayer, BoardLayersListener view) {
         // initialize numPlayer
         this.numPlayer = numPlayer;
+		String[] playerColor = {"b", "c", "g", "o", "p", "r", "v", "w", "y"};
 		// initialize days
 		day = 0;
 		maxDay = numPlayer < 4 ? 3 : 4;
@@ -50,14 +51,30 @@ public class DeadWood {
 		System.out.println("Board created!");
 		// initialize players
 		players = new Player[numPlayer];
-		for (int i = 0; i < numPlayer; i++)
-		{
-			players[i] = new Player("Player" + (i+1));
-			if (numPlayer == 5) players[i].addCredits(2);
-			else if (numPlayer == 6) players[i].addCredits(4);
-			else if (numPlayer > 6) players[i].setRank(2);
-			System.out.println("Player " + i + " initialized!");
+		for (int i = 0; i < numPlayer; i++) {
+			if (numPlayer == 5) {
+				players[i] = new Player(playerColor[i]);
+				players[i].addCredits(2);
+				// view.drawPlayer(playerColor[i], 1);
+			}
+			else if (numPlayer == 6) {
+				players[i] = new Player(playerColor[i]);
+				players[i].addCredits(4);
+				// view.drawPlayer(playerColor[i], 1);
+			}
+			else if (numPlayer > 6) {
+				players[i] = new Player(playerColor[i]);
+				players[i].setRank(2);
+				// view.drawPlayer(playerColor[i], 2);
+			}
+			else {
+				players[i] = new Player(playerColor[i]);
+				// view.drawPlayer(playerColor[i], 1);
+			}
+
+			System.out.println("Player " + (i+1) + " initialized!");
 		}
+		view.drawPlayers(players);
     }
 
     /*
@@ -204,7 +221,7 @@ public class DeadWood {
 		// 	usrEntry = feed.nextLine();
 		// }
 		// int pcount = Integer.parseInt(usrEntry);
-		game.setEnv(pCount);
+		game.setEnv(pCount, view);
 		game.gameLoop();
 
 		feed.close();

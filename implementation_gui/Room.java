@@ -9,16 +9,9 @@
 public class Room
 {
 	private Room[] neighbors; // neighbors: holds references to the rooms that are reachable from this room in one move.
-	/* public enum Direction
-	{
-		NORTH,
-		EAST,
-		SOUTH,
-		WEST
-	} */
-	
 	private int numActors;	// number of actors currently in the room
 	private String name;
+	private ObjCoord coord;
 	
 	/*
 	* Constructor
