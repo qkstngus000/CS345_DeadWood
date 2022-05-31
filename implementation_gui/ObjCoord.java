@@ -27,4 +27,20 @@ public class ObjCoord {
         this.h = h;
         this.w = w;
     }
+
+    public int getX() {
+        return x_cord;
+    }
+
+    public int getY() {
+        return y_cord;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public int getH() {
+        return h;
+    }
 }

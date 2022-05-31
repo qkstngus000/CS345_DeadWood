@@ -19,8 +19,8 @@ public class XMLParser {
 	// File("xml/board.xml")).getAbsolutePath();
 	// private static String cardPath = (new
 	// File("xml/card.xml")).getAbsolutePath();
-	private static String boardPath = "board.xml";
-	private static String cardPath = "cards.xml";
+	private static String boardPath = "../board.xml";
+	private static String cardPath = "../cards.xml";
 
 	public static Document getDocFromFile(String filename) throws ParserConfigurationException {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

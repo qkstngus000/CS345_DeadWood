@@ -21,6 +21,7 @@ public class BoardLayersListener extends JFrame {
    JLabel cardlabel;
    JLabel playerlabel;
    JLabel mLabel;
+   JLabel shotlabel;
    
    //JButtons
    JButton bAct;
@@ -122,9 +123,18 @@ public class BoardLayersListener extends JFrame {
    }
 
    //Draw and update the token 
-   public void drawShots() {
-
-
+   public void drawShots(SceneRoom room) {
+      String path = "../images/shot.png";
+      ObjCoord[] shotCoord = room.getShotCoord();
+      for (int i = 0; i < shotCoord.length; i++) {
+         shotlabel = new JLabel();
+         ImageIcon shotIcon = new ImageIcon(path);
+         shotlabel.setBounds(shotCoord[i].getX(), shotCoord[i].getY(), shotIcon.getIconWidth(), shotIcon.getIconHeight());
+         shotlabel.setVisible(true);
+         System.out.println("X_cord: " + shotCoord[i].getX());
+         bPane.add(shotlabel, new Integer(4));
+      }
+      
    }
        
    /*public void drawMenu() {

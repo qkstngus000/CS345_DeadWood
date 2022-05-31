@@ -74,7 +74,7 @@ public class DeadWood {
 
 			System.out.println("Player " + (i+1) + " initialized!");
 		}
-		view.drawPlayers(players);
+		// view.drawPlayers(players);
     }
 
     /*
@@ -128,7 +128,7 @@ public class DeadWood {
 	* Description: called by the main method and performs the main sequence of events for the game,
 	* including setup, player turns, passing of days, and the game end.
 	*/
-	public void gameLoop()
+	public void gameLoop(BoardLayersListener view)
 	{
 		
 		// Loop for daily events
@@ -136,12 +136,20 @@ public class DeadWood {
 		{
 			System.out.printf("~~~~~~ Day %d Start ~~~~~~%n",day);
 			// reset board and move players to trailer room.
-			board.reset();
+			board.reset(view);
+			
+			// TODO
+			// Set all shots/cards face down/ and players to the trailers in view
+
+
 			for(int i = 0; i < numPlayer; i++)
 			{
 				players[i].setRoom(board.getStartingRoom());
 				players[i].removeRole();
 			}
+			// TODO
+			//  Update the view
+
 			
 			// Loop for turns
 			while(board.getScenesLeft() > 0)
@@ -222,7 +230,7 @@ public class DeadWood {
 		// }
 		// int pcount = Integer.parseInt(usrEntry);
 		game.setEnv(pCount, view);
-		game.gameLoop();
+		game.gameLoop(view);
 
 		feed.close();
     }

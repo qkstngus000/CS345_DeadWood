@@ -54,6 +54,9 @@ public class SceneRoom extends Room
 	{
 		scene = s;
 	}
+	public ObjCoord[] getShotCoord() {
+		return take;
+	}
 	
 	/*
 	* Function: action
