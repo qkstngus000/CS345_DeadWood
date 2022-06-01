@@ -12,6 +12,8 @@ import javax.swing.*;
 import javax.swing.ImageIcon;
 import javax.imageio.ImageIO;
 import java.awt.event.*;
+import java.util.HashMap;
+
 import javax.swing.JOptionPane;
 
 public class BoardLayersListener extends JFrame {
@@ -22,6 +24,7 @@ public class BoardLayersListener extends JFrame {
    JLabel playerlabel;
    JLabel mLabel;
    JLabel shotlabel;
+   HashMap<Drawable,JLabel> gameLabels;
    
    //JButtons
    JButton bAct;
@@ -95,8 +98,36 @@ public class BoardLayersListener extends JFrame {
       // Add the card to the lower layer
       bPane.add(cardlabel, new Integer(1));
    }
-       
-       
+      
+   /**
+    * Draws an element to the board, creating a new JLabel for it if necessary.
+    * @param <T> Type of object to draw
+    * @param element The element to be drawn
+    */
+   public <T extends Drawable> void drawElement(T element)
+   {
+      ImageIcon img = new ImageIcon(element.getImgPath());
+      ObjCoord coord = element.getCoord();
+      JLabel l = gameLabels.get((Drawable) element);
+      if(l == null)
+      {
+         l = new JLabel();
+         gameLabels.put((Drawable) element, l);
+         bPane.add(l,3);
+      }
+      l.setIcon(img);
+      l.setBounds(coord.getX(),coord.getY(),coord.getH(),coord.getW());
+      l.setVisible(true);
+   }
+
+   public <T extends Drawable> void removeElement(T element)
+   {
+      JLabel l = gameLabels.get((Drawable) element);
+      if(l == null) return;
+      bPane.remove(l);
+      gameLabels.remove(element);
+   }
+
    public void drawPlayers(Player[] players) {
       String path = "../images/dice/";
       // System.out.println("fullpath " + String.format("%s%s%d.png", path, players[i].getName(), players[i].getRank()));
@@ -116,7 +147,7 @@ public class BoardLayersListener extends JFrame {
          //  playerlabel.setBounds(114,227,46,46);
 
          playerlabel.setVisible(true);
-         bPane.add(playerlabel,new Integer(3));
+         bPane.add(playerlabel,3);
       }
       
    }
