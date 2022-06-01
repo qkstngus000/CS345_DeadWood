@@ -120,20 +120,14 @@ public class XMLParser {
 					
 
 					// Get role coordinate
-					Node roleArea = ((Element) role).getElementsByTagName("area").item(0);
-					int x_cord = Integer.parseInt(roleArea.getAttributes().getNamedItem("x").getNodeValue());
-					int y_cord = Integer.parseInt(roleArea.getAttributes().getNamedItem("y").getNodeValue());
-					int w = Integer.parseInt(roleArea.getAttributes().getNamedItem("w").getNodeValue());
-					int h = Integer.parseInt(roleArea.getAttributes().getNamedItem("h").getNodeValue());
-					if(debug) System.out.printf("\tx_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
+					ObjCoord roleCoord = parseCoord((Element) role);
 
-					ObjCoord coord = new ObjCoord(x_cord, y_cord, w, h);
-
-					roleList[j] = new Role(roleName, rank, line, false, coord);	// Store parsed role variable into roleList
+					roleList[j] = new Role(roleName, rank, line, false, roleCoord);	// Store parsed role variable into roleList
 				}
-				
+				// Get role coordinate
+				ObjCoord coord = parseCoord((Element) room);
 
-				Room curRoom = new SceneRoom(roomName, numShots, coordList);
+				Room curRoom = new SceneRoom(roomName, coord, numShots, coordList);
 				((SceneRoom) curRoom).setRoles(roleList);
 				
 				parsedRoom[i + 2] = curRoom;
@@ -178,10 +172,10 @@ public class XMLParser {
 			
 
 			// Put office and trailer into room 10 & 11th index
-			Room castingOffice = new CastingOffice("office", upgradeInfo);
+			Room castingOffice = new CastingOffice("office",parseCoord((Element) office), upgradeInfo);
 			parsedRoom[1] = castingOffice;
 
-			Room trailerRoom = new Room("trailer");
+			Room trailerRoom = new Room("trailer", parseCoord((Element) trailer));
 			parsedRoom[0] = trailerRoom;
 
 			// Logs to check if name is correctly set for each obj.
@@ -343,6 +337,22 @@ public class XMLParser {
 		}
 
 		return parsedCard;
+	}
+
+	/**
+	 * Helper method to parse ObjCoords
+	 * @param area the Element containing x,y,w,h data
+	 * @return a new ObjCoord object encoding the same data as the supplied element
+	 */
+	private static ObjCoord parseCoord(Element area)
+	{
+		int x_cord = Integer.parseInt(area.getAttributes().getNamedItem("x").getNodeValue());
+		int y_cord = Integer.parseInt(area.getAttributes().getNamedItem("y").getNodeValue());
+		int w = Integer.parseInt(area.getAttributes().getNamedItem("w").getNodeValue());
+		int h = Integer.parseInt(area.getAttributes().getNamedItem("h").getNodeValue());
+		if(debug) System.out.printf("\troom area: x_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
+
+		return new ObjCoord(x_cord, y_cord, w, h);
 	}
 
 	public static void main(String[] args) {

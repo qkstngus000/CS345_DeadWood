@@ -74,7 +74,7 @@ public class DeadWood {
 
 			System.out.println("Player " + (i+1) + " initialized!");
 		}
-		// view.drawPlayers(players);
+		view.drawPlayers(players);
     }
 
     /*

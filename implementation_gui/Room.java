@@ -13,20 +13,26 @@ public class Room
 	private String name;
 	private ObjCoord coord;
 	
-	/*
+	/**
 	* Constructor
 	* Description:
-	*   A simple constructor which just sets name and sets numActors to 0.
+	*   A simple constructor which just sets name and coord and sets numActors to 0.
 	*/
-	public Room(String name)
+	public Room(String name, ObjCoord coord)
 	{
 		this.name = name;
+		this.coord = coord;
 		numActors = 0;
 	}
 	
 	public String getName()
 	{
 		return name;
+	}
+
+	public ObjCoord getCoord()
+	{
+		return coord;
 	}
 	
 	public void setNeighbors(Room[] neighbors)

@@ -115,7 +115,6 @@ public class BoardLayersListener extends JFrame {
          playerlabel.setBounds(114 + x_adj,227,pIcon.getIconWidth(),pIcon.getIconHeight());  
          //  playerlabel.setBounds(114,227,46,46);
 
-
          playerlabel.setVisible(true);
          bPane.add(playerlabel,new Integer(3));
       }
