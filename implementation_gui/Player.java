@@ -7,7 +7,7 @@
  *      rooms that player is located, rank, and player identifier(name) in its individual constructor
  * 
  */
-public class Player {
+public class Player implements Drawable {
     private String name; // Holds player name
     private Room room; // Holds current status of player location
     private int rank; // Holds rank of current player
@@ -15,6 +15,8 @@ public class Player {
     private int credit; // Holds how many credit player has
     private int token; // Holds how many rehearse token player has
     private Role role; // Holds current role of player. If not, null
+    private ObjCoord pos; // Holds screen position of the player. Used for drawing
+    private String imgPath; // Holds the path to the current image file of the player. Used for drawing
 
     /*
      * Constructor Player
@@ -49,6 +51,16 @@ public class Player {
         return this.rank;
     }
 
+    public ObjCoord getCoord()
+    {
+        return this.pos;
+    }
+
+    public String getImgPath()
+    {
+        return this.imgPath;
+    }
+
     public String getName()
     {
         return name;
@@ -57,6 +69,8 @@ public class Player {
 	public void setRoom(Room r)
 	{
 		room = r;
+
+        // TODO set player position
 	}
 	
 	public void addCredits(int n)
@@ -217,6 +231,7 @@ public class Player {
             this.role = role;
             // Change role status
             role.updateRoleStatus(false);
+            // TODO set player position
             return true;
         }
         return false;
@@ -351,7 +366,7 @@ public class Player {
                         if(usrEntry.trim().toLowerCase().equals("y"))
                         {
                             // Player wants to move
-                            room = selectedRoom;
+                            setRoom(selectedRoom);
                             if(room instanceof SceneRoom) ((SceneRoom) room).visit();
                             return true;
                         }

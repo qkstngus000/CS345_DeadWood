@@ -120,6 +120,11 @@ public class BoardLayersListener extends JFrame {
       l.setVisible(true);
    }
 
+   /**
+    * Removes an element from the board.
+    * @param <T> Type of element to remove
+    * @param element Element to be removed
+    */
    public <T extends Drawable> void removeElement(T element)
    {
       JLabel l = gameLabels.get((Drawable) element);
