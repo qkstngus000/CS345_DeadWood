@@ -16,7 +16,9 @@ public class Player implements Drawable {
     private int token; // Holds how many rehearse token player has
     private Role role; // Holds current role of player. If not, null
     private ObjCoord pos; // Holds screen position of the player. Used for drawing
-    private String imgPath; // Holds the path to the current image file of the player. Used for drawing
+    private static final String imgPath = "../images/dice/%s%d.png"; // The general path to the player icon files. Used for drawing
+    private String imgColor; // Holds the color of the player's dice. Used for drawing
+    private static int imgDim = 40; // The side dimension of the dice images
 
     /*
      * Constructor Player
@@ -26,12 +28,14 @@ public class Player implements Drawable {
      * Initialize the player object to be created which would hold player
      * info, and update the player info as games progress.
      */
-    public Player(String name) {
+    public Player(String name, String imgColor) {
         this.name = name;
+        this.imgColor = imgColor;
 		rank = 1;
 		dollar = 0;
 		credit = 0;
 		token = 0;
+        pos = new ObjCoord(0,0,imgDim,imgDim);
     }
 	
 
@@ -58,7 +62,7 @@ public class Player implements Drawable {
 
     public String getImgPath()
     {
-        return this.imgPath;
+        return imgPath.formatted(imgColor,rank);
     }
 
     public String getName()
@@ -70,7 +74,9 @@ public class Player implements Drawable {
 	{
 		room = r;
 
-        // TODO set player position
+        // TODO caculate players position in the room so that it does not overlap anything else
+        ObjCoord roomPos = room.getCoord();
+        pos = new ObjCoord(roomPos.getX(),roomPos.getY(),imgDim,imgDim);
 	}
 	
 	public void addCredits(int n)

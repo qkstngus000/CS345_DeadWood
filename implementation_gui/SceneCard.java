@@ -12,7 +12,7 @@ public class SceneCard implements Drawable{
     private String sceneDes;    // The scene description
     private Role[] roles; // Roles that scenecard would have
     private String img; // The filename of the image for this card
-    private static String backImg = "../images/card_back.jpg"; // The path to the back image for all cards
+    private static final String backImg = "../images/card_back.jpg"; // The path to the back image for all cards
     private ObjCoord coord; // The drawing coordinates for the SceneCard. Set when assigned to a room
     private boolean flip; // Boolean storing whether there was visitor in the room. If not, faced down as
                          // false
@@ -75,13 +75,19 @@ public class SceneCard implements Drawable{
     {
         return flip ? img : backImg;
     }
-
-    public void setRole(Role[] r) {
-        this.roles = r;
-    }
     
     public Role[] getRoles() {
         return roles;
+    }
+
+    public void setRole(Role[] r) 
+    {
+        this.roles = r;
+    }
+
+    public void setCoord(ObjCoord coord)
+    {
+        this.coord = coord;
     }
 
     public int getBudget() {

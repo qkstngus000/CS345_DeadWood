@@ -91,6 +91,7 @@ public class Board {
 		Random r = new Random();
 		SceneCard c = deck.remove(r.nextInt(deck.size()));
 		s.setScene(c);
+		// TODO set SceneCard's draw position
 		discard.add(c);
 		
 		return true;

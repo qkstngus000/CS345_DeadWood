@@ -53,15 +53,18 @@ public class BoardLayersListener extends JFrame {
        boardlabel.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
       
        // Add the board to the lowest layer
-       bPane.add(boardlabel, new Integer(0));
+       bPane.add(boardlabel, Integer.valueOf(0));
       
+      // Initialize the game element hashmap
+      gameLabels = new HashMap<Drawable,JLabel>();
+
        // Set the size of the GUI
        setSize(icon.getIconWidth()+200,icon.getIconHeight());
 
              // Create the Menu for action buttons
       mLabel = new JLabel("MENU");
       mLabel.setBounds(icon.getIconWidth()+40,0,100,20);
-      bPane.add(mLabel,new Integer(2));
+      bPane.add(mLabel,Integer.valueOf(2));
 
       // Create Action buttons
       bAct = new JButton("ACT");
@@ -80,9 +83,9 @@ public class BoardLayersListener extends JFrame {
       bMove.addMouseListener(new boardMouseListener());
 
       // Place the action buttons in the top layer
-      bPane.add(bAct, new Integer(2));
-      bPane.add(bRehearse, new Integer(2));
-      bPane.add(bMove, new Integer(2));
+      bPane.add(bAct, Integer.valueOf(2));
+      bPane.add(bRehearse, Integer.valueOf(2));
+      bPane.add(bMove, Integer.valueOf(2));
 
       this.setVisible(true);
    }
@@ -96,7 +99,7 @@ public class BoardLayersListener extends JFrame {
       cardlabel.setOpaque(true);
    
       // Add the card to the lower layer
-      bPane.add(cardlabel, new Integer(1));
+      bPane.add(cardlabel, Integer.valueOf(2));
    }
       
    /**
@@ -106,14 +109,16 @@ public class BoardLayersListener extends JFrame {
     */
    public <T extends Drawable> void drawElement(T element)
    {
+      System.out.println("Drawing Element: "+element);
       ImageIcon img = new ImageIcon(element.getImgPath());
       ObjCoord coord = element.getCoord();
       JLabel l = gameLabels.get((Drawable) element);
       if(l == null)
       {
+         System.out.println("Creating Element: "+element);
          l = new JLabel();
          gameLabels.put((Drawable) element, l);
-         bPane.add(l,3);
+         bPane.add(l,Integer.valueOf(3));
       }
       l.setIcon(img);
       l.setBounds(coord.getX(),coord.getY(),coord.getH(),coord.getW());
@@ -133,8 +138,13 @@ public class BoardLayersListener extends JFrame {
       gameLabels.remove(element);
    }
 
+   /**
+    * Draws Player icons to the board.
+    * @Deprecated
+    * @param players list of players
+    */
    public void drawPlayers(Player[] players) {
-      String path = "../images/dice/";
+      // String path = "../images/dice/";
       // System.out.println("fullpath " + String.format("%s%s%d.png", path, players[i].getName(), players[i].getRank()));
       // Add a dice to represent a player. 
       // Role for Crusty the prospector. The x and y co-ordiantes are taken from Board.xml file
@@ -143,7 +153,9 @@ public class BoardLayersListener extends JFrame {
          System.out.println(i);
          playerlabel = new JLabel();
           
-         ImageIcon pIcon = new ImageIcon(String.format("%s%s%d.png", path, players[i].getName(), players[i].getRank()));
+         ImageIcon pIcon = new ImageIcon(players[i].getImgPath());
+         System.out.println("icon: "+pIcon);
+         // ImageIcon pIcon = new ImageIcon(String.format("%s%s%d.png", path, players[i].getName(), players[i].getRank()));
          playerlabel.setIcon(pIcon);
          Room curRoom = players[i].getRoom();
          // curRoom.get
@@ -152,7 +164,7 @@ public class BoardLayersListener extends JFrame {
          //  playerlabel.setBounds(114,227,46,46);
 
          playerlabel.setVisible(true);
-         bPane.add(playerlabel,3);
+         bPane.add(playerlabel,Integer.valueOf(3));
       }
       
    }
@@ -167,7 +179,7 @@ public class BoardLayersListener extends JFrame {
          shotlabel.setBounds(shotCoord[i].getX(), shotCoord[i].getY(), shotIcon.getIconWidth(), shotIcon.getIconHeight());
          shotlabel.setVisible(true);
          System.out.println("X_cord: " + shotCoord[i].getX());
-         bPane.add(shotlabel, new Integer(4));
+         bPane.add(shotlabel,Integer.valueOf(4));
       }
       
    }

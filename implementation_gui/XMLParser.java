@@ -344,13 +344,14 @@ public class XMLParser {
 	 * @param area the Element containing x,y,w,h data
 	 * @return a new ObjCoord object encoding the same data as the supplied element
 	 */
-	private static ObjCoord parseCoord(Element area)
+	private static ObjCoord parseCoord(Element element)
 	{
+		Element area = (Element) element.getElementsByTagName("area").item(0);
 		int x_cord = Integer.parseInt(area.getAttributes().getNamedItem("x").getNodeValue());
 		int y_cord = Integer.parseInt(area.getAttributes().getNamedItem("y").getNodeValue());
 		int w = Integer.parseInt(area.getAttributes().getNamedItem("w").getNodeValue());
 		int h = Integer.parseInt(area.getAttributes().getNamedItem("h").getNodeValue());
-		if(debug) System.out.printf("\troom area: x_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
+		if(debug) System.out.printf("\tarea: x_cord: %d, y_cord: %d, w: %d, h: %d\n", x_cord, y_cord, w, h);
 
 		return new ObjCoord(x_cord, y_cord, w, h);
 	}

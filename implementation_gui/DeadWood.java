@@ -52,29 +52,25 @@ public class DeadWood {
 		// initialize players
 		players = new Player[numPlayer];
 		for (int i = 0; i < numPlayer; i++) {
+			players[i] = new Player("Player "+(i+1), playerColor[i]);
 			if (numPlayer == 5) {
-				players[i] = new Player(playerColor[i]);
 				players[i].addCredits(2);
 				// view.drawPlayer(playerColor[i], 1);
 			}
 			else if (numPlayer == 6) {
-				players[i] = new Player(playerColor[i]);
 				players[i].addCredits(4);
 				// view.drawPlayer(playerColor[i], 1);
 			}
 			else if (numPlayer > 6) {
-				players[i] = new Player(playerColor[i]);
 				players[i].setRank(2);
 				// view.drawPlayer(playerColor[i], 2);
 			}
-			else {
-				players[i] = new Player(playerColor[i]);
-				// view.drawPlayer(playerColor[i], 1);
-			}
+
+			// view.drawElement(players[i]);
 
 			System.out.println("Player " + (i+1) + " initialized!");
 		}
-		view.drawPlayers(players);
+		// view.drawPlayers(players);
     }
 
     /*
@@ -145,6 +141,7 @@ public class DeadWood {
 			for(int i = 0; i < numPlayer; i++)
 			{
 				players[i].setRoom(board.getStartingRoom());
+				view.drawElement(players[i]);
 				players[i].removeRole();
 			}
 			// TODO
