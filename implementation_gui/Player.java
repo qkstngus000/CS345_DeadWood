@@ -21,6 +21,9 @@ public class Player implements Drawable {
     private static int imgDim = 40; // The side dimension of the dice images
     private static int depth = 4; // The draw layer for player icons
 
+    private static int playerNum = 0;
+    private int id;
+
     /*
      * Constructor Player
      * Parameter:
@@ -37,6 +40,7 @@ public class Player implements Drawable {
 		credit = 0;
 		token = 0;
         pos = new ObjCoord(0,0,imgDim,imgDim);
+        id = playerNum++;
     }
 	
 
@@ -92,7 +96,7 @@ public class Player implements Drawable {
 
         // TODO caculate players position in the room so that it does not overlap anything else
         ObjCoord roomPos = room.getCoord();
-        pos = new ObjCoord(roomPos.getX(),roomPos.getY(),imgDim,imgDim);
+        pos = new ObjCoord(roomPos.getX()+12*id,roomPos.getY(),imgDim,imgDim);
 	}
 	
 	public void addCredits(int n)
@@ -260,9 +264,9 @@ public class Player implements Drawable {
             {
                 // If the role is a main role, its position is relative to the room
                 ObjCoord roomCoord = room.getCoord();
-                pos = new ObjCoord(roleCoord.getX()+roomCoord.getX(), roleCoord.getY()+roomCoord.getY(), imgDim, imgDim);
+                pos = new ObjCoord(roleCoord.getX()+roomCoord.getX()+4, roleCoord.getY()+roomCoord.getY()+4, imgDim, imgDim);
             }
-            pos = new ObjCoord(roleCoord.getX(), roleCoord.getY(), imgDim, imgDim);
+            pos = new ObjCoord(roleCoord.getX()+4, roleCoord.getY()+4, imgDim, imgDim);
             return true;
         }
         return false;
