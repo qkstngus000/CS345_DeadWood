@@ -55,7 +55,7 @@ public class Board {
 	*   This method is also in charge of properly setting scenesLeft.
 	*   Called at the start of each 'day' of gameplay by the DeadWood class.
 	*/
-	public void reset(BoardLayersListener view)
+	public void reset(View view)
 	{
 		int i;
 		for (i = 0; i < rooms.length; i++)

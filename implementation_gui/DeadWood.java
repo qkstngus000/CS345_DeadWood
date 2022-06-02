@@ -39,7 +39,7 @@ public class DeadWood {
      * 		Sets up the environment for the game by creating player objects and the board object
 	 * 		and initializing day values.
      */
-    private void setEnv(int numPlayer, BoardLayersListener view) {
+    private void setEnv(int numPlayer, View view) {
         // initialize numPlayer
         this.numPlayer = numPlayer;
 		String[] playerColor = {"b", "c", "g", "o", "p", "r", "v", "w", "y"};
@@ -124,7 +124,7 @@ public class DeadWood {
 	* Description: called by the main method and performs the main sequence of events for the game,
 	* including setup, player turns, passing of days, and the game end.
 	*/
-	public void gameLoop(BoardLayersListener view)
+	public void gameLoop(View view)
 	{
 		
 		// Loop for daily events
@@ -215,7 +215,7 @@ public class DeadWood {
     public static void main(String[] args) {
 		dice = new Random();
 
-		BoardLayersListener view = new BoardLayersListener();
+		View view = new View();
 		int pCount = view.askNumPlayer();
 		// board.setVisible(true);
 

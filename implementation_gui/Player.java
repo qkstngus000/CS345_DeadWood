@@ -62,7 +62,7 @@ public class Player implements Drawable {
 
     public String getImgPath()
     {
-        return imgPath.formatted(imgColor,rank);
+        return String.format(imgPath, imgColor,rank);
     }
 
     public String getName()

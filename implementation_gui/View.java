@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
-public class BoardLayersListener extends JFrame {
+public class View extends JFrame {
 
    // JLabels
    JLabel boardlabel;
@@ -36,7 +36,7 @@ public class BoardLayersListener extends JFrame {
    
 
    // Constructor
-   public BoardLayersListener() {
+   public View() {
       
        // Set the title of the JFrame
        super("Deadwood");
@@ -271,7 +271,7 @@ public class BoardLayersListener extends JFrame {
    
    /*public static void main(String[] args) {
   
-      BoardLayersListener board = new BoardLayersListener();
+      Vuew board = new View();
       board.setVisible(true);
 
 
