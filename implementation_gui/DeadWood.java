@@ -109,6 +109,14 @@ public class DeadWood {
         curPlayer = (curPlayer + 1) % numPlayer;
     }
 	
+	/**
+	 * Calls drawElement() on the Player whose turn it is currently
+	 */
+	public static void updatePlayerVisual()
+	{
+		game.view.drawElement(game.players[game.curPlayer]);
+	}
+	
 	/*
 	* Function: rollDice
 	* Returns:
@@ -145,7 +153,6 @@ public class DeadWood {
 				view.drawElement(players[i]);
 				players[i].removeRole();
 			}
-			players[1].setRoom(players[1].getRoom().getNeighbors()[0]);
 			// TODO
 			//  Update the view
 

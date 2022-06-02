@@ -19,7 +19,7 @@ public class Player implements Drawable {
     private static final String imgPath = "../images/dice/%s%d.png"; // The general path to the player icon files. Used for drawing
     private String imgColor; // Holds the color of the player's dice. Used for drawing
     private static int imgDim = 40; // The side dimension of the dice images
-    private static int depth = 1; // The draw layer for player icons
+    private static int depth = 4; // The draw layer for player icons
 
     /*
      * Constructor Player
@@ -379,6 +379,7 @@ public class Player implements Drawable {
                         {
                             // Player wants to move
                             setRoom(selectedRoom);
+                            DeadWood.updatePlayerVisual();
                             if(room instanceof SceneRoom) ((SceneRoom) room).visit();
                             return true;
                         }
