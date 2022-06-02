@@ -19,6 +19,7 @@ public class SceneRoom extends Room
 	private ArrayList<Player> actorInfo;	// array of players currently doing roles in this room
 	private SceneCard scene;				// the scene currently active in this room
 	private ObjCoord[] take;					// Coordinate for shot
+	public static final int depth = 3;
 	
 	/*
 	* Constructor

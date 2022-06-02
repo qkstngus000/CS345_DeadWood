@@ -118,7 +118,7 @@ public class View extends JFrame {
          System.out.println("Creating Element: "+element);
          l = new JLabel();
          gameLabels.put((Drawable) element, l);
-         bPane.add(l,Integer.valueOf(3));
+         bPane.add(l,Integer.valueOf(element.getDepth()));
       }
       l.setIcon(img);
       l.setBounds(coord.getX(),coord.getY(),coord.getH(),coord.getW());
