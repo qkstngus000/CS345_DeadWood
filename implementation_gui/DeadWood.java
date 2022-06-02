@@ -17,6 +17,7 @@ public class DeadWood {
     private Player[] players; // List of players to keep track of turn
     private Board board;
     private int curPlayer; // Index in players
+	private View view;
     private static Random dice; // Dice Roll
 	private static DeadWood game = new DeadWood();
 	public static final Scanner feed = new Scanner(System.in);
@@ -29,6 +30,7 @@ public class DeadWood {
      *   Does nothing but initialize the game. Must be included to hide the constructor.
      */
     private DeadWood() {
+		view = new View();
     }
 
     /*
@@ -39,7 +41,7 @@ public class DeadWood {
      * 		Sets up the environment for the game by creating player objects and the board object
 	 * 		and initializing day values.
      */
-    private void setEnv(int numPlayer, View view) {
+    private void setEnv(int numPlayer) {
         // initialize numPlayer
         this.numPlayer = numPlayer;
 		String[] playerColor = {"b", "c", "g", "o", "p", "r", "v", "w", "y"};
@@ -124,9 +126,8 @@ public class DeadWood {
 	* Description: called by the main method and performs the main sequence of events for the game,
 	* including setup, player turns, passing of days, and the game end.
 	*/
-	public void gameLoop(View view)
+	public void gameLoop()
 	{
-		
 		// Loop for daily events
 		while(day <= maxDay)
 		{
@@ -144,6 +145,7 @@ public class DeadWood {
 				view.drawElement(players[i]);
 				players[i].removeRole();
 			}
+			players[1].setRoom(players[1].getRoom().getNeighbors()[0]);
 			// TODO
 			//  Update the view
 
@@ -215,8 +217,7 @@ public class DeadWood {
     public static void main(String[] args) {
 		dice = new Random();
 
-		View view = new View();
-		int pCount = view.askNumPlayer();
+		int pCount = game.view.askNumPlayer();
 		// board.setVisible(true);
 
 		// System.out.print("Enter the number of players who would like to play:\n\t");
@@ -226,8 +227,8 @@ public class DeadWood {
 		// 	usrEntry = feed.nextLine();
 		// }
 		// int pcount = Integer.parseInt(usrEntry);
-		game.setEnv(pCount, view);
-		game.gameLoop(view);
+		game.setEnv(pCount);
+		game.gameLoop();
 
 		feed.close();
     }

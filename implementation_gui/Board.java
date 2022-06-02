@@ -62,8 +62,10 @@ public class Board {
 		{
 			if (rooms[i] instanceof SceneRoom)
 			{
-				view.drawShots((SceneRoom) rooms[i]);
-				if (!distributeCard((SceneRoom) rooms[i])) break;
+				SceneRoom scene = (SceneRoom) rooms[i];
+				view.drawShots(scene);
+				if (!distributeCard(scene)) break;
+				view.drawElement(scene.getScene());
 			}
 		}
 		scenesLeft = i;
@@ -92,6 +94,8 @@ public class Board {
 		SceneCard c = deck.remove(r.nextInt(deck.size()));
 		s.setScene(c);
 		// TODO set SceneCard's draw position
+		ObjCoord roomCoord = s.getCoord();
+		c.setCoord(new ObjCoord(roomCoord.getX(),roomCoord.getY(),SceneCard.imgX,SceneCard.imgY));
 		discard.add(c);
 		
 		return true;

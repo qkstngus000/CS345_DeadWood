@@ -18,6 +18,9 @@ public class SceneCard implements Drawable{
                          // false
     private int budget; // Store budget value for scene
     private int numbering; // Indicates card number
+    public static final int imgX = 115;
+    public static final int imgY = 205;
+    public static final int depth = 3;
 
 
     /*
@@ -74,6 +77,11 @@ public class SceneCard implements Drawable{
     public String getImgPath()
     {
         return flip ? img : backImg;
+    }
+
+    public int getDepth()
+    {
+        return depth;
     }
     
     public Role[] getRoles() {
