@@ -94,7 +94,7 @@ public class Player implements Drawable {
 	{
 		room = r;
 
-        // TODO caculate players position in the room so that it does not overlap anything else
+        // Caculate players position in the room so that it does not overlap anything else
         ObjCoord roomPos = room.getCoord();
         pos = new ObjCoord(roomPos.getX()+12*id,roomPos.getY(),imgDim,imgDim);
 	}
@@ -264,9 +264,12 @@ public class Player implements Drawable {
             {
                 // If the role is a main role, its position is relative to the room
                 ObjCoord roomCoord = room.getCoord();
-                pos = new ObjCoord(roleCoord.getX()+roomCoord.getX()+4, roleCoord.getY()+roomCoord.getY()+4, imgDim, imgDim);
+                pos = new ObjCoord(roleCoord.getX()+roomCoord.getX(), roleCoord.getY()+roomCoord.getY(), imgDim, imgDim);
             }
-            pos = new ObjCoord(roleCoord.getX()+4, roleCoord.getY()+4, imgDim, imgDim);
+            else
+            {
+                pos = new ObjCoord(roleCoord.getX()+4, roleCoord.getY()+4, imgDim, imgDim);
+            }
             return true;
         }
         return false;

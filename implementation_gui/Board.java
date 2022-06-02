@@ -63,9 +63,10 @@ public class Board {
 			if (rooms[i] instanceof SceneRoom)
 			{
 				SceneRoom scene = (SceneRoom) rooms[i];
-				view.drawShots(scene);
+				// view.drawShots(scene);
 				if (!distributeCard(scene)) break;
 				view.drawElement(scene.getScene());
+				view.drawShotCounters(scene);
 			}
 		}
 		scenesLeft = i;

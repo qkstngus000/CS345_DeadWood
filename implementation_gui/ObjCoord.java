@@ -5,11 +5,11 @@
  *      Store values of x_coordinate, y_coordinate, width, and height of little objects used in Scenecard and Board
  *      This will be used when graphic visualization happens
  */
-public class ObjCoord {
-    private int x_cord; // Store x coordinate of the obj
-    private int y_cord; // Store y coordinate of the obj
-    private int w;  // Store width of the obj
-    private int h;  // Store height of the obj
+public final class ObjCoord {
+    private final int x_cord; // Store x coordinate of the obj
+    private final int y_cord; // Store y coordinate of the obj
+    private final int w;  // Store width of the obj
+    private final int h;  // Store height of the obj
     
     /*
      * Constructor ObjCoord

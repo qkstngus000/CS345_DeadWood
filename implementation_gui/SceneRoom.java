@@ -18,7 +18,7 @@ public class SceneRoom extends Room
 	private Role[] roomRoles;				// array of 'extra' roles which are attached to this room rather than the scene
 	private ArrayList<Player> actorInfo;	// array of players currently doing roles in this room
 	private SceneCard scene;				// the scene currently active in this room
-	private ObjCoord[] take;					// Coordinate for shot
+	private ShotCounter[] counters;					// Coordinate for shot
 	private boolean active;
 	public static final int depth = 3;
 	
@@ -27,14 +27,20 @@ public class SceneRoom extends Room
 	* Description:
 	*   Calls the parent constructor and initializes various fields. Also increments numScene.
 	*/
-	public SceneRoom(String name, ObjCoord coord, int maxShots, ObjCoord[] take)
+	public SceneRoom(String name, ObjCoord coord, int maxShots, ObjCoord[] counterCoords)
 	{
 		super(name, coord);
 		this.maxShots = maxShots;
 		curShot = 0;
 		actorInfo = new ArrayList<Player>();
-		this.take = take;
 		active = false;
+
+		// Initialize shot counters
+		counters = new ShotCounter[counterCoords.length];
+		for(int i = 0; i < counterCoords.length; i++)
+		{
+			counters[i] = new ShotCounter(counterCoords[i]);
+		}
 	}
 	
 	public Role[] getRoles()
@@ -56,14 +62,20 @@ public class SceneRoom extends Room
 	{
 		return active;
 	}
+
+	public int getCurShot()
+	{
+		return curShot;
+	}
 	
 	public void setScene(SceneCard s)
 	{
 		scene = s;
 		active = true;
+		curShot = 0;
 	}
-	public ObjCoord[] getShotCoord() {
-		return take;
+	public ShotCounter[] getShotCounters() {
+		return counters;
 	}
 	
 	/*
@@ -323,7 +335,6 @@ public class SceneRoom extends Room
 	public void closeRoom()
 	{
 		System.out.println("Closing Room!");
-		curShot = 0;
 		// This must be done later in DeadWood so that the element can be removed from view
 		// scene = null;
 		active = false;
@@ -341,7 +352,7 @@ public class SceneRoom extends Room
 	*   Called whenever a Player enters the room. Reveals the scene card for this room if it is face-down.
 	*/
 	public void visit() {
-		if((scene != null) && (!scene.getFlipped())) {
+		if(active && (!scene.getFlipped())) {
 			scene.flipCard();
 		}
 	}

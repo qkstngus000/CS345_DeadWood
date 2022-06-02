@@ -207,6 +207,7 @@ public class DeadWood {
 					{
 						view.removeElement(((SceneRoom) proom).getScene());
 					}
+					view.drawShotCounters((SceneRoom) proom);
                     break;
                 }
                 if(usrEntry.trim().toLowerCase().equals("r"))
@@ -260,8 +261,6 @@ public class DeadWood {
 			// reset board and move players to trailer room.
 			board.reset(view);
 			
-			// TODO
-			// Set all shots/cards face down/ and players to the trailers in view
 
 
 			for(int i = 0; i < numPlayer; i++)
@@ -270,8 +269,6 @@ public class DeadWood {
 				view.drawElement(players[i]);
 				players[i].removeRole();
 			}
-			// TODO
-			//  Update the view
 
 			
 			// Loop for turns

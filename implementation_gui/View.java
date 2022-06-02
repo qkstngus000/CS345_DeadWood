@@ -169,8 +169,34 @@ public class View extends JFrame {
       
    }
 
+   /**
+    * Updates the shot counters for a room in order to accurately reflect the number of shots left in that room.
+    * @param r Room to update
+    */
+   public void drawShotCounters(SceneRoom r)
+   {
+      ShotCounter[] counters = r.getShotCounters();
+      int curShot = r.getCurShot();
+      for(int i = 0; i < counters.length; i++)
+      {
+         // Create the element if not already created
+         if(gameLabels.get(counters[i]) == null)
+         {
+            drawElement(counters[i]);
+         }
+
+         // set visibility based on curShot
+         JLabel l = gameLabels.get(counters[i]);
+         if(i<curShot)
+         {
+            l.setVisible(false);
+         }
+         else l.setVisible(true);
+      }
+   }
+
    //Draw and update the token 
-   public void drawShots(SceneRoom room) {
+   /*public void drawShots(SceneRoom room) {
       String path = "../images/shot.png";
       ObjCoord[] shotCoord = room.getShotCoord();
       for (int i = 0; i < shotCoord.length; i++) {
@@ -182,7 +208,7 @@ public class View extends JFrame {
          bPane.add(shotlabel,Integer.valueOf(4));
       }
       
-   }
+   }*/
        
    /*public void drawMenu() {
       // Create the Menu for action buttons
