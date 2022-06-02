@@ -76,7 +76,7 @@ public class SceneCard implements Drawable{
     
     public String getImgPath()
     {
-        return flip ? img : backImg;
+        return flip ? "../images/cards/"+img : backImg;
     }
 
     public int getDepth()

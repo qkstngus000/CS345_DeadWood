@@ -105,17 +105,134 @@ public class DeadWood {
      * Keep track of which player's turn it is and call playerTurn for that Player.
      */
     public void nextTurnPlayer() {
-		players[curPlayer].playerTurn();
+		// players[curPlayer].playerTurn();
+		Player p = players[curPlayer];
+		Room proom = p.getRoom();
+
+
+		// TODO adapt this to a gui display
+		System.out.printf("\n~~~~~ %s's turn! ~~~~~%n",p.getName());
+        System.out.printf("rank: %d, dollar: %d\tcredit: %d\n", p.getRank(), p.getFunds(), p.getCredits());
+        if(p.getRole() == null)
+        {
+            // Player has no role so they can move and/or take a room action
+            boolean moved = false;
+            boolean actionPerformed = false;
+            while(!moved||!actionPerformed)
+            {
+				// TODO adapt this to a gui display
+                // Print options
+                System.out.printf("~~~~ You are in: %s%n",proom.getName());
+                System.out.println("You may move once and/or take one action during your turn.\nEnter what you would like to do:");
+                if(!moved)
+                {
+                    System.out.println("\t'm': Move");
+                }
+                if(!actionPerformed)
+                {
+                    System.out.println("\t'a': Take Action");
+                }
+                System.out.println("\t'e': End Turn");
+                // Take input
+				// TODO change this to button input
+                String usrEntry = DeadWood.feed.nextLine();
+                if(!moved && usrEntry.trim().toLowerCase().equals("m"))
+                {
+                    // Player wants to move
+                    if(p.move())
+                    {
+                        moved = true;
+						proom = p.getRoom();
+						// Redraw flipped SceneCard if it exists
+						if(proom instanceof SceneRoom && ((SceneRoom)proom).getScene() != null)
+						{
+							view.drawElement(((SceneRoom) proom).getScene());
+						}
+						view.drawElement(p);
+                    }
+                    continue;
+                }
+                if(!actionPerformed && usrEntry.trim().toLowerCase().equals("a"))
+                {
+                    // Player wants to take action
+                    if(proom.action(p))
+                    {
+                        actionPerformed = true;
+						view.drawElement(p);
+
+                        // End turn if player took a role in a sceneroom
+                        if(p.getRole() != null)
+                        {
+                            break;
+                        }
+                    }
+                    continue;
+                }
+                if(usrEntry.trim().toLowerCase().equals("e"))
+                {
+                    // Player ends their turn
+                    break;
+                }
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+        else
+        {
+            // Player has a role so they can act or rehearse
+            while(true)
+            {
+                // Loop until player enters valid input
+				
+				// TODO adapt this to a gui display
+                // Print options
+                System.out.printf("~~~~ You are in: %s%n",proom.getName());
+                ((SceneRoom) proom).printSceneInfo();
+                System.out.printf("~~ Your role is: %s (Rank: %d)%n",p.getRole().getName(),p.getRole().getRank());
+                // System.out.printf("You have +%d to any acting roll from your rehearsal bonus.%n",token);
+                System.out.println("You may act or rehearse. Enter what you would like to do:");
+                System.out.println("\t'a': Act");
+                System.out.println("\t'r': Rehearse");
+                // Take input
+				// TODO change this to button input
+                String usrEntry = DeadWood.feed.nextLine();
+                if(usrEntry.trim().toLowerCase().equals("a"))
+                {
+                    // Player wants to act
+                    p.act();
+					// TODO redraw shot counters for proom
+
+					// Remove SceneCard from view if scene is finished
+					view.drawElement(p);
+					if(!((SceneRoom) proom).getActive())
+					{
+						view.removeElement(((SceneRoom) proom).getScene());
+					}
+                    break;
+                }
+                if(usrEntry.trim().toLowerCase().equals("r"))
+                {
+                    // Player wants to rehearse
+                    if(p.rehearse())
+                    {
+                        break;
+                    }
+                    continue;
+                }
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+
+		// Progress curPlayer
         curPlayer = (curPlayer + 1) % numPlayer;
     }
 	
 	/**
 	 * Calls drawElement() on the Player whose turn it is currently
 	 */
-	public static void updatePlayerVisual()
+	/*public static void updatePlayerVisual()
 	{
 		game.view.drawElement(game.players[game.curPlayer]);
-	}
+	}*/
 	
 	/*
 	* Function: rollDice

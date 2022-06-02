@@ -19,6 +19,7 @@ public class SceneRoom extends Room
 	private ArrayList<Player> actorInfo;	// array of players currently doing roles in this room
 	private SceneCard scene;				// the scene currently active in this room
 	private ObjCoord[] take;					// Coordinate for shot
+	private boolean active;
 	public static final int depth = 3;
 	
 	/*
@@ -33,7 +34,7 @@ public class SceneRoom extends Room
 		curShot = 0;
 		actorInfo = new ArrayList<Player>();
 		this.take = take;
-		
+		active = false;
 	}
 	
 	public Role[] getRoles()
@@ -50,10 +51,16 @@ public class SceneRoom extends Room
 	{
 		return scene;
 	}
+
+	public boolean getActive()
+	{
+		return active;
+	}
 	
 	public void setScene(SceneCard s)
 	{
 		scene = s;
+		active = true;
 	}
 	public ObjCoord[] getShotCoord() {
 		return take;
@@ -216,6 +223,7 @@ public class SceneRoom extends Room
 	{
 		if(++curShot == maxShots)
 		{
+			System.out.println("Scene Finishing!");
 			// Handle bonus payouts
 
 			// List main actors
@@ -295,6 +303,7 @@ public class SceneRoom extends Room
 
 			closeRoom();
 		}
+		System.out.println("Current shots finished: "+curShot);
 	}
 
 	private class SortByRoleSize implements Comparator<Player>
@@ -313,8 +322,11 @@ public class SceneRoom extends Room
 	*/
 	public void closeRoom()
 	{
+		System.out.println("Closing Room!");
 		curShot = 0;
-		scene = null;
+		// This must be done later in DeadWood so that the element can be removed from view
+		// scene = null;
+		active = false;
 		for(Player actor : actorInfo)
 		{
 			actor.removeRole();

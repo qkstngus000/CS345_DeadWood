@@ -116,7 +116,13 @@ public class CastingOffice extends Room
 		}
 	}
 
-
+	/**
+	 * Attempt to purchase a rank for a player and display error messages if there is a problem with the transaction.
+	 * Also prompts whether to buy with cash or credits
+	 * @param p Player purchasing the rank
+	 * @param r Rank to purchase
+	 * @return If the transaction was successful
+	 */
 	private boolean purchaseRank(Player p, int r)
 	{
 		
@@ -136,6 +142,7 @@ public class CastingOffice extends Room
 				// User purchasing rank with money
 				if(p.subtractFunds(castingInfo[r-2][1]))
 				{
+					p.setRank(r);
 					return true;
 				}
 				System.out.println("Insufficient funds.");
@@ -146,6 +153,7 @@ public class CastingOffice extends Room
 				// User purchasing rank with credits
 				if(p.subtractCredits(castingInfo[r-2][2]))
 				{
+					p.setRank(r);
 					return true;
 				}
 				System.out.println("Insufficient funds.");

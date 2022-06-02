@@ -56,6 +56,16 @@ public class Player implements Drawable {
         return this.rank;
     }
 
+    public int getFunds()
+    {
+        return this.dollar;
+    }
+
+    public int getCredits()
+    {
+        return this.credit;
+    }
+
     public ObjCoord getCoord()
     {
         return this.pos;
@@ -120,6 +130,7 @@ public class Player implements Drawable {
      * 
      * If action returns false, the player backed out without actually doing 
      * anything so they should be presented with the same options again.
+     * @Deprecated
      */
     public void playerTurn() {
 
@@ -243,7 +254,15 @@ public class Player implements Drawable {
             this.role = role;
             // Change role status
             role.updateRoleStatus(false);
-            // TODO set player position
+            // Set player position
+            ObjCoord roleCoord = this.role.getCoord();
+            if(role.getMainRole())
+            {
+                // If the role is a main role, its position is relative to the room
+                ObjCoord roomCoord = room.getCoord();
+                pos = new ObjCoord(roleCoord.getX()+roomCoord.getX(), roleCoord.getY()+roomCoord.getY(), imgDim, imgDim);
+            }
+            pos = new ObjCoord(roleCoord.getX(), roleCoord.getY(), imgDim, imgDim);
             return true;
         }
         return false;
@@ -329,6 +348,8 @@ public class Player implements Drawable {
      */
     public void removeRole() {
         this.role = null;
+        // Reset position to default in room.
+        setRoom(room);
     }
 
     /*
@@ -368,6 +389,14 @@ public class Player implements Drawable {
                 if (selection > 0 && selection <= neighborRoom.length) {
                     // Player entered a valid room number
                     Room selectedRoom = neighborRoom[selection-1];
+
+                    // Move the player
+                    setRoom(selectedRoom);
+                    if(room instanceof SceneRoom) ((SceneRoom) room).visit();
+                    return true;
+
+                    // This is irrelevant for the gui version
+                    /*
                     // Confirmation
                     while(true)
                     {
@@ -397,7 +426,7 @@ public class Player implements Drawable {
                         }
                         System.out.println("Invalid entry. Please try again.");
                     }
-                    continue;
+                    continue;*/
                 }
             }
             System.out.println("Invalid input. Please try again.");
