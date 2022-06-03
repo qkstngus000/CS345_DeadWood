@@ -103,11 +103,11 @@ public class View extends JFrame {
     */
    public void updateInfo()
    {
-      // String tokenInfo = playerTokens < 0 ? "" : String.format("<p>rehearsal bonus: +%d</p>",playerTokens);
-      // mLabel.setText(String.format("<html><body><h3>%s'S TURN!</h3><p>rank: %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4>%s</body></html>",
-      //             playerName.toUpperCase(),playerRank,playerFunds,playerCredits,playerRoom,tokenInfo));
-      mLabel.setText(String.format("<html><body><h3>%s'S TURN!</h3><p>rank: %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4></body></html>",
-                  playerName.toUpperCase(),playerRank,playerFunds,playerCredits,playerRoom));
+      String tokenInfo = playerTokens < 0 ? "" : String.format("<p>rehearsal bonus: +%d</p>",playerTokens);
+      mLabel.setText(String.format("<html><body><h3>%s'S TURN!</h3><p>rank: %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4>%s</body></html>",
+                  playerName.toUpperCase(),playerRank,playerFunds,playerCredits,playerRoom,tokenInfo));
+      // mLabel.setText(String.format("<html><body><h3>%s'S TURN!</h3><p>rank: %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4></body></html>",
+      //             playerName.toUpperCase(),playerRank,playerFunds,playerCredits,playerRoom));
    }
 
    public void setPlayerName(String playerName)

@@ -116,6 +116,7 @@ public class DeadWood {
 		view.setPlayerFunds(p.getFunds());
 		view.setPlayerCredits(p.getCredits());
 		view.setPlayerRoom(proom.getName());
+		view.setPlayerTokens(p.getRole() == null ? -1 : p.getToken());
 		view.updateInfo();
 		System.out.printf("\n~~~~~ %s's turn! ~~~~~%n",p.getName());
         System.out.printf("rank: %d, dollar: %d\tcredit: %d\n", p.getRank(), p.getFunds(), p.getCredits());
@@ -238,6 +239,8 @@ public class DeadWood {
                     // Player wants to rehearse
                     if(p.rehearse())
                     {
+						view.setPlayerTokens(p.getToken());
+						view.updateInfo();
                         break;
                     }
                     continue;
