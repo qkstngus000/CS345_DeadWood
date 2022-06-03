@@ -75,7 +75,7 @@ public class View extends JFrame {
       bPane.add(mLabel,Integer.valueOf(2));
 
       // Create Action buttons
-      buttons = new JButton[7];
+      buttons = new JButton[8];
       for(int i = 0; i < buttons.length; i++)
       {
          buttons[i] = new JButton();
@@ -305,7 +305,7 @@ public class View extends JFrame {
 
 
    /**
-    * Displays a list of option buttons on the side menu. Can only display up to 7 buttons (the max that should be necessary)
+    * Displays a list of option buttons on the side menu. Can only display up to 8 buttons (the max that should be necessary)
     * @param buttonNames The text on each button. length also determines number of buttons.
     */
    public void showButtonMenu(ArrayList<String> buttonNames)

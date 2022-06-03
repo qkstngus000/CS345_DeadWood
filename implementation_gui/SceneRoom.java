@@ -118,57 +118,63 @@ public class SceneRoom extends Room
 		// Repeat until user enters a valid entry
 		while(true)
 		{
-			System.out.println("Enter the # of the role you want, or 'q' to go back:");
-			String usrEntry = DeadWood.feed.nextLine();
-			if(usrEntry.trim().toLowerCase().equals("q"))
+			// System.out.println("Enter the # of the role you want, or 'q' to go back:");
+			// String usrEntry = DeadWood.feed.nextLine();
+
+			ArrayList<String> options = new ArrayList<String>();
+
+			for(Role r : cardRoles)
 			{
-				// User entered back command
+				if(r.getAvailable()) options.add("Main: "+r.getName());
+			}
+			for(Role r : roomRoles)
+			{
+				if(r.getAvailable()) options.add("Extra: "+r.getName());
+			}
+
+			options.add("Go Back");
+
+			String usrEntry = DeadWood.getButtonInput(options);
+
+			Role selectedRole = null;
+
+			for(Role r : cardRoles)
+			{
+				if(usrEntry.equals("Main: "+r.getName()))
+				{
+					// Player picked a Main Role
+					selectedRole = r;
+				}
+			}
+			for(Role r : roomRoles)
+			{
+				if(usrEntry.equals("Extra: "+r.getName()))
+				{
+					// Player picked an Extra Role
+					selectedRole = r;
+				}
+			}
+			if(selectedRole != null)
+			{
+				// Player selected a role
+				if(p.takeRole(selectedRole))
+				{
+					// Role was taken successfully
+					// set role to unavailable
+					selectedRole.updateRoleStatus(false);
+					// Add player to actorInfo
+					actorInfo.add(p);
+					return true;
+				}
+				System.out.printf("You need at least rank %d for this role. Current rank: %d%n",selectedRole.getRank(),p.getRank());
+				continue;
+			}
+			else
+			{
+				// Player entered back command
 				return false;
 			}
-			if(DeadWood.isInteger(usrEntry.trim()))
-			{
-				// User entered an integer
-				int selection = Integer.parseInt(usrEntry.trim());
-				// Find the Role object which corresponds to the user's entry, if it exists.
-				Role selectedRole = null;
-				if(selection >= 0)
-				{
-					// System.out.println("selection >= 0");
-					if(selection < cardRoles.length)
-					{
-						// System.out.printf("selection <%d> is main role%n",selection);
-						selectedRole = cardRoles[selection];
-					}
-					else if(selection < cardRoles.length + roomRoles.length)
-					{
-						// System.out.printf("selection <%d> is extra role%n",selection);
-						// System.out.printf("role index: %d",selection - cardRoles.length);
-						selectedRole = roomRoles[selection - cardRoles.length];
-					}
-				}
-				if(selectedRole != null)
-				{
-					// User entered a valid role #
-					if(selectedRole.getAvailable())
-					{
-						// Role is available
-						if(p.takeRole(selectedRole))
-						{
-							// Role was taken successfully
-							// set role to unavailable
-							selectedRole.updateRoleStatus(false);
-							// Add player to actorInfo
-							actorInfo.add(p);
-							return true;
-						}
-						System.out.printf("You need at least rank %d for this role. Current rank: %d%n",selectedRole.getRank(),p.getRank());
-						continue;
-					}
-					System.out.println("This role is currently unavailable.");
-					continue;
-				}
-			}
-			System.out.println("Invalid entry. Please try again.");
+
 		}
 	}
 
