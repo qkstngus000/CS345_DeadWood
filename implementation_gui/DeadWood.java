@@ -129,19 +129,25 @@ public class DeadWood {
             {
 				// TODO adapt this to a gui display
                 // Print options
-                System.out.printf("~~~~ You are in: %s%n",proom.getName());
-                System.out.println("You may move once and/or take one action during your turn.\nEnter what you would like to do:");
-                if(!moved)
+                // System.out.printf("~~~~ You are in: %s%n",proom.getName());
+                // System.out.println("You may move once and/or take one action during your turn.\nEnter what you would like to do:");
+                ArrayList<String> options = new ArrayList<String>();
+				if(!moved)
                 {
-                    System.out.println("\t'm': Move");
+                    // System.out.println("\t'm': Move");
+					options.add("Move");
                 }
                 if(!actionPerformed)
                 {
-                    System.out.println("\t'a': Take Action");
+                    // System.out.println("\t'a': Take Action");
+					if(proom instanceof CastingOffice) options.add("Purchase Rank");
+					else if(proom instanceof SceneRoom) options.add("Take Role");
                 }
+				options.add("End Turn");
                 System.out.println("\t'e': End Turn");
                 // Take input
 				// TODO change this to button input
+				view.showButtonMenu(options);
                 String usrEntry = DeadWood.feed.nextLine();
                 if(!moved && usrEntry.trim().toLowerCase().equals("m"))
                 {

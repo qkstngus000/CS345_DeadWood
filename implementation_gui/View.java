@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.ImageIcon;
 import javax.imageio.ImageIO;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
@@ -27,9 +28,8 @@ public class View extends JFrame {
    HashMap<Drawable,JLabel> gameLabels;
    
    //JButtons
-   JButton bAct;
-   JButton bRehearse;
-   JButton bMove;
+   JButton[] buttons;
+   private int buttonPressedIndex = -1;
    
    // JLayered Pane
    JLayeredPane bPane;
@@ -71,29 +71,20 @@ public class View extends JFrame {
       // Create the Menu for action buttons
       mLabel = new JLabel();
       mLabel.setVerticalAlignment(SwingConstants.TOP);
-      mLabel.setBounds(icon.getIconWidth()+10,0,180,200);
+      mLabel.setBounds(icon.getIconWidth()+10,0,160,200);
       bPane.add(mLabel,Integer.valueOf(2));
 
       // Create Action buttons
-      bAct = new JButton("ACT");
-      bAct.setBackground(Color.white);
-      bAct.setBounds(icon.getIconWidth()+10, 210,100, 20);
-      bAct.addMouseListener(new boardMouseListener());
-      
-      bRehearse = new JButton("REHEARSE");
-      bRehearse.setBackground(Color.white);
-      bRehearse.setBounds(icon.getIconWidth()+10,240,100, 20);
-      bRehearse.addMouseListener(new boardMouseListener());
-      
-      bMove = new JButton("MOVE");
-      bMove.setBackground(Color.white);
-      bMove.setBounds(icon.getIconWidth()+10,270,100, 20);
-      bMove.addMouseListener(new boardMouseListener());
-
-      // Place the action buttons in the top layer
-      bPane.add(bAct, Integer.valueOf(2));
-      bPane.add(bRehearse, Integer.valueOf(2));
-      bPane.add(bMove, Integer.valueOf(2));
+      buttons = new JButton[7];
+      for(int i = 0; i < buttons.length; i++)
+      {
+         buttons[i] = new JButton();
+         buttons[i].setBackground(Color.white);
+         buttons[i].setBounds(icon.getIconWidth()+10,210+40*i,160,30);
+         buttons[i].addMouseListener(new boardMouseListener());
+         buttons[i].setVisible(false);
+         bPane.add(buttons[i],Integer.valueOf(2));
+      }
 
       this.setVisible(true);
    }
@@ -313,6 +304,33 @@ public class View extends JFrame {
    }
 
 
+   /**
+    * Displays a list of option buttons on the side menu. Can only display up to 7 buttons (the max that should be necessary)
+    * @param buttonNames The text on each button. length also determines number of buttons.
+    */
+   public void showButtonMenu(ArrayList<String> buttonNames)
+   {
+      buttonPressedIndex = -1;
+      int len = buttonNames.size();
+      for(int i = 0; i < buttons.length; i++)
+      {
+         if(i < len)
+         {
+            buttons[i].setVisible(true);
+            buttons[i].setText(buttonNames.get(i));
+         }
+         else buttons[i].setVisible(false);
+      }
+   }
+
+   /**
+    * Used to get the index of the button pressed after {@link #showButtonMenu} was called to display them.
+    * @return index of button pressed, or -1 if a button has not yet been pressed.
+    */
+   public int getButtonPressed()
+   {
+      return buttonPressedIndex;
+   }
   
   // This class implements Mouse Events
   
@@ -321,18 +339,20 @@ public class View extends JFrame {
       // Code for the different button clicks
       public void mouseClicked(MouseEvent e) {
          
-         if (e.getSource()== bAct){
-            // playerlabel.setVisible(true);
-            System.out.println("Acting is Selected\n");
-
-            // Call game functions in this mouse click to update info
-         }
-         else if (e.getSource()== bRehearse){
-            System.out.println("Rehearse is Selected\n");
-         }
-         else if (e.getSource()== bMove){
-            System.out.println("Move is Selected\n");
-         }         
+         for(int i = 0; i < buttons.length; i++)
+         {
+            if(e.getSource() == buttons[i])
+            {
+               // Set buttonPressedIndex and hide buttons
+               buttonPressedIndex = i;
+               for(JButton button : buttons)
+               {
+                  button.setVisible(false);
+               }
+               System.out.printf("Button #%d was pressed!\n",i);
+               return;
+            }
+         }        
       }
       public void mousePressed(MouseEvent e) {
       }
