@@ -17,7 +17,8 @@ public class Player implements Drawable {
     private int token; // Holds how many rehearse token player has
     private Role role; // Holds current role of player. If not, null
     private ObjCoord pos; // Holds screen position of the player. Used for drawing
-    private static final String imgPath = "../images/dice/%s%d.png"; // The general path to the player icon files. Used for drawing
+    private static final String imgPath = "../images/dice/%s%d.png"; // The general path to the player icon files. Used
+                                                                     // for drawing
     private String imgColor; // Holds the color of the player's dice. Used for drawing
     private static int imgDim = 40; // The side dimension of the dice images
     private static int depth = 4; // The draw layer for player icons
@@ -36,14 +37,13 @@ public class Player implements Drawable {
     public Player(String name, String imgColor) {
         this.name = name;
         this.imgColor = imgColor;
-		rank = 1;
-		dollar = 0;
-		credit = 0;
-		token = 0;
-        pos = new ObjCoord(0,0,imgDim,imgDim);
+        rank = 1;
+        dollar = 0;
+        credit = 0;
+        token = 0;
+        pos = new ObjCoord(0, 0, imgDim, imgDim);
         id = playerNum++;
     }
-	
 
     /*
      * Function: getter methods
@@ -61,33 +61,27 @@ public class Player implements Drawable {
         return this.rank;
     }
 
-    public int getFunds()
-    {
+    public int getFunds() {
         return this.dollar;
     }
 
-    public int getCredits()
-    {
+    public int getCredits() {
         return this.credit;
     }
 
-    public ObjCoord getCoord()
-    {
+    public ObjCoord getCoord() {
         return this.pos;
     }
 
-    public String getImgPath()
-    {
-        return String.format(imgPath, imgColor,rank);
+    public String getImgPath() {
+        return String.format(imgPath, imgColor, rank);
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public int getDepth()
-    {
+    public int getDepth() {
         return depth;
     }
 
@@ -95,43 +89,42 @@ public class Player implements Drawable {
         return id;
     }
 
-	public void setRoom(Room r)
-	{
-		room = r;
+    public void setRoom(Room r) {
+        if (room != null) {
+            room.removeValidPosition(id);
+        }
+        room = r;
         int validPos = r.getValidPosition(id);
-        int [] placeCord = r.getPlaceable(validPos);
-        // Caculate players position in the room so that it does not overlap anything else
-        ObjCoord roomPos = room.getCoord();
+        int[] placeCord = r.getPlaceable(validPos);
+        // Caculate players position in the room so that it does not overlap anything
+        // else
         System.out.println(placeCord[0] + " " + placeCord[1]);
-        pos = new ObjCoord(placeCord[0], placeCord[1],imgDim,imgDim);
-	}
-	
-	public void addCredits(int n)
-	{
-		credit += n;
-	}
+        pos = new ObjCoord(placeCord[0], placeCord[1], imgDim, imgDim);
+    }
 
-    public void addFunds(int n)
-    {
+    public void addCredits(int n) {
+        credit += n;
+    }
+
+    public void addFunds(int n) {
         dollar += n;
     }
 
-    public void setRank(int rank)
-    {
+    public void setRank(int rank) {
         this.rank = rank;
     }
 
     public void resetRehearse() {
         this.token = 0;
     }
+
     public Room getRoom() {
         return this.room;
     }
+
     public int getToken() {
         return token;
     }
-
-    
 
     /*
      * Function: calcScore
@@ -163,22 +156,20 @@ public class Player implements Drawable {
             role.updateRoleStatus(false);
             // Set player position
             ObjCoord roleCoord = this.role.getCoord();
-            if(role.getMainRole())
-            {
+            if (role.getMainRole()) {
                 // If the role is a main role, its position is relative to the room
                 ObjCoord roomCoord = room.getCoord();
-                pos = new ObjCoord(roleCoord.getX()+roomCoord.getX(), roleCoord.getY()+roomCoord.getY(), imgDim, imgDim);
-                this.getRoom().removeValidPosition(id);
-            }
-            else
-            {
-                pos = new ObjCoord(roleCoord.getX()+4, roleCoord.getY()+4, imgDim, imgDim);
-                this.getRoom().removeValidPosition(id);
+                pos = new ObjCoord(roleCoord.getX() + roomCoord.getX(), roleCoord.getY() + roomCoord.getY(), imgDim,
+                        imgDim);
+                room.removeValidPosition(id);
+            } else {
+                pos = new ObjCoord(roleCoord.getX() + 4, roleCoord.getY() + 4, imgDim, imgDim);
+                room.removeValidPosition(id);
             }
             return true;
         }
         return false;
-            
+
     }
 
     /*
@@ -193,16 +184,16 @@ public class Player implements Drawable {
         int prevDollar = this.dollar;
         int prevCredit = this.credit;
         int diceNum = DeadWood.rollDice();
-        System.out.printf("%s is acting!%nRolled a %d + %d = %d%n",name,diceNum,token,diceNum+token);
+        System.out.printf("%s is acting!%nRolled a %d + %d = %d%n", name, diceNum, token, diceNum + token);
         if (room instanceof SceneRoom) {
             SceneRoom playerRoom = ((SceneRoom) room);
-            if (diceNum+token >= playerRoom.getScene().getBudget()) {
+            if (diceNum + token >= playerRoom.getScene().getBudget()) {
                 // If dice+token >= budget && main role
-                if(role.getMainRole() == true) {
-                    credit+=2;
+                if (role.getMainRole() == true) {
+                    credit += 2;
                     System.out.println("2 Credit added to main role player");
                 }
-                
+
                 // If dice+token >= budget && extra role
                 else {
                     dollar++;
@@ -240,13 +231,14 @@ public class Player implements Drawable {
         SceneRoom playerRoom = ((SceneRoom) room);
         int budget = playerRoom.getScene().getBudget();
         if ((role != null) && token < budget - 1) {
-            
-            this.token+=1;
+
+            this.token += 1;
             System.out.printf("Rehearse bonus increased by +1! (current bonus: +%d)%n", token);
             return true;
         }
         DeadWood.showError("Rehearsing any more will have no benefit.");
-        // System.out.println("Rehearsing any more will have no benefit. (current bonus: 6)");
+        // System.out.println("Rehearsing any more will have no benefit. (current bonus:
+        // 6)");
         return false;
     }
 
@@ -288,30 +280,27 @@ public class Player implements Drawable {
             options.add(neighborRoom[i].getName());
         }
         options.add("Go Back");
-        // System.out.println("Please enter the number of the room you'd like to move to or 'q' to go back:");
-        
+        // System.out.println("Please enter the number of the room you'd like to move to
+        // or 'q' to go back:");
+
         // String usrEntry = DeadWood.feed.nextLine();
         String usrEntry = DeadWood.getButtonInput(options);
-        if(usrEntry.equals("Go Back"))
-        {
+        if (usrEntry.equals("Go Back")) {
             // Player backed out
             return false;
         }
-        for(Room r : neighborRoom)
-        {
-            if(usrEntry.equals(r.getName()))
-            {
+        for (Room r : neighborRoom) {
+            if (usrEntry.equals(r.getName())) {
                 // Player chose a room to move to
                 setRoom(r);
-                if(room instanceof SceneRoom) ((SceneRoom) room).visit();
+                if (room instanceof SceneRoom)
+                    ((SceneRoom) room).visit();
                 return true;
             }
         }
         // should never reach here
         return false;
     }
-
-
 
     public boolean subtractFunds(int dollar) {
         if ((this.dollar - dollar) >= 0) {
@@ -328,6 +317,5 @@ public class Player implements Drawable {
         }
         return false;
 
-        
     }
 }

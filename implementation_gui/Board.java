@@ -60,6 +60,10 @@ public class Board {
 					break;
 				view.drawElement(scene.getScene());
 				view.drawShotCounters(scene);
+				Role[] extraRole = ((SceneRoom) rooms[i]).getRoles();
+				for (Role r : extraRole) {
+					r.updateRoleStatus(true);
+				}
 			}
 		}
 		scenesLeft = 10;
