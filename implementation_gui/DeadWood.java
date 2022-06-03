@@ -17,7 +17,7 @@ public class DeadWood {
     private Player[] players; // List of players to keep track of turn
     private Board board;
     private int curPlayer; // Index in players
-	private View view;
+	private static View view;
     private static Random dice; // Dice Roll
 	private static DeadWood game = new DeadWood();
 	public static final Scanner feed = new Scanner(System.in);
@@ -75,16 +75,9 @@ public class DeadWood {
 		// view.drawPlayers(players);
     }
 
-    /*
-     * Function: trackDate
-     * Parameter:
-     * None
-     * Description:
-     * When board reset, decrement day until it hit 0
-    
-    public void trackDate() {
-        // TO DO
-    } */
+    public static void removeCard(SceneCard scene) {
+		view.removeElement(scene);
+	}
 
     /*
      * Function: winner

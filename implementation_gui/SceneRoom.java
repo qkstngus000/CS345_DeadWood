@@ -335,8 +335,10 @@ public class SceneRoom extends Room
 	public void closeRoom()
 	{
 		System.out.println("Closing Room!");
+		// TODO send notification for DeadWood manager to control over the scenecard not to be shown
+		DeadWood.removeCard(scene);
 		// This must be done later in DeadWood so that the element can be removed from view
-		// scene = null;
+		scene = null;
 		active = false;
 		for(Player actor : actorInfo)
 		{
