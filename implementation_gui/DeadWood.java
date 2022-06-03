@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 /*
 * Class: DeadWood
 * Description: 
@@ -84,6 +86,11 @@ public class DeadWood {
 		view.showButtonMenu(buttonNames);
 		while(view.getButtonPressed()<0) Thread.yield();
 		return buttonNames.get(view.getButtonPressed());
+	}
+
+	public static void showError(String message)
+	{
+		JOptionPane.showMessageDialog(view,message);
 	}
 
     /*

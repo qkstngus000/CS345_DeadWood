@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import javax.swing.JOptionPane;
+
 /*
 * Class: SceneRoom
 * Description:
@@ -125,11 +127,11 @@ public class SceneRoom extends Room
 
 			for(Role r : cardRoles)
 			{
-				if(r.getAvailable()) options.add("Main: "+r.getName());
+				if(r.getAvailable()) options.add(r.getRank()+" Main: "+r.getName());
 			}
 			for(Role r : roomRoles)
 			{
-				if(r.getAvailable()) options.add("Extra: "+r.getName());
+				if(r.getAvailable()) options.add(r.getRank()+" Extra: "+r.getName());
 			}
 
 			options.add("Go Back");
@@ -140,7 +142,7 @@ public class SceneRoom extends Room
 
 			for(Role r : cardRoles)
 			{
-				if(usrEntry.equals("Main: "+r.getName()))
+				if(usrEntry.equals(r.getRank()+" Main: "+r.getName()))
 				{
 					// Player picked a Main Role
 					selectedRole = r;
@@ -148,7 +150,7 @@ public class SceneRoom extends Room
 			}
 			for(Role r : roomRoles)
 			{
-				if(usrEntry.equals("Extra: "+r.getName()))
+				if(usrEntry.equals(r.getRank()+" Extra: "+r.getName()))
 				{
 					// Player picked an Extra Role
 					selectedRole = r;
@@ -166,7 +168,8 @@ public class SceneRoom extends Room
 					actorInfo.add(p);
 					return true;
 				}
-				System.out.printf("You need at least rank %d for this role. Current rank: %d%n",selectedRole.getRank(),p.getRank());
+				DeadWood.showError(String.format("You need at least rank %d for this role. Current rank: %d%n",selectedRole.getRank(),p.getRank()));
+				// System.out.printf("You need at least rank %d for this role. Current rank: %d%n",selectedRole.getRank(),p.getRank());
 				continue;
 			}
 			else

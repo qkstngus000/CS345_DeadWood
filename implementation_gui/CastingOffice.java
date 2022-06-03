@@ -153,7 +153,8 @@ public class CastingOffice extends Room
 					p.setRank(r);
 					return true;
 				}
-				System.out.println("Insufficient funds.");
+				DeadWood.showError(String.format("Insufficient funds.\nOwned: $%d\nRequired $%d",p.getFunds(),castingInfo[r-2][1]));
+				// System.out.println("Insufficient funds.");
 			}
 			else
 			{
@@ -163,7 +164,8 @@ public class CastingOffice extends Room
 					p.setRank(r);
 					return true;
 				}
-				System.out.println("Insufficient credits.");
+				DeadWood.showError(String.format("Insufficient credits.\nOwned: %d\nRequired %d",p.getCredits(),castingInfo[r-2][2]));
+				// System.out.println("Insufficient credits.");
 			}
 		}
 	}

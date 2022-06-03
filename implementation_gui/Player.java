@@ -245,7 +245,8 @@ public class Player implements Drawable {
             System.out.printf("Rehearse bonus increased by +1! (current bonus: +%d)%n", token);
             return true;
         }
-        System.out.println("Rehearsing any more will have no benefit. (current bonus: 6)");
+        DeadWood.showError("Rehearsing any more will have no benefit.");
+        // System.out.println("Rehearsing any more will have no benefit. (current bonus: 6)");
         return false;
     }
 
