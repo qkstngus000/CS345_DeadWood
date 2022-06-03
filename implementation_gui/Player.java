@@ -90,13 +90,19 @@ public class Player implements Drawable {
         return depth;
     }
 
+    public int getID() {
+        return id;
+    }
+
 	public void setRoom(Room r)
 	{
 		room = r;
-
+        int validPos = r.getValidPosition(id);
+        int [] placeCord = r.getPlaceable(validPos);
         // Caculate players position in the room so that it does not overlap anything else
         ObjCoord roomPos = room.getCoord();
-        pos = new ObjCoord(roomPos.getX()+12*id,roomPos.getY(),imgDim,imgDim);
+        System.out.println(placeCord[0] + " " + placeCord[1]);
+        pos = new ObjCoord(placeCord[0], placeCord[1],imgDim,imgDim);
 	}
 	
 	public void addCredits(int n)
@@ -265,10 +271,12 @@ public class Player implements Drawable {
                 // If the role is a main role, its position is relative to the room
                 ObjCoord roomCoord = room.getCoord();
                 pos = new ObjCoord(roleCoord.getX()+roomCoord.getX(), roleCoord.getY()+roomCoord.getY(), imgDim, imgDim);
+                this.getRoom().removeValidPosition(id);
             }
             else
             {
                 pos = new ObjCoord(roleCoord.getX()+4, roleCoord.getY()+4, imgDim, imgDim);
+                this.getRoom().removeValidPosition(id);
             }
             return true;
         }
@@ -396,44 +404,12 @@ public class Player implements Drawable {
                 if (selection > 0 && selection <= neighborRoom.length) {
                     // Player entered a valid room number
                     Room selectedRoom = neighborRoom[selection-1];
-
+                    
+                    room.removeValidPosition(id);
                     // Move the player
                     setRoom(selectedRoom);
                     if(room instanceof SceneRoom) ((SceneRoom) room).visit();
                     return true;
-
-                    // This is irrelevant for the gui version
-                    /*
-                    // Confirmation
-                    while(true)
-                    {
-                        System.out.printf("Are you sure you would like to move to room: %s?%n",selectedRoom.getName());
-                        System.out.println("\t'y': Yes\n\t'n': No");
-                        if(selectedRoom instanceof SceneRoom) System.out.println("\t'i': Room Info");
-                        usrEntry = DeadWood.feed.nextLine();
-                        if(usrEntry.trim().toLowerCase().equals("y"))
-                        {
-                            // Player wants to move
-                            setRoom(selectedRoom);
-                            DeadWood.updatePlayerVisual();
-                            if(room instanceof SceneRoom) ((SceneRoom) room).visit();
-                            return true;
-                        }
-                        if(usrEntry.trim().toLowerCase().equals("n"))
-                        {
-                            // Player wants to go back
-                            break;
-                        }
-                        if(selectedRoom instanceof SceneRoom && usrEntry.trim().toLowerCase().equals("i"))
-                        {
-                            // Player wants to see room info
-                            ((SceneRoom) selectedRoom).printSceneInfo();
-                            ((SceneRoom) selectedRoom).printRoleInfo();
-                            continue;
-                        }
-                        System.out.println("Invalid entry. Please try again.");
-                    }
-                    continue;*/
                 }
             }
             System.out.println("Invalid input. Please try again.");

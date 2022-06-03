@@ -1,4 +1,4 @@
-
+import java.util.HashMap;
 
 /*
 * Class: Room
@@ -12,17 +12,53 @@ public class Room
 	private int numActors;	// number of actors currently in the room
 	private String name;
 	private ObjCoord coord;
+	private int[][] placeable;
+	private HashMap<Integer, Integer> validPosition;
 	
 	/**
 	* Constructor
 	* Description:
 	*   A simple constructor which just sets name and coord and sets numActors to 0.
 	*/
-	public Room(String name, ObjCoord coord)
+	public Room(String name, ObjCoord coord, int[][] placeable)
 	{
 		this.name = name;
 		this.coord = coord;
 		numActors = 0;
+		this.placeable = placeable;
+		validPosition = new HashMap<Integer, Integer>();
+		/*for (int i = 0; i < 8; i++) {
+			validPosition.put(i, false);
+		}*/
+	}
+
+	public int getValidPosition(int id) {
+		int i;
+		for (i = 0; i < 8;i++) {
+			if (!validPosition.containsKey(i)) {
+				validPosition.put(i, id);
+				return i;
+			}
+			else if (validPosition.containsKey(i) && validPosition.get(i) == id) {
+				return i;
+			}
+		}
+		return i;
+	}
+	public int[] getPlaceable(int i) {
+		return placeable[i];
+	}
+
+	public void removeValidPosition(int id) {
+		for (int i = 0; i < 8; i++) {
+			if (validPosition.containsKey(i)) {
+				if (validPosition.get(i) == id) {
+					validPosition.remove(i, id);
+				}
+			}
+				
+		}
+		
 	}
 	
 	public String getName()
@@ -43,6 +79,17 @@ public class Room
 	public Room[] getNeighbors() {
 		return neighbors;
 	}
+
+	public int[][] getPlaceTrailer() {
+		int[][] a = {{1001,253}, {1001, 303}, {1001, 353}, {1001, 403}, {1071, 253}, {1071, 303}, {1071, 353}, {1071, 403}};
+		return a;
+	}
+
+	public int[][] getPlaceMainStreet() {
+		int [][] a = {{770, 70}, {820, 70}, {870, 70}, {920, 70}, {770, 120}, {820, 120}, {870, 120}, {920, 120}};
+		return a;
+	}
+
 
 	/*
 	* Function: action
