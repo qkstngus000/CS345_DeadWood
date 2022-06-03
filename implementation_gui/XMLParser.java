@@ -62,6 +62,7 @@ public class XMLParser {
 		Document doc = null;
 		Room[] parsedRoom = new Room[12];
 		int[][] upgradeInfo = new int[5][3];
+		int[][] placeable;
 		try {
 			doc = getDocFromFile(boardPath);
 			Element root = doc.getDocumentElement();
@@ -127,7 +128,49 @@ public class XMLParser {
 				// Get role coordinate
 				ObjCoord coord = parseCoord((Element) room);
 
-				Room curRoom = new SceneRoom(roomName, coord, numShots, coordList);
+				// Assign placeable location in the board
+				if (roomName.equals("Train Station")) {
+					if (debug) System.out.println("storing placeable location for train station");
+					placeable = new int[][] {{200, 20},{10, 190}, {60, 220}, {10, 240}, {10, 290}, {10, 340}, {10, 390}, {120, 390}};
+				}
+				else if (roomName.equals("Secret Hideout")) {
+					if (debug) System.out.println("storing placeable location for Secret Hideout");
+					placeable = new int[][] {{240, 815}, {290, 815}, {340, 815}, {390, 815}, {240, 860}, {290, 860}, {340, 860}, {390, 860}}; 
+				}
+				else if (roomName.equals("Church")) {
+					if (debug) System.out.println("storing placeable location for Church");
+					placeable = new int[][] {{730, 645}, {780, 645}, {730, 690}, {780, 690}, {830, 690}, {880, 690}, {610, 855}, {800, 855}};
+				}
+				else if (roomName.equals("Hotel")) {
+					if (debug) System.out.println("storing placeable location for Hotel");
+					placeable = new int[][] {{1000, 460}, {1050, 460}, {1000, 510}, {1000, 560}, {1000, 610}, {1100, 630}, {1150, 630}, {950, 695}};
+				}
+				else if (roomName.equals("Main Street")) {
+					if (debug) System.out.println("storing placeable location for Main Street");
+					placeable = new int[][] {{770, 70}, {820, 70}, {870, 70}, {920, 70}, {770, 120}, {820, 120}, {870, 120}, {920, 120}};
+				}
+				else if (roomName.equals("Jail")) {
+					if (debug) System.out.println("storing placeable location for Jail");
+					placeable = new int[][] {{290, 160}, {340, 160}, {390, 160}, {390, 205}, {440, 205}, {490, 205}, {490, 160}, {540, 160}};
+				}
+				else if (roomName.equals("General Store")) {
+					if (debug) System.out.println("storing placeable location for General Store");
+					placeable = new int[][] {{280, 375}, {325, 375}, {280, 417}, {330, 417}, {380, 405}, {430, 405}, {480, 405}, {530, 405}};
+				}
+				else if (roomName.equals("Ranch")) {
+					if (debug) System.out.println("storing placeable location for Ranch");
+					placeable = new int[][] {{265, 605}, {315, 605}, {365, 605}, {265, 655}, {315, 655}, {365, 655}, {540, 525}, {540, 575}};
+				}
+				else if (roomName.equals("Bank")) {
+					if (debug) System.out.println("storing placeable location for Bank");
+					placeable = new int[][] {{840, 460}, {840, 510}, {610, 600}, {660, 600}, {710, 600}, {760, 600}, {810, 600}, {860, 600}};
+				}
+				else {
+					if (debug) System.out.println("storing placeable location for Saloon");
+					placeable = new int[][] {{735, 230}, {785, 230}, {835, 230}, {885, 230}, {935, 230}, {935, 280}, {935, 330}, {935, 380}};
+				}
+
+				Room curRoom = new SceneRoom(roomName, coord, placeable,  numShots, coordList);
 				((SceneRoom) curRoom).setRoles(roleList);
 				
 				parsedRoom[i + 2] = curRoom;
@@ -170,12 +213,13 @@ public class XMLParser {
 				}
 			}
 			
-
+			placeable = new int[][] {{10, 470}, {10, 520}, {10, 570}, {10, 620}, {175, 470}, {175, 520}, {175, 570}, {175, 620}};
 			// Put office and trailer into room 10 & 11th index
-			Room castingOffice = new CastingOffice("office",parseCoord((Element) office), upgradeInfo);
+			Room castingOffice = new CastingOffice("office",parseCoord((Element) office), placeable, upgradeInfo);
 			parsedRoom[1] = castingOffice;
 
-			Room trailerRoom = new Room("trailer", parseCoord((Element) trailer));
+			placeable = new int[][] {{1001,253}, {1001, 303}, {1001, 353}, {1001, 403}, {1071, 253}, {1071, 303}, {1071, 353}, {1071, 403}};
+			Room trailerRoom = new Room("trailer", parseCoord((Element) trailer), placeable);
 			parsedRoom[0] = trailerRoom;
 
 			// Logs to check if name is correctly set for each obj.

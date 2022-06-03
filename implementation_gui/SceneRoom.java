@@ -27,9 +27,9 @@ public class SceneRoom extends Room
 	* Description:
 	*   Calls the parent constructor and initializes various fields. Also increments numScene.
 	*/
-	public SceneRoom(String name, ObjCoord coord, int maxShots, ObjCoord[] counterCoords)
+	public SceneRoom(String name, ObjCoord coord, int[][] placeable, int maxShots, ObjCoord[] counterCoords)
 	{
-		super(name, coord);
+		super(name, coord, placeable);
 		this.maxShots = maxShots;
 		curShot = 0;
 		actorInfo = new ArrayList<Player>();

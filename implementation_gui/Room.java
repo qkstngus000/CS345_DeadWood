@@ -12,17 +12,19 @@ public class Room
 	private int numActors;	// number of actors currently in the room
 	private String name;
 	private ObjCoord coord;
+	private int[][] placeable;
 	
 	/**
 	* Constructor
 	* Description:
 	*   A simple constructor which just sets name and coord and sets numActors to 0.
 	*/
-	public Room(String name, ObjCoord coord)
+	public Room(String name, ObjCoord coord, int[][] placeable)
 	{
 		this.name = name;
 		this.coord = coord;
 		numActors = 0;
+		this.placeable = placeable;
 	}
 	
 	public String getName()
@@ -43,6 +45,17 @@ public class Room
 	public Room[] getNeighbors() {
 		return neighbors;
 	}
+
+	public int[][] getPlaceTrailer() {
+		int[][] a = {{1001,253}, {1001, 303}, {1001, 353}, {1001, 403}, {1071, 253}, {1071, 303}, {1071, 353}, {1071, 403}};
+		return a;
+	}
+
+	public int[][] getPlaceMainStreet() {
+		int [][] a = {{770, 70}, {820, 70}, {870, 70}, {920, 70}, {770, 120}, {820, 120}, {870, 120}, {920, 120}};
+		return a;
+	}
+
 
 	/*
 	* Function: action

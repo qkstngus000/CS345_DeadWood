@@ -19,9 +19,9 @@ public class CastingOffice extends Room
 	* Description:
 	*   Calls the parent constructor as well as initializing castingInfo.
 	*/
-	public CastingOffice(String name, ObjCoord coord, int[][] castingInfo)
+	public CastingOffice(String name, ObjCoord coord, int[][] placeable, int[][] castingInfo)
 	{
-		super(name, coord);
+		super(name, coord, placeable);
 		this.castingInfo = castingInfo;
 		
 	}
