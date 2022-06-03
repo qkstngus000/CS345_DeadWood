@@ -180,10 +180,10 @@ public class View extends JFrame {
     * @param <T> Type of element to remove
     * @param element Element to be removed
     */
-   public <T extends Drawable> void removeElement(T element)
-   {
+   public <T extends Drawable> void removeElement(T element) {
       JLabel l = gameLabels.get((Drawable) element);
       if(l == null) return;
+      l.setVisible(false);
       bPane.remove(l);
       gameLabels.remove(element);
    }
