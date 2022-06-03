@@ -88,8 +88,12 @@ public class DeadWood {
 		return buttonNames.get(view.getButtonPressed());
 	}
 
-	public static void showError(String message) {
-		JOptionPane.showMessageDialog(view, message);
+	public static void showMessage(String message, String title) {
+		JOptionPane.showMessageDialog(view, message, title, JOptionPane.PLAIN_MESSAGE);
+	}
+
+	public static void showMessage(String message) {
+		JOptionPane.showMessageDialog(view, message, "Error", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	/*
@@ -123,6 +127,7 @@ public class DeadWood {
 		view.setPlayerCredits(p.getCredits());
 		view.setPlayerRoom(proom.getName());
 		view.setPlayerTokens(p.getRole() == null ? -1 : p.getToken());
+		view.setPlayerIcon(p.getImgPath());
 		view.updateInfo();
 		System.out.printf("\n~~~~~ %s's turn! ~~~~~%n", p.getName());
 		System.out.printf("rank: %d, dollar: %d\tcredit: %d\n", p.getRank(), p.getFunds(), p.getCredits());

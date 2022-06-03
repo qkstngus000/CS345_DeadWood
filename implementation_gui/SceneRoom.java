@@ -105,7 +105,7 @@ public class SceneRoom extends Room {
 		if (scene == null) {
 			// System.out.println("The scene in this room has finished. No action can be
 			// taken.");
-			DeadWood.showError("The scene in this room has finished. No action can be taken.");
+			DeadWood.showMessage("The scene in this room has finished. No action can be taken.");
 			return false;
 		}
 		Role[] cardRoles = scene.getRoles();
@@ -156,7 +156,7 @@ public class SceneRoom extends Room {
 					actorInfo.add(p);
 					return true;
 				}
-				DeadWood.showError(String.format("You need at least rank %d for this role. Current rank: %d%n",
+				DeadWood.showMessage(String.format("You need at least rank %d for this role. Current rank: %d%n",
 						selectedRole.getRank(), p.getRank()));
 				// System.out.printf("You need at least rank %d for this role. Current rank:
 				// %d%n",selectedRole.getRank(),p.getRank());
@@ -229,6 +229,7 @@ public class SceneRoom extends Room {
 	public void updateShot() {
 		if (++curShot == maxShots) {
 			System.out.println("Scene Finishing!");
+			String message = "Scene Finished!\n";
 			// Handle bonus payouts
 
 			// List main actors
@@ -244,6 +245,7 @@ public class SceneRoom extends Room {
 
 			// Only do bonus payouts if there are main actors
 			if (mainActors.size() != 0) {
+				message += "Bonus Payouts:\n";
 				mainActors.sort(new SortByRoleSize());
 				int[] bonusRoll = new int[scene.getBudget()];
 				int numRoles = scene.getRoles().length;
@@ -251,7 +253,8 @@ public class SceneRoom extends Room {
 				int[] bonus = new int[numRoles];
 				for (int i = 0; i < bonusRoll.length; i++) {
 					bonusRoll[i] = DeadWood.rollDice();
-					System.out.printf("Rolled: %d%n", bonusRoll[i]);
+					// System.out.printf("Rolled: %d%n", bonusRoll[i]);
+					message += String.format("\tRoll #%d: %d\n",i,bonusRoll[i]);
 				}
 
 				// Sort dice number from lowest value to largest
@@ -259,16 +262,19 @@ public class SceneRoom extends Room {
 
 				// Store lump sum bonus amount for distribution
 				int c = numRoles; // Keep track of bonus arrays
+				String[] bonusStr = new String[numRoles];
+				Arrays.fill(bonusStr,"");
 				for (int i = bonusRoll.length - 1; i >= 0; i--) {
 					c--;
 					bonus[c] += bonusRoll[i];
+					bonusStr[c] += String.format("+%d ",bonusRoll[i]);
 					if (c == 0) {
 						c = numRoles;
 					}
 				}
-				System.out.println("Bonus for main actor from lowest rank to highest rank is: ");
+				// System.out.println("Bonus for main actor from lowest rank to highest rank is: ");
 				for (int i = 0; i < bonus.length; i++) {
-					System.out.printf("\trank %d: %d\n", scene.getRoles()[i].getRank(), bonus[i]);
+					// System.out.printf("\trank %d: %d\n", scene.getRoles()[i].getRank(), bonus[i]);
 				}
 
 				int distOrder = 0;
@@ -276,8 +282,10 @@ public class SceneRoom extends Room {
 				for (int r = 0; r < mainRoles.length; r++) {
 					for (int j = 0; j < mainActors.size(); j++) {
 						if (mainRoles[r].equals(mainActors.get(j).getRole())) {
-							System.out.printf("%s in rank main role rank %d received %d dollars\n",
-									mainActors.get(j).getName(), mainRoles[r].getRank(), bonus[distOrder]);
+							// System.out.printf("%s in rank main role rank %d received %d dollars\n",
+							// 		mainActors.get(j).getName(), mainRoles[r].getRank(), bonus[distOrder]);
+							message += String.format("%s recieves bonus funds for their main role: %s= %d\n",
+									mainActors.get(j).getName(), bonusStr[distOrder],bonus[distOrder]);
 							mainActors.get(j).addFunds(bonus[distOrder]);
 						}
 					}
@@ -300,12 +308,18 @@ public class SceneRoom extends Room {
 				// pay extras according to their role rank
 				for (Player actor : extras) {
 					actor.addFunds(actor.getRole().getRank());
+					message += String.format("%s recieves bonus funds for their extra role: %d", actor.getName(),actor.getRole().getRank());
 				}
 			}
+			else
+			{
+				message += "No bonus payouts since there were no main actors.\n";
+			}
 
+			DeadWood.showMessage(message,"Scene Finished!");
 			closeRoom();
 		}
-		System.out.println("Current shots finished: " + curShot);
+		// System.out.println("Current shots finished: " + curShot);
 	}
 
 	private class SortByRoleSize implements Comparator<Player> {

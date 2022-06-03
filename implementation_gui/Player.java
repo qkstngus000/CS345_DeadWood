@@ -184,34 +184,47 @@ public class Player implements Drawable {
         int prevDollar = this.dollar;
         int prevCredit = this.credit;
         int diceNum = DeadWood.rollDice();
-        System.out.printf("%s is acting!%nRolled a %d + %d = %d%n", name, diceNum, token, diceNum + token);
+        // System.out.printf("%s is acting!%nRolled a %d + %d = %d%n", name, diceNum, token, diceNum + token);
         if (room instanceof SceneRoom) {
             SceneRoom playerRoom = ((SceneRoom) room);
+            String message = String.format("You rolled: %d (+%d rehearsal bonus) = %d\nThe budget of this scene is: %d\n",
+                            diceNum,token,diceNum+token,playerRoom.getScene().getBudget());
             if (diceNum + token >= playerRoom.getScene().getBudget()) {
                 // If dice+token >= budget && main role
+                message += "Success!\n";
                 if (role.getMainRole() == true) {
                     credit += 2;
-                    System.out.println("2 Credit added to main role player");
+                    // System.out.println("2 Credit added to main role player");
+                    message += "You get +2 credits for completing a shot on a main role.\n";
+
                 }
 
                 // If dice+token >= budget && extra role
                 else {
                     dollar++;
                     credit++;
-                    System.out.println("1 dollar and 1 credit added to extra role player");
+                    message += "You get +1 dollar and +1 credit for completing a shot on an extra role.\n";
+                    // System.out.println("1 dollar and 1 credit added to extra role player");
                 }
+                DeadWood.showMessage(message,"Acting!");
                 playerRoom.updateShot();
             }
 
             // If player has extra role and failed to roll dice >= budget
             else {
+                message += new String[]{"Better luck next time!\n","CUT!!!!!\n","We'll fix it in post...\n",
+                                "You've got to get more into your character!\n","Less than stellar performance...\n",
+                                "Pro tip: next time rememeber your lines!\n"}[((int) (Math.random()*6))];
                 if (role.getMainRole() == false) {
                     dollar++;
-                    System.out.println("1 dollar added to extra role player");
+                    message += "You get +1 dollar even though you failed, because you were an extra.\n";
+                    // System.out.println("1 dollar added to extra role player");
                 }
+                DeadWood.showMessage(message,"Acting!");
             }
         }
-        System.out.printf("dollar: %d --> %d\tcredit: %d --> %d\n\n\n", prevDollar, dollar, prevCredit, credit);
+        // System.out.printf("dollar: %d --> %d\tcredit: %d --> %d\n\n\n", prevDollar, dollar, prevCredit, credit);
+
     }
 
     /*
@@ -233,10 +246,11 @@ public class Player implements Drawable {
         if ((role != null) && token < budget - 1) {
 
             this.token += 1;
-            System.out.printf("Rehearse bonus increased by +1! (current bonus: +%d)%n", token);
+            // System.out.printf("Rehearse bonus increased by +1! (current bonus: +%d)%n", token);
+            DeadWood.showMessage(String.format("Rehearsal bonus increased by +1! (current bonus: +%d)",token),"Rehearsing!");
             return true;
         }
-        DeadWood.showError("Rehearsing any more will have no benefit.");
+        DeadWood.showMessage("Rehearsing any more will have no benefit.");
         // System.out.println("Rehearsing any more will have no benefit. (current bonus:
         // 6)");
         return false;

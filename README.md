@@ -3,10 +3,10 @@ Build a DeadWood studio board game with partner
 
 Instruction on Running DeadWood Game
     1. Open terminal
-    2. cd into implementation directory
+    2. cd into implementation_gui directory
     3. Type ""make""
     4. In terminal, move back to parent directory, which is named CS345_DEADWOOD directory
-    5. In terminal, type ""java implementation/DeadWood"" to play game.
+    5. In terminal, type ""java implementation_gui/DeadWood"" to play game.
 
     *** NOTE: Do not type "" part
 

@@ -215,11 +215,11 @@ public class XMLParser {
 			
 			placeable = new int[][] {{10, 470}, {10, 520}, {10, 570}, {10, 620}, {175, 470}, {175, 520}, {175, 570}, {175, 620}};
 			// Put office and trailer into room 10 & 11th index
-			Room castingOffice = new CastingOffice("office",parseCoord((Element) office), placeable, upgradeInfo);
+			Room castingOffice = new CastingOffice("Casting Office",parseCoord((Element) office), placeable, upgradeInfo);
 			parsedRoom[1] = castingOffice;
 
 			placeable = new int[][] {{1001,253}, {1001, 303}, {1001, 353}, {1001, 403}, {1071, 253}, {1071, 303}, {1071, 353}, {1071, 403}};
-			Room trailerRoom = new Room("trailer", parseCoord((Element) trailer), placeable);
+			Room trailerRoom = new Room("Trailers", parseCoord((Element) trailer), placeable);
 			parsedRoom[0] = trailerRoom;
 
 			// Logs to check if name is correctly set for each obj.

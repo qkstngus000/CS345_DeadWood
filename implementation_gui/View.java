@@ -41,6 +41,7 @@ public class View extends JFrame {
    private int playerCredits;
    private String playerRoom;
    private int playerTokens;
+   private String playerIcon;
 
    // Constructor
    public View() {
@@ -71,7 +72,9 @@ public class View extends JFrame {
       // Create the Menu for action buttons
       mLabel = new JLabel();
       mLabel.setVerticalAlignment(SwingConstants.TOP);
-      mLabel.setBounds(icon.getIconWidth() + 10, 0, 160, 200);
+      mLabel.setBounds(icon.getIconWidth() + 10, 10, 160, 190);
+      mLabel.setVerticalTextPosition(SwingConstants.TOP);
+      mLabel.setHorizontalTextPosition(SwingConstants.LEFT);
       bPane.add(mLabel, Integer.valueOf(2));
 
       // Create Action buttons
@@ -97,6 +100,7 @@ public class View extends JFrame {
       mLabel.setText(String.format(
             "<html><body><h3>%s'S TURN!</h3><p>rank: %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4>%s</body></html>",
             playerName.toUpperCase(), playerRank, playerFunds, playerCredits, playerRoom, tokenInfo));
+      if(playerIcon != null) mLabel.setIcon(new ImageIcon(playerIcon));
       // mLabel.setText(String.format("<html><body><h3>%s'S TURN!</h3><p>rank:
       // %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4></body></html>",
       // playerName.toUpperCase(),playerRank,playerFunds,playerCredits,playerRoom));
@@ -126,16 +130,8 @@ public class View extends JFrame {
       this.playerTokens = playerTokens;
    }
 
-   public void drawScene() {
-      // Add a scene card to this room
-      cardlabel = new JLabel();
-      ImageIcon cIcon = new ImageIcon("../images/card_back.png");
-      cardlabel.setIcon(cIcon);
-      cardlabel.setBounds(20, 65, cIcon.getIconWidth() + 2, cIcon.getIconHeight());
-      cardlabel.setOpaque(true);
-
-      // Add the card to the lower layer
-      bPane.add(cardlabel, Integer.valueOf(2));
+   public void setPlayerIcon(String playerIcon){
+      this.playerIcon = playerIcon;
    }
 
    /**
@@ -175,40 +171,6 @@ public class View extends JFrame {
       gameLabels.remove(element);
    }
 
-   /**
-    * Draws Player icons to the board.
-    * 
-    * @Deprecated
-    * @param players list of players
-    */
-   public void drawPlayers(Player[] players) {
-      // String path = "../images/dice/";
-      // System.out.println("fullpath " + String.format("%s%s%d.png", path,
-      // players[i].getName(), players[i].getRank()));
-      // Add a dice to represent a player.
-      // Role for Crusty the prospector. The x and y co-ordiantes are taken from
-      // Board.xml file
-      // ImageIcon[] pIcon = new ImageIcon[players.length];
-      for (int i = 0; i < players.length; i++) {
-         System.out.println(i);
-         playerlabel = new JLabel();
-
-         ImageIcon pIcon = new ImageIcon(players[i].getImgPath());
-         System.out.println("icon: " + pIcon);
-         // ImageIcon pIcon = new ImageIcon(String.format("%s%s%d.png", path,
-         // players[i].getName(), players[i].getRank()));
-         playerlabel.setIcon(pIcon);
-         Room curRoom = players[i].getRoom();
-         // curRoom.get
-         int x_adj = i * pIcon.getIconWidth();
-         playerlabel.setBounds(114 + x_adj, 227, pIcon.getIconWidth(), pIcon.getIconHeight());
-         // playerlabel.setBounds(114,227,46,46);
-
-         playerlabel.setVisible(true);
-         bPane.add(playerlabel, Integer.valueOf(3));
-      }
-
-   }
 
    /**
     * Updates the shot counters for a room in order to accurately reflect the
@@ -234,53 +196,7 @@ public class View extends JFrame {
       }
    }
 
-   // Draw and update the token
-   /*
-    * public void drawShots(SceneRoom room) {
-    * String path = "../images/shot.png";
-    * ObjCoord[] shotCoord = room.getShotCoord();
-    * for (int i = 0; i < shotCoord.length; i++) {
-    * shotlabel = new JLabel();
-    * ImageIcon shotIcon = new ImageIcon(path);
-    * shotlabel.setBounds(shotCoord[i].getX(), shotCoord[i].getY(),
-    * shotIcon.getIconWidth(), shotIcon.getIconHeight());
-    * shotlabel.setVisible(true);
-    * System.out.println("X_cord: " + shotCoord[i].getX());
-    * bPane.add(shotlabel,Integer.valueOf(4));
-    * }
-    * 
-    * }
-    */
-
-   /*
-    * public void drawMenu() {
-    * // Create the Menu for action buttons
-    * mLabel = new JLabel("MENU");
-    * mLabel.setBounds(icon.getIconWidth()+40,0,100,20);
-    * bPane.add(mLabel,new Integer(2));
-    * 
-    * // Create Action buttons
-    * bAct = new JButton("ACT");
-    * bAct.setBackground(Color.white);
-    * bAct.setBounds(icon.getIconWidth()+10, 30,100, 20);
-    * bAct.addMouseListener(new boardMouseListener());
-    * 
-    * bRehearse = new JButton("REHEARSE");
-    * bRehearse.setBackground(Color.white);
-    * bRehearse.setBounds(icon.getIconWidth()+10,60,100, 20);
-    * bRehearse.addMouseListener(new boardMouseListener());
-    * 
-    * bMove = new JButton("MOVE");
-    * bMove.setBackground(Color.white);
-    * bMove.setBounds(icon.getIconWidth()+10,90,100, 20);
-    * bMove.addMouseListener(new boardMouseListener());
-    * 
-    * // Place the action buttons in the top layer
-    * bPane.add(bAct, new Integer(2));
-    * bPane.add(bRehearse, new Integer(2));
-    * bPane.add(bMove, new Integer(2));
-    * }
-    */
+   
 
    // TODO Change # player to be greater than 2 ---------------Michael
    public int askNumPlayer() {
@@ -322,6 +238,7 @@ public class View extends JFrame {
          if (i < len) {
             buttons[i].setVisible(true);
             buttons[i].setText(buttonNames.get(i));
+            buttons[i].setToolTipText(buttonNames.get(i));
          } else
             buttons[i].setVisible(false);
       }

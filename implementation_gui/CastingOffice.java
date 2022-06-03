@@ -150,10 +150,11 @@ public class CastingOffice extends Room
 				// User purchasing rank with money
 				if(p.subtractFunds(castingInfo[r-2][1]))
 				{
+					DeadWood.showMessage(String.format("Rank upgraded from %d to %d!\nPaid: $%d",p.getRank(),r,castingInfo[r-2][1]),"Purchasing Rank!");
 					p.setRank(r);
 					return true;
 				}
-				DeadWood.showError(String.format("Insufficient funds.\nOwned: $%d\nRequired $%d",p.getFunds(),castingInfo[r-2][1]));
+				DeadWood.showMessage(String.format("Insufficient funds.\nOwned: $%d\nRequired $%d",p.getFunds(),castingInfo[r-2][1]));
 				// System.out.println("Insufficient funds.");
 			}
 			else
@@ -161,10 +162,11 @@ public class CastingOffice extends Room
 				// User purchasing rank with credits
 				if(p.subtractCredits(castingInfo[r-2][2]))
 				{
+					DeadWood.showMessage(String.format("Rank upgraded from %d to %d!\nPaid: %d credits",p.getRank(),r,castingInfo[r-2][2]),"Purchasing Rank!");
 					p.setRank(r);
 					return true;
 				}
-				DeadWood.showError(String.format("Insufficient credits.\nOwned: %d\nRequired %d",p.getCredits(),castingInfo[r-2][2]));
+				DeadWood.showMessage(String.format("Insufficient credits.\nOwned: %d\nRequired %d",p.getCredits(),castingInfo[r-2][2]));
 				// System.out.println("Insufficient credits.");
 			}
 		}
