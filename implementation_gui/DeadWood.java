@@ -365,6 +365,10 @@ public class DeadWood {
 		}
 		return true;
 	}
+
+	public static void updatePlayerPosition(Player p) {
+		view.drawElement(p);
+	}
 	
     /*
      * main function

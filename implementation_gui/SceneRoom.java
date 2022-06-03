@@ -344,6 +344,7 @@ public class SceneRoom extends Room
 		{
 			actor.removeRole();
 			actor.resetRehearse();
+			DeadWood.updatePlayerPosition(actor);
 		}
 		actorInfo.clear();
 	}
