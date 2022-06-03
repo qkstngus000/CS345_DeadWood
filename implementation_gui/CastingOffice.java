@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
 * Class: CastingOffice
@@ -84,35 +85,39 @@ public class CastingOffice extends Room
 		// Repeat until the user enters a valid input
 		while(true)
 		{
-			System.out.println("Enter the level of rank you'd like to buy, or 'q' to go back:");
-			String usrEntry = DeadWood.feed.nextLine();
-			if(usrEntry.trim().toLowerCase().equals("q"))
+			// System.out.println("Enter the level of rank you'd like to buy, or 'q' to go back:");
+			// String usrEntry = DeadWood.feed.nextLine();
+
+			ArrayList<String> options = new ArrayList<String>();
+			for(int i = p.getRank()-1; i < castingInfo.length; i++)
+			{
+				options.add("Purchase Rank "+(i+2));
+			}
+			options.add("Go Back");
+
+			String usrEntry = DeadWood.getButtonInput(options);
+
+			if(usrEntry.equals("Go Back"))
 			{
 				// User entered back command
 				return false;
 			}
-			if(DeadWood.isInteger(usrEntry.trim()))
+			else for(int i = p.getRank()-1; i < castingInfo.length; i++)
 			{
-				// User entered an integer
-				int selection = Integer.parseInt(usrEntry.trim());
-
-				if(selection > 1 && selection <= castingInfo.length-1)
+				if(usrEntry.equals("Purchase Rank "+(i+2)))
 				{
 					// User entered a valid rank
-					if(selection > p.getRank())
+					if(i+2 > p.getRank())
 					{
 						// User entered a purchaseable rank
-						if(purchaseRank(p,selection))
+						if(purchaseRank(p,i+2))
 						{
 							return true;
 						}
 						continue;
 					}
-					System.out.println("You already have a rank of equal or higher level.");
-					continue;
 				}
 			}
-			System.out.println("Invalid entry. Please try again.");
 		}
 	}
 
@@ -125,19 +130,22 @@ public class CastingOffice extends Room
 	 */
 	private boolean purchaseRank(Player p, int r)
 	{
-		
-
-		// Repeat until the user enters a valid input
+		// Loop until player successfully buys a rank or backs out
 		while(true)
 		{
-			System.out.println("Enter 'm' to pay with money, 'c' to pay with credits, or 'q' to go back:");
-			String usrEntry = DeadWood.feed.nextLine();
-			if(usrEntry.trim().toLowerCase().equals("q"))
+			// System.out.println("Enter 'm' to pay with money, 'c' to pay with credits, or 'q' to go back:");
+			ArrayList<String> options = new ArrayList<String>();
+			options.add("Buy With Cash");
+			options.add("Buy With Credits");
+			options.add("Go Back");
+	
+			String usrEntry = DeadWood.getButtonInput(options);
+			if(usrEntry.equals("Go Back"))
 			{
 				// User entered back command
 				return false;
 			}
-			if(usrEntry.trim().toLowerCase().equals("m"))
+			else if(usrEntry.equals("Buy With Cash"))
 			{
 				// User purchasing rank with money
 				if(p.subtractFunds(castingInfo[r-2][1]))
@@ -146,9 +154,8 @@ public class CastingOffice extends Room
 					return true;
 				}
 				System.out.println("Insufficient funds.");
-				continue;
 			}
-			if(usrEntry.trim().toLowerCase().equals("c"))
+			else
 			{
 				// User purchasing rank with credits
 				if(p.subtractCredits(castingInfo[r-2][2]))
@@ -156,10 +163,8 @@ public class CastingOffice extends Room
 					p.setRank(r);
 					return true;
 				}
-				System.out.println("Insufficient funds.");
-				continue;
+				System.out.println("Insufficient credits.");
 			}
-			System.out.println("Invalid entry. Please try again.");
 		}
 	}
 }

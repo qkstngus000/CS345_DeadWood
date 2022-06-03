@@ -313,7 +313,7 @@ public class Player implements Drawable {
 
 
     public boolean subtractFunds(int dollar) {
-        if ((this.dollar - dollar) > 0) {
+        if ((this.dollar - dollar) >= 0) {
             this.dollar -= dollar;
             return true;
         }
@@ -321,7 +321,7 @@ public class Player implements Drawable {
     }
 
     public boolean subtractCredits(int credit) {
-        if ((this.credit - credit) > 0) {
+        if ((this.credit - credit) >= 0) {
             this.credit -= credit;
             return true;
         }
