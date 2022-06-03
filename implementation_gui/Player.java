@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /*
  * Class: Player
@@ -130,114 +131,7 @@ public class Player implements Drawable {
         return token;
     }
 
-    /**
-     * Interact with DeadWood manager and keep track of the turn
-     * as there are going to be many Player objects. <p>
-     * 
-     * Options:
-     *      If player currently has a role:
-     *          Act / Rehearse
-     *      else
-     *          Move / take room action
-     *      
-     * 
-     * If action returns false, the player backed out without actually doing 
-     * anything so they should be presented with the same options again.
-     * @Deprecated
-     */
-    public void playerTurn() {
-
-        System.out.printf("\n~~~~~ %s's turn! ~~~~~%n",name);
-        System.out.printf("rank: %d, dollar: %d\tcredit: %d\n", rank, dollar, credit);
-        if(role == null)
-        {
-            // Player has no role so they can move and/or take a room action
-            boolean moved = false;
-            boolean actionPerformed = false;
-            while(!moved||!actionPerformed)
-            {
-                // Print options
-                System.out.printf("~~~~ You are in: %s%n",room.getName());
-                System.out.println("You may move once and/or take one action during your turn.\nEnter what you would like to do:");
-                if(!moved)
-                {
-                    System.out.println("\t'm': Move");
-                }
-                if(!actionPerformed)
-                {
-                    System.out.println("\t'a': Take Action");
-                }
-                System.out.println("\t'e': End Turn");
-                // Take input
-                String usrEntry = DeadWood.feed.nextLine();
-                if(!moved && usrEntry.trim().toLowerCase().equals("m"))
-                {
-                    // Player wants to move
-                    if(move())
-                    {
-                        moved = true;
-                    }
-                    continue;
-                }
-                if(!actionPerformed && usrEntry.trim().toLowerCase().equals("a"))
-                {
-                    // Player wants to take action
-                    if(room.action(this))
-                    {
-                        actionPerformed = true;
-
-                        // End turn if player took a role in a sceneroom
-                        if(role != null)
-                        {
-                            break;
-                        }
-                    }
-                    continue;
-                }
-                if(usrEntry.trim().toLowerCase().equals("e"))
-                {
-                    // Player ends their turn
-                    break;
-                }
-                System.out.println("Invalid input. Please try again.");
-            }
-        }
-        else
-        {
-            // Player has a role so they can act or rehearse
-            while(true)
-            {
-                // Loop until player enters valid input
-
-                // Print options
-                System.out.printf("~~~~ You are in: %s%n",room.getName());
-                ((SceneRoom) room).printSceneInfo();
-                System.out.printf("~~ Your role is: %s (Rank: %d)%n",role.getName(),role.getRank());
-                System.out.printf("You have +%d to any acting roll from your rehearsal bonus.%n",token);
-                System.out.println("You may act or rehearse. Enter what you would like to do:");
-                System.out.println("\t'a': Act");
-                System.out.println("\t'r': Rehearse");
-                // Take input
-                String usrEntry = DeadWood.feed.nextLine();
-                if(usrEntry.trim().toLowerCase().equals("a"))
-                {
-                    // Player wants to act
-                    act();
-                    break;
-                }
-                if(usrEntry.trim().toLowerCase().equals("r"))
-                {
-                    // Player wants to rehearse
-                    if(rehearse())
-                    {
-                        break;
-                    }
-                    continue;
-                }
-                System.out.println("Invalid input. Please try again.");
-            }
-        }
-    }
+    
 
     /*
      * Function: calcScore
@@ -384,39 +278,36 @@ public class Player implements Drawable {
      */
     public boolean move() {
         Room[] neighborRoom = room.getNeighbors();
-        while(true)
-        {
-            // Loop until user enters valid input
 
-            // Show available rooms to move
-            System.out.println("Nearby rooms: ");
-            for (int i = 0; i < neighborRoom.length; i++) {
-                System.out.printf("\t%d: %s%n", i+1, neighborRoom[i].getName());
-            }
-            System.out.println("Please enter the number of the room you'd like to move to or 'q' to go back:");
-            String usrEntry = DeadWood.feed.nextLine();
-            if(usrEntry.trim().toLowerCase().equals("q"))
-            {
-                // Player backed out
-                return false;
-            }
-            if(DeadWood.isInteger(usrEntry.trim()))
-            {
-                // Player entered an integer
-                int selection = Integer.parseInt(usrEntry.trim());
-                if (selection > 0 && selection <= neighborRoom.length) {
-                    // Player entered a valid room number
-                    Room selectedRoom = neighborRoom[selection-1];
-
-                    room.removeValidPosition(id);
-                    // Move the player
-                    setRoom(selectedRoom);
-                    if(room instanceof SceneRoom) ((SceneRoom) room).visit();
-                    return true;
-                }
-            }
-            System.out.println("Invalid input. Please try again.");
+        ArrayList<String> options = new ArrayList<String>();
+        // Show available rooms to move
+        // System.out.println("Nearby rooms: ");
+        for (int i = 0; i < neighborRoom.length; i++) {
+            // System.out.printf("\t%d: %s%n", i+1, neighborRoom[i].getName());
+            options.add(neighborRoom[i].getName());
         }
+        options.add("Go Back");
+        // System.out.println("Please enter the number of the room you'd like to move to or 'q' to go back:");
+        
+        // String usrEntry = DeadWood.feed.nextLine();
+        String usrEntry = DeadWood.getButtonInput(options);
+        if(usrEntry.equals("Go Back"))
+        {
+            // Player backed out
+            return false;
+        }
+        for(Room r : neighborRoom)
+        {
+            if(usrEntry.equals(r.getName()))
+            {
+                // Player chose a room to move to
+                setRoom(r);
+                if(room instanceof SceneRoom) ((SceneRoom) room).visit();
+                return true;
+            }
+        }
+        // should never reach here
+        return false;
     }
 
 

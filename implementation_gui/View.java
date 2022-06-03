@@ -344,11 +344,11 @@ public class View extends JFrame {
             if(e.getSource() == buttons[i])
             {
                // Set buttonPressedIndex and hide buttons
-               buttonPressedIndex = i;
                for(JButton button : buttons)
                {
                   button.setVisible(false);
                }
+               buttonPressedIndex = i;
                System.out.printf("Button #%d was pressed!\n",i);
                return;
             }
