@@ -110,7 +110,8 @@ public class SceneRoom extends Room
 		// If scene is finished, print a message and return
 		if(scene == null)
 		{
-			System.out.println("The scene in this room has finished. No action can be taken.");
+			// System.out.println("The scene in this room has finished. No action can be taken.");
+			DeadWood.showError("The scene in this room has finished. No action can be taken.");
 			return false;
 		}
 		Role[] cardRoles = scene.getRoles();
