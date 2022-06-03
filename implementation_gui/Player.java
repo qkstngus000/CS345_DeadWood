@@ -126,6 +126,9 @@ public class Player implements Drawable {
     public Room getRoom() {
         return this.room;
     }
+    public int getToken() {
+        return token;
+    }
 
     /**
      * Interact with DeadWood manager and keep track of the turn
@@ -404,7 +407,7 @@ public class Player implements Drawable {
                 if (selection > 0 && selection <= neighborRoom.length) {
                     // Player entered a valid room number
                     Room selectedRoom = neighborRoom[selection-1];
-                    
+
                     room.removeValidPosition(id);
                     // Move the player
                     setRoom(selectedRoom);
