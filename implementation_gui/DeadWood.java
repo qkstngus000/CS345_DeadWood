@@ -111,6 +111,12 @@ public class DeadWood {
 
 
 		// TODO adapt this to a gui display
+		view.setPlayerName(p.getName());
+		view.setPlayerRank(p.getRank());
+		view.setPlayerFunds(p.getFunds());
+		view.setPlayerCredits(p.getCredits());
+		view.setPlayerRoom(proom.getName());
+		view.updateInfo();
 		System.out.printf("\n~~~~~ %s's turn! ~~~~~%n",p.getName());
         System.out.printf("rank: %d, dollar: %d\tcredit: %d\n", p.getRank(), p.getFunds(), p.getCredits());
         if(p.getRole() == null)
@@ -148,7 +154,11 @@ public class DeadWood {
 						{
 							view.drawElement(((SceneRoom) proom).getScene());
 						}
+						// draw player
 						view.drawElement(p);
+						// update info
+						view.setPlayerRoom(proom.getName());
+						view.updateInfo();
                     }
                     continue;
                 }
@@ -158,7 +168,15 @@ public class DeadWood {
                     if(proom.action(p))
                     {
                         actionPerformed = true;
+
+						// draw player
 						view.drawElement(p);
+						
+						// update rank and currencies
+						view.setPlayerRank(p.getRank());
+						view.setPlayerFunds(p.getFunds());
+						view.setPlayerCredits(p.getCredits());
+						view.updateInfo();
 
                         // End turn if player took a role in a sceneroom
                         if(p.getRole() != null)
@@ -199,15 +217,20 @@ public class DeadWood {
                 {
                     // Player wants to act
                     p.act();
-					// TODO redraw shot counters for proom
 
-					// Remove SceneCard from view if scene is finished
+					// Draw player
 					view.drawElement(p);
+					// Remove SceneCard from view if scene is finished
 					if(!((SceneRoom) proom).getActive())
 					{
 						view.removeElement(((SceneRoom) proom).getScene());
 					}
+					// Update shot counters
 					view.drawShotCounters((SceneRoom) proom);
+					// Update players currencies
+					view.setPlayerFunds(p.getFunds());
+					view.setPlayerCredits(p.getCredits());
+					view.updateInfo();
                     break;
                 }
                 if(usrEntry.trim().toLowerCase().equals("r"))

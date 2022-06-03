@@ -34,52 +34,60 @@ public class View extends JFrame {
    // JLayered Pane
    JLayeredPane bPane;
    
+   // Info
+   private String playerName;
+   private int playerRank;
+   private int playerFunds;
+   private int playerCredits;
+   private String playerRoom;
+   private int playerTokens;
 
    // Constructor
    public View() {
       
-       // Set the title of the JFrame
-       super("Deadwood");
-       // Set the exit option for the JFrame
-       setDefaultCloseOperation(EXIT_ON_CLOSE);
+      // Set the title of the JFrame
+      super("Deadwood");
+      // Set the exit option for the JFrame
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
+   
+      // Create the JLayeredPane to hold the display, cards, dice and buttons
+      bPane = getLayeredPane();
+   
+      // Create the deadwood board
+      boardlabel = new JLabel();
+      ImageIcon icon =  new ImageIcon("../images/board.jpg");
+      boardlabel.setIcon(icon); 
+      boardlabel.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
       
-       // Create the JLayeredPane to hold the display, cards, dice and buttons
-       bPane = getLayeredPane();
-    
-       // Create the deadwood board
-       boardlabel = new JLabel();
-       ImageIcon icon =  new ImageIcon("../images/board.jpg");
-       boardlabel.setIcon(icon); 
-       boardlabel.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
-      
-       // Add the board to the lowest layer
-       bPane.add(boardlabel, Integer.valueOf(0));
+      // Add the board to the lowest layer
+      bPane.add(boardlabel, Integer.valueOf(0));
       
       // Initialize the game element hashmap
       gameLabels = new HashMap<Drawable,JLabel>();
 
-       // Set the size of the GUI
-       setSize(icon.getIconWidth()+200,icon.getIconHeight());
+      // Set the size of the GUI
+      setSize(icon.getIconWidth()+200,icon.getIconHeight());
 
-             // Create the Menu for action buttons
-      mLabel = new JLabel("MENU");
-      mLabel.setBounds(icon.getIconWidth()+40,0,100,20);
+      // Create the Menu for action buttons
+      mLabel = new JLabel();
+      mLabel.setVerticalAlignment(SwingConstants.TOP);
+      mLabel.setBounds(icon.getIconWidth()+10,0,180,200);
       bPane.add(mLabel,Integer.valueOf(2));
 
       // Create Action buttons
       bAct = new JButton("ACT");
       bAct.setBackground(Color.white);
-      bAct.setBounds(icon.getIconWidth()+10, 30,100, 20);
+      bAct.setBounds(icon.getIconWidth()+10, 210,100, 20);
       bAct.addMouseListener(new boardMouseListener());
       
       bRehearse = new JButton("REHEARSE");
       bRehearse.setBackground(Color.white);
-      bRehearse.setBounds(icon.getIconWidth()+10,60,100, 20);
+      bRehearse.setBounds(icon.getIconWidth()+10,240,100, 20);
       bRehearse.addMouseListener(new boardMouseListener());
       
       bMove = new JButton("MOVE");
       bMove.setBackground(Color.white);
-      bMove.setBounds(icon.getIconWidth()+10,90,100, 20);
+      bMove.setBounds(icon.getIconWidth()+10,270,100, 20);
       bMove.addMouseListener(new boardMouseListener());
 
       // Place the action buttons in the top layer
@@ -88,6 +96,48 @@ public class View extends JFrame {
       bPane.add(bMove, Integer.valueOf(2));
 
       this.setVisible(true);
+   }
+
+   /**
+    * updates the text above the button menu. Must be called by whenever info is changed in order to see the change.
+    */
+   public void updateInfo()
+   {
+      // String tokenInfo = playerTokens < 0 ? "" : String.format("<p>rehearsal bonus: +%d</p>",playerTokens);
+      // mLabel.setText(String.format("<html><body><h3>%s'S TURN!</h3><p>rank: %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4>%s</body></html>",
+      //             playerName.toUpperCase(),playerRank,playerFunds,playerCredits,playerRoom,tokenInfo));
+      mLabel.setText(String.format("<html><body><h3>%s'S TURN!</h3><p>rank: %d</p><p>funds: %d</p><p>credits: %d</p><h4>Room: %s</h4></body></html>",
+                  playerName.toUpperCase(),playerRank,playerFunds,playerCredits,playerRoom));
+   }
+
+   public void setPlayerName(String playerName)
+   {
+      this.playerName = playerName;
+   }
+
+   public void setPlayerRank(int playerRank)
+   {
+      this.playerRank = playerRank;
+   }
+
+   public void setPlayerFunds(int playerFunds)
+   {
+      this.playerFunds = playerFunds;
+   }
+
+   public void setPlayerCredits(int playerCredits)
+   {
+      this.playerCredits = playerCredits;
+   }
+
+   public void setPlayerRoom(String playerRoom)
+   {
+      this.playerRoom = playerRoom;
+   }
+
+   public void setPlayerTokens(int playerTokens)
+   {
+      this.playerTokens = playerTokens;
    }
 
    public void drawScene() {
@@ -272,7 +322,7 @@ public class View extends JFrame {
       public void mouseClicked(MouseEvent e) {
          
          if (e.getSource()== bAct){
-            playerlabel.setVisible(true);
+            // playerlabel.setVisible(true);
             System.out.println("Acting is Selected\n");
 
             // Call game functions in this mouse click to update info
