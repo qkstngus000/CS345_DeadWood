@@ -137,12 +137,20 @@ public class DeadWood {
 					else if(proom instanceof SceneRoom) options.add("Take Role");
                 }
 				options.add("End Turn");
-                System.out.println("\t'e': End Turn");
+                // System.out.println("\t'e': End Turn");
                 // Take input
 				// TODO change this to button input
 				view.showButtonMenu(options);
-                String usrEntry = DeadWood.feed.nextLine();
-                if(!moved && usrEntry.trim().toLowerCase().equals("m"))
+                // String usrEntry = DeadWood.feed.nextLine();
+				// Wait for input
+				while(view.getButtonPressed()<0) Thread.yield();
+				String usrEntry = options.get(view.getButtonPressed());
+                if(usrEntry.equals("End Turn"))
+                {
+                    // Player ends their turn
+                    break;
+                }
+                if(usrEntry.equals("Move"))
                 {
                     // Player wants to move
                     if(p.move())
@@ -162,7 +170,7 @@ public class DeadWood {
                     }
                     continue;
                 }
-                if(!actionPerformed && usrEntry.trim().toLowerCase().equals("a"))
+                else
                 {
                     // Player wants to take action
                     if(proom.action(p))
@@ -186,12 +194,6 @@ public class DeadWood {
                     }
                     continue;
                 }
-                if(usrEntry.trim().toLowerCase().equals("e"))
-                {
-                    // Player ends their turn
-                    break;
-                }
-                System.out.println("Invalid input. Please try again.");
             }
         }
         else
@@ -212,8 +214,16 @@ public class DeadWood {
                 System.out.println("\t'r': Rehearse");
                 // Take input
 				// TODO change this to button input
-                String usrEntry = DeadWood.feed.nextLine();
-                if(usrEntry.trim().toLowerCase().equals("a"))
+                // String usrEntry = DeadWood.feed.nextLine();
+				ArrayList<String> options = new ArrayList<String>();
+				options.add("Act");
+				options.add("Rehearse");
+				view.showButtonMenu(options);
+
+				// Wait for button press
+				while(view.getButtonPressed()<0) Thread.yield();
+				int usrEntry = view.getButtonPressed();
+                if(usrEntry == 0)
                 {
                     // Player wants to act
                     p.act();
@@ -233,7 +243,7 @@ public class DeadWood {
 					view.updateInfo();
                     break;
                 }
-                if(usrEntry.trim().toLowerCase().equals("r"))
+                else
                 {
                     // Player wants to rehearse
                     if(p.rehearse())
@@ -244,7 +254,6 @@ public class DeadWood {
                     }
                     continue;
                 }
-                System.out.println("Invalid input. Please try again.");
             }
         }
 
@@ -297,7 +306,7 @@ public class DeadWood {
 
 			
 			// Loop for turns
-			while(board.getScenesLeft() > 0)
+			while(board.getScenesLeft() > 1)
 			{
 				// do player turn
 				nextTurnPlayer();
