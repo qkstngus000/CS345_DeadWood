@@ -79,6 +79,13 @@ public class DeadWood {
 		view.removeElement(scene);
 	}
 
+	public static String getButtonInput(ArrayList<String> buttonNames)
+	{
+		view.showButtonMenu(buttonNames);
+		while(view.getButtonPressed()<0) Thread.yield();
+		return buttonNames.get(view.getButtonPressed());
+	}
+
     /*
      * Function: winner
      * Parameter:
@@ -140,11 +147,9 @@ public class DeadWood {
                 // System.out.println("\t'e': End Turn");
                 // Take input
 				// TODO change this to button input
-				view.showButtonMenu(options);
                 // String usrEntry = DeadWood.feed.nextLine();
 				// Wait for input
-				while(view.getButtonPressed()<0) Thread.yield();
-				String usrEntry = options.get(view.getButtonPressed());
+				String usrEntry = getButtonInput(options);
                 if(usrEntry.equals("End Turn"))
                 {
                     // Player ends their turn
@@ -218,12 +223,9 @@ public class DeadWood {
 				ArrayList<String> options = new ArrayList<String>();
 				options.add("Act");
 				options.add("Rehearse");
-				view.showButtonMenu(options);
-
-				// Wait for button press
-				while(view.getButtonPressed()<0) Thread.yield();
-				int usrEntry = view.getButtonPressed();
-                if(usrEntry == 0)
+				
+				String usrEntry = getButtonInput(options);
+                if(usrEntry.equals("Act"))
                 {
                     // Player wants to act
                     p.act();
