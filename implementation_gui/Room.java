@@ -1,4 +1,4 @@
-
+import java.util.HashMap;
 
 /*
 * Class: Room
@@ -13,6 +13,7 @@ public class Room
 	private String name;
 	private ObjCoord coord;
 	private int[][] placeable;
+	private HashMap<Integer, Integer> validPosition;
 	
 	/**
 	* Constructor
@@ -25,6 +26,39 @@ public class Room
 		this.coord = coord;
 		numActors = 0;
 		this.placeable = placeable;
+		validPosition = new HashMap<Integer, Integer>();
+		/*for (int i = 0; i < 8; i++) {
+			validPosition.put(i, false);
+		}*/
+	}
+
+	public int getValidPosition(int id) {
+		int i;
+		for (i = 0; i < 8;i++) {
+			if (!validPosition.containsKey(i)) {
+				validPosition.put(i, id);
+				return i;
+			}
+			else if (validPosition.containsKey(i) && validPosition.get(i) == id) {
+				return i;
+			}
+		}
+		return i;
+	}
+	public int[] getPlaceable(int i) {
+		return placeable[i];
+	}
+
+	public void removeValidPosition(int id) {
+		for (int i = 0; i < 8; i++) {
+			if (validPosition.containsKey(i)) {
+				if (validPosition.get(i) == id) {
+					validPosition.remove(i, id);
+				}
+			}
+				
+		}
+		
 	}
 	
 	public String getName()
