@@ -57,7 +57,7 @@ public class Board {
 			if (rooms[i] instanceof SceneRoom) {
 				SceneRoom scene = (SceneRoom) rooms[i];
 				if (scene.getScene() != null) {
-					scene.setScene(null);
+					DeadWood.removeCard(scene.getScene());
 				}
 				if (!distributeCard(scene))
 					break;
