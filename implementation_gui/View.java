@@ -48,6 +48,8 @@ public class View extends JFrame {
 
       // Set the title of the JFrame
       super("Deadwood");
+      setIconImage(new ImageIcon("../images/icon.png").getImage());
+
       // Set the exit option for the JFrame
       setDefaultCloseOperation(EXIT_ON_CLOSE);
 
