@@ -56,6 +56,9 @@ public class Board {
 		for (i = 0; i < rooms.length; i++) {
 			if (rooms[i] instanceof SceneRoom) {
 				SceneRoom scene = (SceneRoom) rooms[i];
+				if (scene.getScene() != null) {
+					scene.setScene(null);
+				}
 				if (!distributeCard(scene))
 					break;
 				view.drawElement(scene.getScene());
