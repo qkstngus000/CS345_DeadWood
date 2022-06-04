@@ -22,7 +22,7 @@ public class DeadWood {
 	private static View view;
 	private static Random dice; // Dice Roll
 	private static DeadWood game = new DeadWood();
-	public static final Scanner feed = new Scanner(System.in);
+	// public static final Scanner feed = new Scanner(System.in);
 
 	/*
 	 * Constructor: DeadWood
@@ -322,7 +322,7 @@ public class DeadWood {
 		int hiscore = 0;
 		for (int i = 0; i < numPlayer; i++) {
 			int newscore = players[i].calcScore();
-			System.out.printf("\t%-20s: %d%%n", players[0].getName(), newscore);
+			System.out.printf("\t%-20s: %d\n", players[0].getName(), newscore); // HERE
 			// track highest scores
 			if (newscore >= hiscore) {
 				// if there is a new high score, clear winner list
@@ -369,18 +369,9 @@ public class DeadWood {
 		dice = new Random();
 
 		int pCount = game.view.askNumPlayer();
-		// board.setVisible(true);
-
-		// System.out.print("Enter the number of players who would like to play:\n\t");
-		// String usrEntry = feed.nextLine();
-		// while (!isInteger(usrEntry)) {
-		// System.out.print("Please enter a valid number of players.\n\t");
-		// usrEntry = feed.nextLine();
-		// }
-		// int pcount = Integer.parseInt(usrEntry);
 		game.setEnv(pCount);
 		game.gameLoop();
 
-		feed.close();
+		// feed.close();
 	}
 }
