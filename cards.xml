@@ -30,7 +30,7 @@
       <area x="83" y="47" h="40" w="40" />
       <line>Trust me.</line>
     </part>
-    <part name="Talking Mule" level="4">
+    <part name="Talking Mule" level="5">
       <area x="145" y="47" h="40" w="40" />
       <line>Nice work, Johnny!</line>
     </part>
